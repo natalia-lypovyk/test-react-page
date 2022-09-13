@@ -1,0 +1,31 @@
+.headerItemContainer{
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    padding: 12px 32px;
+    gap: 4px;
+    width: 121px;
+    height: 73px;
+    background: #FFFFFF;
+    border: 2px solid #F4F5FC;
+    border-radius: 12px;
+}
+.itemHeaderText{
+    width: 56px;
+    height: 21px;
+    font-family: 'Rubik';
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 150%;
+    text-align: center;
+    color: #908DFF;
+}
+.itemBodyText{
+    width: 57px;
+    height: 24px;
+    font-size: 14px;
+    color: #16173A;
+}

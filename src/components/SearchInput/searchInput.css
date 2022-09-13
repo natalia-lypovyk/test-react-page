@@ -1,0 +1,36 @@
+.inputContainer{
+    display: flex;
+    height: 40px;
+    margin-top: 40px;
+    margin-left: 200px;
+    margin-right: 197px;
+}
+.inputWrapper{
+    height: 40px;
+    background: #F4F5FC;
+    border-radius: 12px;
+    flex-direction: row;
+    display: flex;
+    width: 100%;
+    margin-right: 20px;
+}
+.inputTextContainer{
+    background: #F4F5FC;
+    height:38px ;
+    border: none;
+    resize: none;
+    outline: none;
+    width: 100%;
+    margin-right: 20px;
+
+}
+.imageContainer{
+    height: 40px;
+    width: 40px;
+    margin-left: 25px;
+}
+.imageButton {
+    width:24px;
+    height:24px;
+    margin:9px;
+}

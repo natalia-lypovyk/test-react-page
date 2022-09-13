@@ -1,0 +1,50 @@
+import React from "react";
+import './accordion.css'
+import Warning from "../../assets/svg/warning";
+import Plus from "../../assets/svg/plus";
+import Minus from "../../assets/svg/minus";
+import ContentRow from "./contentRow";
+import {tableData} from "../../constats/tableData";
+
+const Accordion = ({selected, setSelected, data,index })=>{
+    const totalFarmHashrates = 'Total farm hashrates:';
+    const toggle= (item)=>{
+        if(selected === item){
+            return setSelected(null)
+        }
+        setSelected(item);
+    }
+    return (
+        <div className={'accordionContainer'} onClick={()=>toggle(index)}>
+            <div className={'accordionHeaderContainer'}>
+                <div className={'accordionHeaderWrapper'}>
+                    <div className={'warningImage'}>
+                        <Warning/>
+                    </div>
+                    <span className={'accordionMainText'}>{data?.name}</span>
+                </div>
+                <div className={'accordionHeaderWrapper'}>
+                    <span className={'accordionMainText fontWeight400 marginLeft10'}>{totalFarmHashrates}</span>
+                    {data?.rates.map((value, index) =><span className={'accordionMainText marginLeft10'} key={index}>{value}</span> )}
+                    <div className={'warningImage'}>
+                        {selected?<Minus/>:<Plus/>}
+                    </div>
+                </div>
+            </div>
+            {selected === index&&(
+                <div className={'accordionContentContainer'}>
+                    <div className={'accordionContentWrapper contentDarkBackground'}>
+                        <ContentRow type={'header'}/>
+                    </div>
+                    {tableData.map((value, i)=>{
+                        return (
+                        <div className={`accordionContentWrapper ${ i!=0 && i%2 &&'contentDarkBackground'}`} key={i}>
+                            <ContentRow rowText={value}/>
+                        </div>
+                    )})}
+                </div>
+            )}
+        </div>
+    )
+}
+export default  Accordion;
