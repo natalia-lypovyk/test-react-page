@@ -27,7 +27,7 @@ const Accordion = ({selected, setSelected, data,index })=>{
                     <span className={'accordionMainText fontWeight400 marginLeft10'}>{totalFarmHashrates}</span>
                     {data?.rates.map((value, index) =><span className={'accordionMainText marginLeft10'} key={index}>{value}</span> )}
                     <div className={'warningImage'}>
-                        {selected?<Minus/>:<Plus/>}
+                        {selected === index  ?<Minus/>:<Plus/>}
                     </div>
                 </div>
             </div>
