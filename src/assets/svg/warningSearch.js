@@ -3,8 +3,8 @@ import * as React from "react"
 const WarningSearch = (props) => (
     <svg
         {...props}
-        width="40em"
-        height="40em"
+        width="40px"
+        height="40px"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
     >

@@ -15,18 +15,20 @@ const Accordion = ({selected, setSelected, data,index })=>{
         setSelected(item);
     }
     return (
-        <div className={'accordionContainer'} onClick={()=>toggle(index)}>
-            <div className={'accordionHeaderContainer'}>
+        <div className={'accordionContainer'}>
+            <div className={'accordionHeaderContainer'} onClick={()=>toggle(index)}>
                 <div className={'accordionHeaderWrapper'}>
-                    <div className={'warningImage'}>
-                        <Warning/>
-                    </div>
-                    <span className={'accordionMainText'}>{data?.name}</span>
+                    {!data?.status&&(
+                        <div className={'warningImage'}>
+                            <Warning/>
+                        </div>
+                    )}
+                    <span className={'accordionMainText'} style={{marginLeft:'18px'}}>{data?.name}</span>
                 </div>
                 <div className={'accordionHeaderWrapper'}>
                     <span className={'accordionMainText fontWeight400 marginLeft10'}>{totalFarmHashrates}</span>
                     {data?.rates.map((value, index) =><span className={'accordionMainText marginLeft10'} key={index}>{value}</span> )}
-                    <div className={'warningImage'}>
+                    <div className={'warningImage'} style={{marginRight:'18px'}}>
                         {selected === index  ?<Minus/>:<Plus/>}
                     </div>
                 </div>

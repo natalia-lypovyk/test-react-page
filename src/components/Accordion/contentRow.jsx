@@ -11,7 +11,7 @@ const ContentRow = ({type = '', rowText={}})=>{
     }
     return (
         <>
-            <div className={'marginLeft10'} style={{width:'20%', display:'flex'}}>
+            <div className={'marginLeft10'} style={{width:'18%', display:'flex'}}>
                 {!isHeader && (
                     <div className={'marginRight10'}>
                         {rowText?.status? <GreenRec/>:<RedRec/>}
@@ -40,7 +40,7 @@ const ContentRow = ({type = '', rowText={}})=>{
             <div className={'marginLeft20'} style={{width:'12%'}}>
                 {getText('',isHeader? tableHeaderText.hashrate :rowText.hashrate)}
             </div>
-            <div className={'marginLeft20 marginRight10'} style={{width:'7%'}}>
+            <div className={'marginLeft20 marginRight10'} style={{width:'9%'}}>
                 {getText('',isHeader? tableHeaderText.conf_name :rowText.conf_name)}
             </div>
         </>

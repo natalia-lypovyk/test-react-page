@@ -9,20 +9,27 @@ import LoadButton from "../../components/Load/loadButton";
 const App = ()=>{
     const [selected, setSelected] = useState(null)
     const [amount, setAmount] =useState(3)
-    console.log(amount, accordionData.length)
+    let count = 0;
+    const [filter, setFilter] = useState(true)
+    console.log(amount, accordionData.filter(value => value.status ===filter).length)
 
     return (
         <div className="app">
             <Header/>
-            <SearchInput/>
-            <div style={{marginTop:'40px', marginBottom:amount+1 === accordionData.length && '100px'}}>
+            <SearchInput filter={filter} setFilter={setFilter}/>
+            <div style={{marginTop:'40px', marginBottom:amount === accordionData.filter(value => value.status ===filter).length && '100px'}}>
                 {accordionData.map((value, index)=> {
-                    if (index <= amount){
-                        return ( <Accordion selected={selected} setSelected={setSelected} data={value} index={index + 1} key={index}/>)
+                    if (value.status === filter) {
+                        if (count <= amount) {
+                            count++;
+                            return (
+                                <Accordion selected={selected} setSelected={setSelected} data={value} index={index + 1}
+                                           key={index}/>)
+                        }
                     }
                 })}
             </div>
-            {amount+1 != accordionData.length &&  (<LoadButton length={accordionData.length} amount={amount} setAmount={setAmount}/>)}
+            {amount !== accordionData.filter(value => value.status ===filter).length &&  (<LoadButton length={accordionData.length} amount={amount} setAmount={setAmount}/>)}
         </div>
     )
 }

@@ -22,7 +22,7 @@
     font-style: normal;
     font-weight: 600;
     font-size: 14px;
-    line-height: 150%;
+    line-height: 150%
 }
 .accordionContentContainer{
     margin-bottom: 10px;
@@ -37,7 +37,6 @@
 }
 .warningImage{
     margin-left: 18px;
-    margin-right: 18px;
     margin-top: 3px;
 }
 

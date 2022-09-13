@@ -5,8 +5,8 @@ import DisabledWarningSearch from "../../assets/svg/disabledWarningSearch";
 import Search from "../../assets/svg/search";
 import Close from "../../assets/svg/close";
 
-const SearchInput = ({headerText, bodyText})=>{
-    const [inputWarning,setInputWarning] = useState(false)
+const SearchInput = ({filter, setFilter})=>{
+
     const [text, setText] = useState('')
     const handleChange = event => {
         setText(event.target.value);
@@ -29,8 +29,8 @@ const SearchInput = ({headerText, bodyText})=>{
                     </div> }
 
             </div>
-            <div className={'imageContainer'}>
-                {inputWarning?<WarningSearch/>:<DisabledWarningSearch/> }
+            <div className={'imageContainer'} onClick={()=>{setFilter(!filter)}}>
+                {!filter?<WarningSearch/>:<DisabledWarningSearch/> }
             </div>
 
         </div>

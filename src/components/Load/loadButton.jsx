@@ -8,7 +8,6 @@ const LoadButton = ({length, amount, setAmount})=>{
     const toggle= ()=>{
     const sum = extraAmount+amount;
     const difference = length - amount
-
         if( sum < length){
             return setAmount(sum-1)
         }

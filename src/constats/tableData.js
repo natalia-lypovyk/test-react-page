@@ -1,49 +1,123 @@
 export const accordionData=[
     {
-    name : 'DavyCrokett farm',
-    rates : ['[ETH] ethash 4.0 Gh','[MOAC] ethash 890.0 Mh']
-    },
-    {
-        name : 'Vasyl farm',
-        rates : ['[MOAC] ethash 890.0 Mh']
-    },
-    {
-        name : 'Vadim farm',
-        rates : ['[ETH] ethash 4.0 Gh']
-    },
-    {
-        name : 'Yuriy farm',
-        rates : ['[ETH] ethash 4.0 Gh','[MOAC] ethash 890.0 Mh']
-    },
-    {
+        status: false,
         name : 'DavyCrokett farm',
         rates : ['[ETH] ethash 4.0 Gh','[MOAC] ethash 890.0 Mh']
     },
     {
+        status: true,
         name : 'Vasyl farm',
         rates : ['[MOAC] ethash 890.0 Mh']
     },
     {
+        status: false,
         name : 'Vadim farm',
         rates : ['[ETH] ethash 4.0 Gh']
     },
     {
+        status: true,
         name : 'Yuriy farm',
         rates : ['[ETH] ethash 4.0 Gh','[MOAC] ethash 890.0 Mh']
     },
     {
+        status: true,
         name : 'DavyCrokett farm',
         rates : ['[ETH] ethash 4.0 Gh','[MOAC] ethash 890.0 Mh']
     },
     {
+        status: true,
         name : 'Vasyl farm',
         rates : ['[MOAC] ethash 890.0 Mh']
     },
     {
+        status: false,
         name : 'Vadim farm',
         rates : ['[ETH] ethash 4.0 Gh']
     },
     {
+        status: false,
+        name : 'Yuriy farm',
+        rates : ['[ETH] ethash 4.0 Gh','[MOAC] ethash 890.0 Mh']
+    },
+
+    {
+        status: false,
+        name : 'DavyCrokett farm',
+        rates : ['[ETH] ethash 4.0 Gh','[MOAC] ethash 890.0 Mh']
+    },
+    {
+        status: true,
+        name : 'Vasyl farm',
+        rates : ['[MOAC] ethash 890.0 Mh']
+    },
+    {
+        status: false,
+        name : 'Vadim farm',
+        rates : ['[ETH] ethash 4.0 Gh']
+    },
+    {
+        status: true,
+        name : 'Yuriy farm',
+        rates : ['[ETH] ethash 4.0 Gh','[MOAC] ethash 890.0 Mh']
+    },
+    {
+        status: false,
+        name : 'DavyCrokett farm',
+        rates : ['[ETH] ethash 4.0 Gh','[MOAC] ethash 890.0 Mh']
+    },
+    {
+        status: true,
+        name : 'Vasyl farm',
+        rates : ['[MOAC] ethash 890.0 Mh']
+    },
+    {
+        status: false,
+        name : 'Vadim farm',
+        rates : ['[ETH] ethash 4.0 Gh']
+    },
+    {
+        status: true,
+        name : 'Yuriy farm',
+        rates : ['[ETH] ethash 4.0 Gh','[MOAC] ethash 890.0 Mh']
+    },
+    {
+        status: true,
+        name : 'DavyCrokett farm',
+        rates : ['[ETH] ethash 4.0 Gh','[MOAC] ethash 890.0 Mh']
+    },
+    {
+        status: true,
+        name : 'Vasyl farm',
+        rates : ['[MOAC] ethash 890.0 Mh']
+    },
+    {
+        status: false,
+        name : 'Vadim farm',
+        rates : ['[ETH] ethash 4.0 Gh']
+    },
+    {
+        status: false,
+        name : 'Yuriy farm',
+        rates : ['[ETH] ethash 4.0 Gh','[MOAC] ethash 890.0 Mh']
+    },
+
+    {
+        status: false,
+        name : 'DavyCrokett farm',
+        rates : ['[ETH] ethash 4.0 Gh','[MOAC] ethash 890.0 Mh']
+    },
+    {
+        status: true,
+        name : 'Vasyl farm',
+        rates : ['[MOAC] ethash 890.0 Mh']
+    },
+    {
+        status: false,
+        name : 'Vadim farm',
+        rates : ['[ETH] ethash 4.0 Gh']
+    },
+    {
+        status: true,
         name : 'Yuriy farm',
         rates : ['[ETH] ethash 4.0 Gh','[MOAC] ethash 890.0 Mh']
     },]
