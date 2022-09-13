@@ -11,6 +11,9 @@ const SearchInput = ({headerText, bodyText})=>{
     const handleChange = event => {
         setText(event.target.value);
     };
+    const handleClose = ()=>{
+        setText('')
+    }
     const placeholder = 'User / Rig / Status / Algo / Coin / Pool / Wallet / Conf_name'
     return (
         <div className={'inputContainer'}>
@@ -20,9 +23,10 @@ const SearchInput = ({headerText, bodyText})=>{
                 </div>
                 <input placeholder={placeholder} className={'inputTextContainer'} value={text}  type="text" onChange={handleChange}
                 />
-                {text && <div className={'imageButton'} >
-                    <Close/>
-                </div> }
+                {text &&
+                    <div className={'imageButton'} onClick={()=>{handleClose()}} >
+                        <Close/>
+                    </div> }
 
             </div>
             <div className={'imageContainer'}>
