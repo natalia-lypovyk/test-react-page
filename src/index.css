@@ -1,3 +1,7 @@
 .app {
   font-family: 'Rubik', sans-serif;
 }
+
+* {
+  box-sizing: border-box;
+}
