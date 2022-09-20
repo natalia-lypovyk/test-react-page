@@ -1,4 +1,5 @@
 import React from 'react';
+import { v4 as uuid } from 'uuid';
 
 import JetHash from '../../assets/svg/jetHash';
 import './header.css'
@@ -31,7 +32,7 @@ const Header = () => {
       <div className={'headerItems'}>
         {headerItems.map((value) => (
           <HeaderItem
-            key={value.headerText}
+            key={uuid()}
             headerText={value.headerText}
             bodyText={value.bodyText}
           />

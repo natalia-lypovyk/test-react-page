@@ -1,4 +1,5 @@
 import React from 'react';
+import { v4 as uuid } from 'uuid';
 
 import './accordion.css'
 import Warning from '../../assets/svg/warning';
@@ -47,7 +48,7 @@ const Accordion = ({ selected, setSelected, data, index }) => {
           {data?.rates.map((value) => (
             <span
               className={'accordionMainText marginLeft10'}
-              key={value}
+              key={uuid()}
             >
               {value}
             </span>
@@ -67,7 +68,7 @@ const Accordion = ({ selected, setSelected, data, index }) => {
 
           {tableData.map((value, i) => (
               <div
-                key={value.name}
+                key={uuid()}
                 className={`accordionContentWrapper ${i !== 0 && i % 2 && 'contentDarkBackground'}`}
               >
                 <ContentRow rowText={value}/>

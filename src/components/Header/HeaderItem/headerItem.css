@@ -1,8 +1,7 @@
 .headerItemContainer {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: flex-start;
+  align-items: center;
   gap: 4px;
   padding: 12px 32px;
   border: 2px solid #F4F5FC;

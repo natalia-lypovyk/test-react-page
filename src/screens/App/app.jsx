@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { v4 as uuid } from 'uuid';
 
 import Header from '../../components/Header/header';
 import SearchInput from '../../components/SearchInput/searchInput';
@@ -35,7 +36,7 @@ const App = () => {
                   setSelected={setSelected}
                   data={value}
                   index={index + 1}
-                  key={value.name}
+                  key={uuid()}
                 />
               )
             }
