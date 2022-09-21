@@ -6,6 +6,7 @@ import Warning from '../../assets/svg/warning';
 import Plus from '../../assets/svg/plus';
 import Minus from '../../assets/svg/minus';
 import ContentRow from './contentRow';
+import { Tooltip } from './tooltip';
 
 import { tableData } from '../../constats/tableData';
 
@@ -25,9 +26,13 @@ const Accordion = ({ data }) => {
       >
         <div className={'accordionHeaderWrapper'}>
           {!data?.status && (
-            <div className={'warningImage'}>
-              <Warning/>
-            </div>
+            <>
+              <div className={'warningImage'}>
+                <Warning />
+              </div>
+
+              <Tooltip />
+            </>
           )}
 
           <span
@@ -64,10 +69,10 @@ const Accordion = ({ data }) => {
             <ContentRow type={'header'} />
           </div>
 
-          {tableData.map((value, i) => (
+          {tableData.map((value) => (
               <div
                 key={uuid()}
-                className={`accordionContentWrapper ${i !== 0 && i % 2 && 'contentDarkBackground'}`}
+                className={'accordionContentWrapper'}
               >
                 <ContentRow rowText={value} />
               </div>

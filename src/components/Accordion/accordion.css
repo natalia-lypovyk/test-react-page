@@ -8,6 +8,7 @@
 }
 
 .accordionHeaderContainer {
+  position: relative;
   height: 60px;
   display: flex;
   justify-content: space-between;
@@ -36,7 +37,7 @@
   height: 60px;
 }
 
-.contentDarkBackground {
+.accordionContentWrapper:nth-child(odd) {
   background: #F4F5FC;
 }
 
@@ -44,6 +45,10 @@
   margin-left: 18px;
   margin-top: 3px;
   cursor: pointer;
+}
+
+.warningImage:hover + .tooltip {
+  opacity: 1;
 }
 
 .fontWeight400 {
