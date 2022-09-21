@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { v4 as uuid } from 'uuid';
 
 import './accordion.css'
@@ -9,21 +9,19 @@ import ContentRow from './contentRow';
 
 import { tableData } from '../../constats/tableData';
 
-const Accordion = ({ selected, setSelected, data, index }) => {
+const Accordion = ({ data }) => {
+  const [isSelected, setIsSelected] = useState(false);
   const totalFarmHashrates = 'Total farm hashrates:';
-  const toggle = (item) => {
-    if (selected === item) {
-      setSelected(null);
-    }
 
-    setSelected(item);
+  const toggle = () => {
+    setIsSelected(!isSelected);
   };
 
   return (
     <div className={'accordionContainer'}>
       <div
         className={'accordionHeaderContainer'}
-        onClick={() => toggle(index)}
+        onClick={() => toggle()}
       >
         <div className={'accordionHeaderWrapper'}>
           {!data?.status && (
@@ -55,15 +53,15 @@ const Accordion = ({ selected, setSelected, data, index }) => {
           ))}
 
           <div className={'warningImage'} style={{marginRight:'18px'}}>
-            {selected === index  ? <Minus /> : <Plus />}
+            {isSelected  ? <Minus /> : <Plus />}
           </div>
         </div>
       </div>
 
-      {selected === index && (
+      {isSelected && (
         <div className={'accordionContentContainer'}>
           <div className={'accordionContentWrapper contentDarkBackground'}>
-            <ContentRow type={'header'}/>
+            <ContentRow type={'header'} />
           </div>
 
           {tableData.map((value, i) => (
@@ -71,7 +69,7 @@ const Accordion = ({ selected, setSelected, data, index }) => {
                 key={uuid()}
                 className={`accordionContentWrapper ${i !== 0 && i % 2 && 'contentDarkBackground'}`}
               >
-                <ContentRow rowText={value}/>
+                <ContentRow rowText={value} />
               </div>
             ))}
         </div>

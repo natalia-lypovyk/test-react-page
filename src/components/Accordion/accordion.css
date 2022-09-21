@@ -42,6 +42,7 @@
 .warningImage {
   margin-left: 18px;
   margin-top: 3px;
+  cursor: pointer;
 }
 
 .fontWeight400 {
