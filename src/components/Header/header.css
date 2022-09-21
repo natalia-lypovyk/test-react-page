@@ -1,6 +1,7 @@
 .headerContainer {
   display: flex;
   max-width: 1040px;
+  width: 90%;
   margin: 40px auto 0;
 }
 
@@ -24,6 +25,7 @@
   display: flex;
   justify-content: space-between;
   max-width: 1040px;
+  width: 90%;
   margin: 52px auto 0;
 }
 

@@ -1,6 +1,7 @@
 .inputContainer {
   display: flex;
   max-width: 1040px;
+  width: 90%;
   height: 40px;
   margin: 40px auto 0;
 }

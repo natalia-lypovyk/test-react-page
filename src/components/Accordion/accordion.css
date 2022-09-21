@@ -1,5 +1,6 @@
 .accordionContainer {
   max-width: 1040px;
+  width: 90%;
   margin: 10px auto 0;
   border: 1px solid #F4F5FC;
   border-radius: 12px;
