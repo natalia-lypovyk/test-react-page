@@ -4,6 +4,7 @@ import './loadButton.css'
 import Replay from '../../assets/svg/replay';
 
 const LoadButton = ({ length, amount, setAmount }) => {
+  console.log('length', length, 'amount', amount)
   const extraAmount = 4;
   const loadText = 'Load more'
 

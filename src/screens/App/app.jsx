@@ -11,38 +11,39 @@ import { accordionData } from '../../constats/tableData';
 const App = () => {
   const [amount, setAmount] = useState(3);
   let count = 0;
-  const [filter, setFilter] = useState(true);
-  console.log('amount', amount, 'filter', filter, 'filtered', accordionData.filter(value => value.status === filter).length);
+  const [isFiltered, setIsFiltered] = useState(false);
 
+  const data = !isFiltered ? accordionData : accordionData.filter((item) => item.status === false);
+
+  console.log('count', count)
   return (
     <div className="app">
       <Header />
 
-      <SearchInput filter={filter} setFilter={setFilter}/>
+      <SearchInput isFiltered={isFiltered} setIsFiltered={setIsFiltered} />
 
       <div style={{
         marginTop:'40px',
-        marginBottom: amount === accordionData.filter(value => value.status === filter).length && '100px'
+        marginBottom: '10px'
+        // marginBottom: amount === data.filter(value => value.status === filter).length && '100px'
       }}
       >
-        {accordionData.map((value) => {
-          if (value.status === filter) {
-            if (count <= amount) {
-              count++;
-              return (
-                <Accordion
-                  data={value}
-                  key={uuid()}
-                />
-              )
-            }
+        {data.map((value) => {
+          if (count <= amount) {
+            count++;
+            return (
+              <Accordion
+                data={value}
+                key={uuid()}
+              />
+            )
           }
         })}
       </div>
 
-      {amount !== accordionData.filter(value => value.status === filter).length && (
+      {amount !== data.length && (
         <LoadButton
-          length={accordionData.length}
+          length={data.length}
           amount={amount}
           setAmount={setAmount}
         />
