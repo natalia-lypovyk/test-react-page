@@ -35,10 +35,7 @@ const Accordion = ({ data }) => {
             </>
           )}
 
-          <span
-            className={'accordionMainText'}
-            style={{marginLeft:'18px'}}
-          >
+          <span className={'accordionMainText marginLeft18'}>
             {data?.name}
           </span>
         </div>
@@ -57,7 +54,7 @@ const Accordion = ({ data }) => {
             </span>
           ))}
 
-          <div className={'warningImage'} style={{marginRight:'18px'}}>
+          <div className={'iconImage'}>
             {isSelected  ? <Minus /> : <Plus />}
           </div>
         </div>
@@ -65,11 +62,12 @@ const Accordion = ({ data }) => {
 
       {isSelected && (
         <div className={'accordionContentContainer'}>
-          <div className={'accordionContentWrapper contentDarkBackground'}>
-            <ContentRow type={'header'} />
-          </div>
+          <div className={'accordionOverflow'}>
+            <div className={'accordionContentWrapper'}>
+              <ContentRow type={'header'} />
+            </div>
 
-          {tableData.map((value) => (
+            {tableData.map((value) => (
               <div
                 key={uuid()}
                 className={'accordionContentWrapper'}
@@ -77,6 +75,7 @@ const Accordion = ({ data }) => {
                 <ContentRow rowText={value} />
               </div>
             ))}
+          </div>
         </div>
       )}
     </div>

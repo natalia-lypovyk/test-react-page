@@ -9,15 +9,30 @@
 
 .accordionHeaderContainer {
   position: relative;
-  height: 60px;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  height: 60px;
+}
+
+@media screen and (max-width: 800px) {
+  .accordionHeaderContainer {
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-around;
+  }
 }
 
 .accordionHeaderWrapper {
   display: flex;
   align-items: center;
+}
+
+@media screen and (max-width: 800px) {
+  .accordionHeaderWrapper:nth-of-type(2) {
+    width: 100%;
+    justify-content: space-between;
+  }
 }
 
 .accordionMainText {
@@ -28,13 +43,20 @@
 }
 
 .accordionContentContainer {
+  width: 100%;
   margin-bottom: 10px;
+}
+
+.accordionOverflow {
+  width: 100%;
+  overflow: auto;
 }
 
 .accordionContentWrapper {
   display: flex;
   align-items: center;
   height: 60px;
+  min-width: 800px;
 }
 
 .accordionContentWrapper:nth-child(odd) {
@@ -51,12 +73,32 @@
   opacity: 1;
 }
 
+.iconImage {
+  margin: 3px 18px 0;
+  cursor: pointer;
+}
+
+@media screen and (max-width: 800px) {
+  .iconImage {
+    margin: -30px 10px 0;
+  }
+}
+
 .fontWeight400 {
   font-weight: 400;
 }
 
 .marginLeft10 {
   margin-left: 10px;
+}
+
+.marginLeft18 {
+  margin-left: 18px;
+}
+@media screen and (max-width: 800px) {
+  .marginLeft18 {
+    margin-left: 10px;
+  }
 }
 
 .marginLeft20 {

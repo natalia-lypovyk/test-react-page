@@ -23,7 +23,9 @@
 
 .headerItems {
   display: flex;
-  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 5px;
+  justify-content: flex-start;
   max-width: 1040px;
   width: 90%;
   margin: 52px auto 0;
