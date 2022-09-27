@@ -17,48 +17,47 @@ const ContentRow = ({ type = '', rowText= {} }) => {
 
   return (
     <div className="innerContainer">
-      <div  style={{width:'18%', display:'flex'}}>
+      <div style={{ display: 'flex' }}>
         {!isHeader && (
-          <div className="iconContainer">
-            {rowText?.status? <GreenRec /> : <RedRec />}
-          </div>)
+          <figure className="iconContainer">
+            {rowText?.status ? <GreenRec /> : <RedRec />}
+          </figure>)
         }
-
         {getText('',isHeader? tableHeaderText.name : rowText.name)}
       </div>
 
-      <div style={{width:'10%'}}>
+      <div>
         {getText('',isHeader ? tableHeaderText.last : rowText.last)}
       </div>
 
-      <div style={{width:'7%'}}>
+      <div>
         {getText('',isHeader ? tableHeaderText.algo : rowText.algo)}
       </div>
 
-      <div style={{width:'5%'}}>
+      <div>
         {getText('',isHeader ? tableHeaderText.coin : rowText.coin)}
       </div>
 
-      <div style={{width:'16%'}}>
+      <div>
         {getText('',isHeader ? tableHeaderText.pool : rowText.pool)}
       </div>
 
-      <div style={{width:'10%'}}>
+      <div>
         {getText('',isHeader ? tableHeaderText.login : rowText.login)}
       </div>
 
-      <div style={{width:'11%'}}>
+      <div>
         {getText(
           !rowText?.status && !isHeader && 'redText',
           isHeader ? tableHeaderText.troubles : rowText.troubles
         )}
       </div>
 
-      <div style={{width:'12%'}}>
+      <div>
         {getText('',isHeader ? tableHeaderText.hashrate : rowText.hashrate)}
       </div>
 
-      <div style={{width:'9%'}}>
+      <div>
         {getText('',isHeader ? tableHeaderText.conf_name : rowText.conf_name)}
       </div>
     </div>

@@ -66,8 +66,8 @@
 .accordionContentWrapper {
   display: flex;
   align-items: center;
-  height: 60px;
-  min-width:870px;
+  min-height: 60px;
+  min-width: 870px;
 }
 
 .accordionContentWrapper:nth-child(odd) {
