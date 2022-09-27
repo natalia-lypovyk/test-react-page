@@ -4,7 +4,7 @@ import './loadButton.css'
 import Replay from '../../assets/svg/replay';
 
 const LoadButton = ({ length, amount, setAmount }) => {
-  console.log('length', length, 'amount', amount)
+  // console.log('length', length, 'amount', amount)
   const extraAmount = 4;
   const loadText = 'Load more'
 
@@ -23,11 +23,11 @@ const LoadButton = ({ length, amount, setAmount }) => {
 
   return (
     <div
-      className={'loadButtonContainer'}
+      className="loadButtonContainer"
       onClick={() => toggle()}
     >
-      <Replay/>
-      <span className={'loadText'}>{loadText}</span>
+      <Replay />
+      <span className="loadText">{loadText}</span>
     </div>
   );
 };

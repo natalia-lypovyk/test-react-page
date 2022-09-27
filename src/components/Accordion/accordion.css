@@ -12,7 +12,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  height: 60px;
+  min-height: 60px;
 }
 
 @media screen and (max-width: 800px) {
@@ -36,9 +36,20 @@
 }
 
 .accordionMainText {
-  font-style: normal;
   font-weight: 600;
   font-size: 14px;
+  line-height: 150%
+}
+
+@media screen and (max-width: 800px) {
+  .accordionMainText {
+    font-size: 12px;
+  }
+}
+
+.accordionText {
+  font-weight: 400;
+  font-size: 12px;
   line-height: 150%
 }
 
@@ -56,7 +67,7 @@
   display: flex;
   align-items: center;
   height: 60px;
-  min-width: 800px;
+  min-width:870px;
 }
 
 .accordionContentWrapper:nth-child(odd) {
@@ -123,3 +134,51 @@
   margin-right: 10px;
 }
 
+.innerContainer {
+  display: flex;
+  align-items: center;
+  column-gap: 10px;
+  width: 100%;
+  height: 100%;
+}
+
+.innerContainer > div {
+  padding: 0 0 0 5px;
+  /*overflow: hidden;*/
+}
+
+.innerContainer > div:first-of-type {
+  flex-basis: 18%;
+}
+
+.innerContainer > div:nth-of-type(2) {
+  flex-basis: 10%;
+}
+
+.innerContainer > div:nth-of-type(3) {
+  flex-basis: 7%;
+}
+
+.innerContainer > div:nth-of-type(4) {
+  flex-basis: 5%;
+}
+
+.innerContainer > div:nth-of-type(5) {
+  flex-basis: 16%;
+}
+
+.innerContainer > div:nth-of-type(6) {
+  flex-basis: 10%;
+}
+
+.innerContainer > div:nth-of-type(7) {
+  flex-basis: 11%;
+}
+
+.innerContainer > div:nth-of-type(8) {
+  flex-basis: 12%;
+}
+
+.innerContainer > div:nth-of-type(9) {
+  flex-basis: 9%;
+}

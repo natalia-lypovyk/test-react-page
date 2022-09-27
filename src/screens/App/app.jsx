@@ -6,28 +6,25 @@ import SearchInput from '../../components/SearchInput/searchInput';
 import Accordion from '../../components/Accordion/accordion';
 import LoadButton from '../../components/Load/loadButton';
 
-import { accordionData } from '../../constats/tableData';
+import './app.css';
+import { accordionData, cutLogin } from '../../constats/tableData';
 
 const App = () => {
-  const [amount, setAmount] = useState(3);
-  let count = 0;
+  const [amount, setAmount] = useState(5);
   const [isFiltered, setIsFiltered] = useState(false);
+  let count = 0;
 
+  const ttext = cutLogin('0xcdd47e77F642690E50d929641F0f78E3414e0D7E');
+  console.log('text', ttext, ttext.length);
   const data = !isFiltered ? accordionData : accordionData.filter((item) => item.status === false);
 
-  console.log('count', count)
   return (
     <div className="app">
       <Header />
 
       <SearchInput isFiltered={isFiltered} setIsFiltered={setIsFiltered} />
 
-      <div style={{
-        marginTop:'40px',
-        marginBottom: '10px'
-        // marginBottom: amount === data.filter(value => value.status === filter).length && '100px'
-      }}
-      >
+      <div className="headerWrapper">
         {data.map((value) => {
           if (count <= amount) {
             count++;

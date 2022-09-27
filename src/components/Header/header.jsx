@@ -18,18 +18,18 @@ const headerItems = [
 
 const Header = () => {
   return (
-    <div className={'app'} >
-      <div className={'headerContainer'}>
-        <div className='headerImage'>
+    <div className="header">
+      <div className="headerContainer">
+        <div className="headerImage">
           <JetHash />
         </div>
 
-        <div className='headerTextContainer'>
-          <h1 className='headerTextWrapper'>Farm Monitoring</h1>
+        <div className="headerTextContainer">
+          <h1 className="headerTextWrapper">Farm Monitoring</h1>
         </div>
       </div>
 
-      <div className={'headerItems'}>
+      <div className="headerItems">
         {headerItems.map((value) => (
           <HeaderItem
             key={uuid()}
@@ -39,7 +39,7 @@ const Header = () => {
         ))}
       </div>
 
-      <div className={'underline'} />
+      <div className="underline" />
     </div>
   );
 };

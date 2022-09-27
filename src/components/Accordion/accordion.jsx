@@ -19,15 +19,15 @@ const Accordion = ({ data }) => {
   };
 
   return (
-    <div className={'accordionContainer'}>
+    <div className="accordionContainer">
       <div
-        className={'accordionHeaderContainer'}
+        className="accordionHeaderContainer"
         onClick={() => toggle()}
       >
-        <div className={'accordionHeaderWrapper'}>
+        <div className="accordionHeaderWrapper">
           {!data?.status && (
             <>
-              <div className={'warningImage'}>
+              <div className="warningImage">
                 <Warning />
               </div>
 
@@ -35,42 +35,42 @@ const Accordion = ({ data }) => {
             </>
           )}
 
-          <span className={'accordionMainText marginLeft18'}>
+          <span className="accordionMainText marginLeft18">
             {data?.name}
           </span>
         </div>
 
-        <div className={'accordionHeaderWrapper'}>
-          <span className={'accordionMainText fontWeight400 marginLeft10'}>
+        <div className="accordionHeaderWrapper">
+          <span className="accordionText marginLeft10">
             {totalFarmHashrates}
           </span>
 
           {data?.rates.map((value) => (
             <span
-              className={'accordionMainText marginLeft10'}
+              className="accordionMainText marginLeft10"
               key={uuid()}
             >
               {value}
             </span>
           ))}
 
-          <div className={'iconImage'}>
+          <div className="iconImage">
             {isSelected  ? <Minus /> : <Plus />}
           </div>
         </div>
       </div>
 
       {isSelected && (
-        <div className={'accordionContentContainer'}>
-          <div className={'accordionOverflow'}>
-            <div className={'accordionContentWrapper'}>
-              <ContentRow type={'header'} />
+        <div className="accordionContentContainer">
+          <div className="accordionOverflow">
+            <div className="accordionContentWrapper">
+              <ContentRow type="header" />
             </div>
 
             {tableData.map((value) => (
               <div
                 key={uuid()}
-                className={'accordionContentWrapper'}
+                className="accordionContentWrapper"
               >
                 <ContentRow rowText={value} />
               </div>

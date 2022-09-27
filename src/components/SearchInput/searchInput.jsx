@@ -17,18 +17,18 @@ const SearchInput = ({ isFiltered, setIsFiltered }) => {
     setText('')
   };
 
-  const placeholder = 'User / Rig / Status / Algo / Coin / Pool / Wallet / Conf_name';
+  const placeholder = 'User / Rig / Algo / Coin / Pool / Wallet / Conf_name';
 
   return (
-    <div className={'inputContainer'}>
-      <div className={'inputWrapper'}>
-        <div className={'imageButton'}>
-          <Search/>
+    <div className="inputContainer">
+      <div className="inputWrapper">
+        <div className="imageButton">
+          <Search />
         </div>
 
         <input
           placeholder={placeholder}
-          className={'inputTextContainer'}
+          className="inputTextContainer"
           value={text}
           type="text"
           onChange={handleChange}
@@ -36,16 +36,16 @@ const SearchInput = ({ isFiltered, setIsFiltered }) => {
 
         {text && (
           <div
-            className={'imageButton'}
+            className="imageButton"
             onClick={() => handleClose()}
           >
-            <Close/>
+            <Close />
           </div>
         )}
       </div>
 
       <div
-        className={'imageContainer'}
+        className="imageContainer"
         onClick={() => setIsFiltered(!isFiltered)}
       >
         {isFiltered ? <WarningSearch /> : <DisabledWarningSearch />}
@@ -54,4 +54,4 @@ const SearchInput = ({ isFiltered, setIsFiltered }) => {
   );
 };
 
-export default  SearchInput;
+export default SearchInput;

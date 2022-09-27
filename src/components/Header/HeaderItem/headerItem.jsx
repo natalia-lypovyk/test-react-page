@@ -4,10 +4,10 @@ import './headerItem.css'
 
 const HeaderItem = ({ headerText, bodyText }) => {
   return (
-    <div className={'headerItemContainer'}>
-      <span className={'itemHeaderText'}>{headerText}</span>
+    <div className="headerItemContainer">
+      <span className="itemHeaderText">{headerText}</span>
 
-      <span className={'itemHeaderText itemBodyText'}>{bodyText}</span>
+      <span className="itemHeaderText itemBodyText">{bodyText}</span>
     </div>
   );
 };

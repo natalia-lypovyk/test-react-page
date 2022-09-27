@@ -1,3 +1,7 @@
+export const cutLogin = (login) => {
+  return `${login.slice(0, 4)}...${login.slice(-4)}`;
+}
+
 export const accordionData = [
   {
     status: false,
