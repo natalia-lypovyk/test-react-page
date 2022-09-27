@@ -80,6 +80,12 @@
   cursor: pointer;
 }
 
+@media screen and (max-width: 800px) {
+  .warningImage {
+    margin-left: 10px;
+  }
+}
+
 .warningImage:hover + .tooltip {
   opacity: 1;
 }
