@@ -5,8 +5,8 @@ import './accordion.css'
 import Warning from '../../assets/svg/warning';
 import Plus from '../../assets/svg/plus';
 import Minus from '../../assets/svg/minus';
-import ContentRow from './contentRow';
-import { Tooltip } from './tooltip';
+import ContentRow from './content-row/contentRow';
+import { Tooltip } from './tooltip/tooltip';
 
 import { tableData } from '../../constats/tableData';
 

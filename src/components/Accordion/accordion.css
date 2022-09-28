@@ -53,6 +53,11 @@
   line-height: 150%
 }
 
+.accordionTextBold {
+  font-weight: 600;
+  font-size: 12px;
+}
+
 .accordionContentContainer {
   width: 100%;
   margin-bottom: 10px;
@@ -67,7 +72,7 @@
   display: flex;
   align-items: center;
   min-height: 60px;
-  min-width: 870px;
+  min-width: 950px;
 }
 
 .accordionContentWrapper:nth-child(odd) {
@@ -140,6 +145,18 @@
   margin-right: 10px;
 }
 
+.container {
+  display: flex;
+  align-items: center;
+}
+
+.container button {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+}
+
 .innerContainer {
   display: flex;
   align-items: center;
@@ -149,12 +166,13 @@
 }
 
 .innerContainer > div {
-  padding: 0 0 0 5px;
-  /*overflow: hidden;*/
+  padding: 0;
+  overflow: hidden;
 }
 
 .innerContainer > div:first-of-type {
-  flex-basis: 18%;
+  flex-basis: 17%;
+  padding-left: 5px;
 }
 
 .innerContainer > div:nth-of-type(2) {
@@ -162,29 +180,40 @@
 }
 
 .innerContainer > div:nth-of-type(3) {
-  flex-basis: 7%;
+  flex-basis: 6%;
 }
 
 .innerContainer > div:nth-of-type(4) {
-  flex-basis: 5%;
+  flex-basis: 4%;
 }
 
 .innerContainer > div:nth-of-type(5) {
-  flex-basis: 16%;
+  flex-basis: 17%;
 }
 
 .innerContainer > div:nth-of-type(6) {
-  flex-basis: 10%;
+  flex-basis: 9%;
 }
 
 .innerContainer > div:nth-of-type(7) {
-  flex-basis: 11%;
+  flex-basis: 10%;
 }
 
 .innerContainer > div:nth-of-type(8) {
-  flex-basis: 12%;
+  flex-basis: 11%;
 }
 
 .innerContainer > div:nth-of-type(9) {
-  flex-basis: 9%;
+  flex-basis: 8%;
+}
+
+.innerContainer > div:nth-of-type(10),
+.innerContainer > div:nth-of-type(11) {
+  flex-basis: 3%;
+}
+
+.switchContainer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
