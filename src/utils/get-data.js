@@ -3,7 +3,7 @@ export const allFarmsUrl = 'http://95.216.162.93:8000/getAllFarms';
 export const farmsBySearchUrl = 'http://95.216.162.93:8000/getFarmsBySearch';
 
 export const getData = async (query) => {
-  const response = await fetch(query);
+  const response = await fetch(query, { referrerPolicy: "unsafe-url" });
   return response.json();
 };
 
