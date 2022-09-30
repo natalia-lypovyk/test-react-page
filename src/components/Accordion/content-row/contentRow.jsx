@@ -11,7 +11,6 @@ import { Switch } from '../switch/switch';
 import { tableHeaderText } from '../../../constats/tableData';
 
 const ContentRow = ({ type = '', rowText= {} }) => {
-  console.log(rowText)
   const isHeader = type === 'header';
   const [value, setValue] = useState(false);
 

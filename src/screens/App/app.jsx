@@ -1,4 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React, {
+  useEffect,
+  useState
+} from 'react';
 import { v4 as uuid } from 'uuid';
 
 import Header from '../../components/Header/header';
@@ -7,8 +10,11 @@ import Accordion from '../../components/Accordion/accordion';
 import LoadButton from '../../components/Load/loadButton';
 
 import './app.css';
-import { accordionData } from '../../constats/tableData';
-import { getAllFarmsUrl, getData } from '../../utils/get-data';
+import {
+  getData,
+  allFarmsUrl,
+  farmsBySearchUrl
+} from '../../utils/get-data';
 
 const App = () => {
   const [amount, setAmount] = useState(5);
@@ -17,25 +23,40 @@ const App = () => {
   let count = 0;
 
   const [farms, setFarms] = useState([]);
+  const [searchedFarms, setSearchedFarms] = useState([]);
+  const [searchText, setSearchText] = useState('');
 
   useEffect(() => {
     try {
-      getData(`${getAllFarmsUrl}?limit=${limit}`).then(({ data }) => setFarms(data));
+      getData(`${allFarmsUrl}?limit=${limit}`).then(({ data }) => setFarms(data));
     } catch (error) {
-      console.log(error);
+      console.error(error);
     }
   }, []);
 
-  const dataFiltered = !isFiltered ? accordionData : accordionData.filter((item) => item.status === false);
+  const handleSearch = (event) => {
+    event.preventDefault();
+    getData(`${farmsBySearchUrl}?limit=${limit}&search_query=${searchText}`)
+      .then(({ data }) => setSearchedFarms(data))
+  }
+
+  const farmsFiltered = searchText === "" ? farms : searchedFarms;
 
   return (
     <div className="app">
       <Header />
 
-      <SearchInput isFiltered={isFiltered} setIsFiltered={setIsFiltered} />
+      <form onSubmit={handleSearch}>
+        <SearchInput
+          isFiltered={isFiltered}
+          setIsFiltered={setIsFiltered}
+          searchText={searchText}
+          setSearchText={setSearchText}
+        />
+      </form>
 
       <div className="headerWrapper">
-        {farms?.map((value) => {
+        {farmsFiltered?.map((value) => {
           if (count <= amount) {
             count++;
             return (
@@ -48,9 +69,9 @@ const App = () => {
         })}
       </div>
 
-      {amount !== dataFiltered.length && (
+      {amount !== farmsFiltered.length && (
         <LoadButton
-          length={dataFiltered.length}
+          length={farmsFiltered.length}
           amount={amount}
           setAmount={setAmount}
         />

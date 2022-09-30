@@ -1,7 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React, {
+  useEffect,
+  useState
+} from 'react';
 import { v4 as uuid } from 'uuid';
 
-import { getData, getTotalUrl } from '../../utils/get-data';
+import { getData, totalHashratesUrl } from '../../utils/get-data';
 import JetHash from '../../assets/svg/jetHash';
 import './header.css'
 
@@ -12,9 +15,9 @@ const Header = () => {
 
   useEffect(() => {
     try {
-      getData(getTotalUrl).then((data) => setRates(Object.entries(data)));
+      getData(totalHashratesUrl).then((data) => setRates(Object.entries(data)));
     } catch (error) {
-      console.log(error)
+      console.error(error)
     }
   }, []);
 

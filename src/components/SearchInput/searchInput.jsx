@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 import './searchInput.css'
 import WarningSearch from '../../assets/svg/warningSearch';
@@ -6,15 +6,13 @@ import DisabledWarningSearch from '../../assets/svg/disabledWarningSearch';
 import Search from '../../assets/svg/search';
 import Close from '../../assets/svg/close';
 
-const SearchInput = ({ isFiltered, setIsFiltered }) => {
-  const [text, setText] = useState('');
-
+const SearchInput = ({ isFiltered, setIsFiltered, searchText, setSearchText }) => {
   const handleChange = (event) => {
-    setText(event.target.value);
+    setSearchText(event.target.value);
   };
 
   const handleClose = () => {
-    setText('')
+    setSearchText('')
   };
 
   const placeholder = 'User / Rig / Algo / Coin / Pool / Wallet / Conf_name';
@@ -29,12 +27,12 @@ const SearchInput = ({ isFiltered, setIsFiltered }) => {
         <input
           placeholder={placeholder}
           className="inputTextContainer"
-          value={text}
+          value={searchText}
           type="text"
           onChange={handleChange}
         />
 
-        {text && (
+        {searchText && (
           <div
             className="imageButton"
             onClick={() => handleClose()}
