@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { v4 as uuid } from 'uuid';
 
 import Header from '../../components/Header/header';
@@ -7,16 +7,26 @@ import Accordion from '../../components/Accordion/accordion';
 import LoadButton from '../../components/Load/loadButton';
 
 import './app.css';
-import { accordionData, cutLogin } from '../../constats/tableData';
+import { accordionData } from '../../constats/tableData';
+import { getAllFarmsUrl, getData } from '../../utils/get-data';
 
 const App = () => {
   const [amount, setAmount] = useState(5);
   const [isFiltered, setIsFiltered] = useState(false);
+  const limit = 10;
   let count = 0;
 
-  const ttext = cutLogin('0xcdd47e77F642690E50d929641F0f78E3414e0D7E');
-  console.log('text', ttext, ttext.length);
-  const data = !isFiltered ? accordionData : accordionData.filter((item) => item.status === false);
+  const [farms, setFarms] = useState([]);
+
+  useEffect(() => {
+    try {
+      getData(`${getAllFarmsUrl}?limit=${limit}`).then(({ data }) => setFarms(data));
+    } catch (error) {
+      console.log(error);
+    }
+  }, []);
+
+  const dataFiltered = !isFiltered ? accordionData : accordionData.filter((item) => item.status === false);
 
   return (
     <div className="app">
@@ -25,7 +35,7 @@ const App = () => {
       <SearchInput isFiltered={isFiltered} setIsFiltered={setIsFiltered} />
 
       <div className="headerWrapper">
-        {data.map((value) => {
+        {farms?.map((value) => {
           if (count <= amount) {
             count++;
             return (
@@ -38,9 +48,9 @@ const App = () => {
         })}
       </div>
 
-      {amount !== data.length && (
+      {amount !== dataFiltered.length && (
         <LoadButton
-          length={data.length}
+          length={dataFiltered.length}
           amount={amount}
           setAmount={setAmount}
         />
@@ -49,4 +59,4 @@ const App = () => {
   );
 };
 
-export default  App;
+export default App;

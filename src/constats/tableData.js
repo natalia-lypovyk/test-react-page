@@ -126,6 +126,17 @@ export const accordionData = [
   }
 ];
 
+
+const headerItems = [
+  { headerText: 'etchash', bodyText: '13.5 Gh' },
+  { headerText: 'etchash', bodyText: '192.3 Gh' },
+  { headerText: 'firopow', bodyText: '243.4 Mh' },
+  { headerText: 'kaspa', bodyText: '492.5 Mh' },
+  { headerText: 'x17', bodyText: '195.6 Mh' },
+  { headerText: 'sha256', bodyText: '17.8 Th' },
+  { headerText: 'autolykos2', bodyText: '234.4 Mh' }
+];
+
 export const tableData = [
   {
     status: true,
@@ -134,7 +145,7 @@ export const tableData = [
     algo: 'ethash',
     coin: 'ETC',
     pool: 'eu1.ethermine.org:4444',
-    login: '0x07...513c',
+    login: '0xcdd47e77F642690E50d929641F0f78E3414e0D7E',
     troubles: '–',
     hashrate: 'ethash: 329.9 Mh',
     conf_name: '3% Config'
@@ -147,7 +158,7 @@ export const tableData = [
     algo: 'ethash',
     coin: 'ETH, ETC',
     pool: 'eu1.ethermine.org:4444; eu1.ethermine.org:5555',
-    login: '0x07...311c; 0x07...321c',
+    login: '0xcdd47e77F642690E50d929641F0f78E3414e0D7E; 0xcdd47e77F642690E50d929641F0f78E3414e0D7R',
     troubles: 'NO_REQUESTS',
     hashrate: '-',
     conf_name: '3% Config'
@@ -159,7 +170,7 @@ export const tableData = [
     algo: 'ethash',
     coin: 'ETC',
     pool: 'eu1.ethermine.org:4444',
-    login: '0x07...513c',
+    login: '0xcdd47e77F642690E50d929641F0f78E3414e0D7E',
     troubles:`NO_REQUESTS; Miner Off`,
     hashrate: 'ethash: 329.9 Mh',
     conf_name: '3% Config' 
@@ -171,7 +182,7 @@ export const tableData = [
     algo: 'ethash',
     coin: 'ETC',
     pool: 'eu1.ethermine.org:4444',
-    login: '0x07...513c',
+    login: '0xcdd47e77F642690E50d929641F0f78E3414e0D7E',
     troubles: '–',
     hashrate: 'ethash: 329.9 Mh',
     conf_name: '3% Config'
@@ -183,7 +194,7 @@ export const tableData = [
     algo: 'ethash',
     coin: 'ETC',
     pool: 'eu1.ethermine.org:4444',
-    login: '0x07...513c',
+    login: '0xcdd47e77F642690E50d929641F0f78E3414e0D7E',
     troubles: '–',
     hashrate: 'ethash: 329.9 Mh',
     conf_name: '3% Config'
@@ -195,7 +206,7 @@ export const tableData = [
     algo: 'ethash',
     coin: 'ETC',
     pool: 'eu1.ethermine.org:4444',
-    login: '0x07...513c',
+    login: '0xcdd47e77F642690E50d929641F0f78E3414e0D7E',
     troubles: '–',
     hashrate: 'ethash: 329.9 Mh',
     conf_name: '3% Config'

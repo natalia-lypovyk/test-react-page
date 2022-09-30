@@ -11,16 +11,33 @@ import { Switch } from '../switch/switch';
 import { tableHeaderText } from '../../../constats/tableData';
 
 const ContentRow = ({ type = '', rowText= {} }) => {
+  console.log(rowText)
   const isHeader = type === 'header';
   const [value, setValue] = useState(false);
 
-  const getText =  (style = '', text = '') => (
-    <span className={`${!isHeader ? 'accordionText' : 'accordionTextBold'} ${style}`}>
-      {text}
-    </span>
-  );
+  const getText =  (style = '', text) => {
+    if (typeof text === 'string') {
+      return (
+        <span
+          className={`${!isHeader ? 'accordionText' : 'accordionTextBold'} ${style}`}
+        >
+        {text}
+      </span>
+      )
+    }
 
-  console.log(rowText)
+    if (typeof text === 'object') {
+      return text?.map((textItem) => (
+        <p
+          key={textItem}
+          className={`${!isHeader ? 'accordionText' : 'accordionTextBold'} ${style}`}
+        >
+          {textItem}
+        </p>
+      ))
+    }
+  };
+
   return (
     <div className="innerContainer">
       <div style={{ display: 'flex' }}>
@@ -33,29 +50,29 @@ const ContentRow = ({ type = '', rowText= {} }) => {
       </div>
 
       <div>
-        {getText('',isHeader ? tableHeaderText.last : rowText.last)}
+        {getText('',isHeader ? tableHeaderText.last : rowText.lastRequest)}
       </div>
 
       <div>
-        {getText('',isHeader ? tableHeaderText.algo : rowText.algo)}
+        {getText('',isHeader ? tableHeaderText.algo : rowText.algorithms)}
       </div>
 
       <div>
-        {getText('',isHeader ? tableHeaderText.coin : rowText.coin)}
+        {getText('',isHeader ? tableHeaderText.coin : rowText.coins)}
       </div>
 
       <div>
-        {getText('',isHeader ? tableHeaderText.pool : rowText.pool)}
+        {getText('',isHeader ? tableHeaderText.pool : rowText.pools)}
       </div>
 
-      <div>
-        {getText('',isHeader ? tableHeaderText.login : rowText.login)}
+      <div title={rowText.logins}>
+        {getText('',isHeader ? tableHeaderText.login : rowText.logins)}
       </div>
 
       <div>
         {getText(
           !rowText?.status && !isHeader && 'redText',
-          isHeader ? tableHeaderText.troubles : rowText.troubles
+          isHeader ? tableHeaderText.troubles : rowText.errCode
         )}
       </div>
 
@@ -64,7 +81,7 @@ const ContentRow = ({ type = '', rowText= {} }) => {
       </div>
 
       <div>
-        {getText('',isHeader ? tableHeaderText.conf_name : rowText.conf_name)}
+        {getText('',isHeader ? tableHeaderText.conf_name : rowText.configName)}
       </div>
 
       <div className="container">

@@ -8,8 +8,6 @@ import Minus from '../../assets/svg/minus';
 import ContentRow from './content-row/contentRow';
 import { Tooltip } from './tooltip/tooltip';
 
-import { tableData } from '../../constats/tableData';
-
 const Accordion = ({ data }) => {
   const [isSelected, setIsSelected] = useState(false);
   const totalFarmHashrates = 'Total farm hashrates:';
@@ -25,15 +23,15 @@ const Accordion = ({ data }) => {
         onClick={() => toggle()}
       >
         <div className="accordionHeaderWrapper">
-          {!data?.status && (
-            <>
-              <div className="warningImage">
-                <Warning />
-              </div>
+          {/*{!data?.status && (*/}
+          {/*  <>*/}
+          {/*    <div className="warningImage">*/}
+          {/*      <Warning />*/}
+          {/*    </div>*/}
 
-              <Tooltip />
-            </>
-          )}
+          {/*    <Tooltip />*/}
+          {/*  </>*/}
+          {/*)}*/}
 
           <span className="accordionMainText marginLeft18">
             {data?.name}
@@ -45,12 +43,12 @@ const Accordion = ({ data }) => {
             {totalFarmHashrates}
           </span>
 
-          {data?.rates.map((value) => (
+          {data?.totalHashrates?.map((value) => (
             <span
               className="accordionMainText marginLeft10"
               key={uuid()}
             >
-              {value}
+              {`[${value?.coinTag}]: ${value?.hashrate}`}
             </span>
           ))}
 
@@ -67,7 +65,7 @@ const Accordion = ({ data }) => {
               <ContentRow type="header" />
             </div>
 
-            {tableData.map((value) => (
+            {data?.rigs?.map((value) => (
               <div
                 key={uuid()}
                 className="accordionContentWrapper"
