@@ -84,17 +84,21 @@ const ContentRow = ({ type = '', rowText= {} }) => {
       </div>
 
       <div className="container">
-        <button type="button">
-          <Gear />
-        </button>
+        {!isHeader && (
+          <button type="button">
+            <Gear />
+          </button>
+        )}
       </div>
 
       <div>
-        <Switch
-          id={uuid()}
-          isOn={value}
-          handleToggle={() => setValue(!value)}
-        />
+        {!isHeader && (
+          <Switch
+            id={uuid()}
+            isOn={value}
+            handleToggle={() => setValue(!value)}
+          />
+        )}
       </div>
     </div>
   );
