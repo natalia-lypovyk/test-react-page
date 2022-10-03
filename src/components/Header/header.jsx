@@ -1,26 +1,17 @@
-import React, {
-  useEffect,
-  useState
-} from 'react';
+import React from 'react';
 import { v4 as uuid } from 'uuid';
 
-import { getData, totalHashratesUrl } from '../../utils/get-data';
 import JetHash from '../../assets/svg/jetHash';
 import './header.css'
 
 import HeaderItem from './HeaderItem/headerItem';
 
+const rates = [
+  ['etchash', '374.8Mh'],
+  ['kaspa', '86.2Mh']
+];
+
 const Header = () => {
-  const [rates, setRates] = useState([]);
-
-  useEffect(() => {
-    try {
-      getData(totalHashratesUrl).then((data) => setRates(Object.entries(data)));
-    } catch (error) {
-      console.error(error)
-    }
-  }, []);
-
   return (
     <div className="header">
       <div className="headerContainer">

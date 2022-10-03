@@ -126,6 +126,559 @@ export const accordionData = [
   }
 ];
 
+export const allFarmsData = [
+  {
+    name: "York farm",
+    totalHashrates: [
+      {
+        coinTag: "ETC",
+        algorithm: "etchash",
+        hashrate: "150.8Mh"
+      },
+      {
+        coinTag: "MOAC",
+        algorithm: "etchash",
+        hashrate: "224.3Mh"
+      },
+      {
+        coinTag: "KAS",
+        algorithm: "kaspa",
+        hashrate: "86.4Mh"
+      }
+    ],
+    rigs: [
+      {
+        name: "Mclean",
+        status: true,
+        lastRequest: 1664382043,
+        algorithms: [
+          'etchash',
+          'kaspa'
+        ],
+        coins: [
+          "ETC",
+          "KAS"
+        ],
+        pools: [
+          "stratum2+tcp://49.12.5.183:8888",
+          "49.12.5.183:8888"
+        ],
+        logins: [
+          "0x111",
+          "0x111"
+        ],
+        errCode: "NO_REQUESTS",
+        hashrates: [
+          {
+            algorithm: "etchash",
+            hashrate: "224.3Mh"
+          },
+          {
+            algorithm: "kaspa",
+            hashrate: "86.4Mh"
+          }
+        ],
+        configName: "3% config"
+      }
+    ]
+  },
+  {
+    name: "Pollard farm",
+    totalHashrates: [
+      {
+        coinTag: "ETC",
+        algorithm: "etchash",
+        hashrate: "150.8Mh"
+      },
+      {
+        coinTag: "MOAC",
+        algorithm: "etchash",
+        hashrate: "224.3Mh"
+      },
+      {
+        coinTag: "KAS",
+        algorithm: "kaspa",
+        hashrate: "86.4Mh"
+      }
+    ],
+    rigs: [
+      {
+        name: "Kirkland",
+        status: true,
+        lastRequest: 1664382043,
+        algorithms: [
+          "etchash",
+          "kaspa"
+        ],
+        coins: [
+          "ETC",
+          "KAS"
+        ],
+        pools: [
+          "stratum2+tcp://49.12.5.183:8888",
+          "49.12.5.183:8888"
+        ],
+        logins: [
+          "0x111",
+          "0x111"
+        ],
+        errCode: "",
+        hashrates: [
+          {
+            algorithm: "etchash",
+            hashrate: "224.3Mh"
+          },
+          {
+            algorithm: "kaspa",
+            hashrate: "86.4Mh"
+          }
+        ],
+        configName: "3% config"
+      }
+    ]
+  },
+  {
+    name: "Beryl farm",
+    totalHashrates: [
+      {
+        coinTag: "ETC",
+        algorithm: "etchash",
+        hashrate: "150.8Mh"
+      },
+      {
+        coinTag: "MOAC",
+        algorithm: "etchash",
+        hashrate: "224.3Mh"
+      },
+      {
+        coinTag: "KAS",
+        algorithm: "kaspa",
+        hashrate: "86.4Mh"
+      }
+    ],
+    rigs: [
+      {
+        name: "Mcleod",
+        status: true,
+        lastRequest: 1664382043,
+        algorithms: [
+          "etchash",
+          "kaspa"
+        ],
+        coins: [
+          "ETC",
+          "KAS"
+        ],
+        pools: [
+          "stratum2+tcp://49.12.5.183:8888",
+          "49.12.5.183:8888"
+        ],
+        logins: [
+          "0x111",
+          "0x111"
+        ],
+        errCode: "NO_REQUESTS",
+        hashrates: [
+          {
+            algorithm: "etchash",
+            hashrate: "224.3Mh"
+          },
+          {
+            algorithm: "kaspa",
+            hashrate: "86.4Mh"
+          }
+        ],
+        configName: "3% config"
+      }
+    ]
+  },
+  {
+    name: "Eve farm",
+    totalHashrates: [
+      {
+        coinTag: "ETC",
+        algorithm: "etchash",
+        hashrate: "150.8Mh"
+      },
+      {
+        coinTag: "MOAC",
+        algorithm: "etchash",
+        hashrate: "224.3Mh"
+      },
+      {
+        coinTag: "KAS",
+        algorithm: "kaspa",
+        hashrate: "86.4Mh"
+      }
+    ],
+    rigs: [
+      {
+        name: "Bowers",
+        status: false,
+        lastRequest: 1664382043,
+        algorithms: [
+          "etchash",
+          "kaspa"
+        ],
+        coins: [
+          "ETC",
+          "KAS"
+        ],
+        pools: [
+          "stratum2+tcp://49.12.5.183:8888",
+          "49.12.5.183:8888"
+        ],
+        logins: [
+          "0x111",
+          "0x111"
+        ],
+        errCode: "",
+        hashrates: [
+          {
+            algorithm: "etchash",
+            hashrate: "224.3Mh"
+          },
+          {
+            algorithm: "kaspa",
+            hashrate: "86.4Mh"
+          }
+        ],
+        configName: "3% config"
+      }
+    ]
+  },
+  {
+    name: "Schroeder farm",
+    totalHashrates: [
+      {
+        coinTag: "ETC",
+        algorithm: "etchash",
+        hashrate: "150.8Mh"
+      },
+      {
+        coinTag: "MOAC",
+        algorithm: "etchash",
+        hashrate: "224.3Mh"
+      },
+      {
+        coinTag: "KAS",
+        algorithm: "kaspa",
+        hashrate: "86.4Mh"
+      }
+    ],
+    rigs: [
+      {
+        name: "Taylor",
+        status: false,
+        lastRequest: 1664382043,
+        algorithms: [
+          "etchash",
+          "kaspa"
+        ],
+        coins: [
+          "ETC",
+          "KAS"
+        ],
+        pools: [
+          "stratum2+tcp://49.12.5.183:8888",
+          "49.12.5.183:8888"
+        ],
+        logins: [
+          "0x111",
+          "0x111"
+        ],
+        errCode: "",
+        hashrates: [
+          {
+            algorithm: "etchash",
+            hashrate: "224.3Mh"
+          },
+          {
+            algorithm: "kaspa",
+            hashrate: "86.4Mh"
+          }
+        ],
+        configName: "3% config"
+      }
+    ]
+  },
+  {
+    name: "Marina farm",
+    totalHashrates: [
+      {
+        coinTag: "ETC",
+        algorithm: "etchash",
+        hashrate: "150.8Mh"
+      },
+      {
+        coinTag: "MOAC",
+        algorithm: "etchash",
+        hashrate: "224.3Mh"
+      },
+      {
+        coinTag: "KAS",
+        algorithm: "kaspa",
+        hashrate: "86.4Mh"
+      }
+    ],
+    rigs: [
+      {
+        name: "Hunter",
+        status: true,
+        lastRequest: 1664382043,
+        algorithms: [
+          "etchash",
+          "kaspa"
+        ],
+        coins: [
+          "ETC",
+          "KAS"
+        ],
+        pools: [
+          "stratum2+tcp://49.12.5.183:8888",
+          "49.12.5.183:8888"
+        ],
+        logins: [
+          "0x111",
+          "0x111"
+        ],
+        errCode: "NO_REQUESTS",
+        hashrates: [
+          {
+            algorithm: "etchash",
+            hashrate: "224.3Mh"
+          },
+          {
+            algorithm: "kaspa",
+            hashrate: "86.4Mh"
+          }
+        ],
+        configName: "3% config"
+      }
+    ]
+  },
+  {
+    name: "Robert farm",
+    totalHashrates: [
+      {
+        coinTag: "ETC",
+        algorithm: "etchash",
+        hashrate: "150.8Mh"
+      },
+      {
+        coinTag: "MOAC",
+        algorithm: "etchash",
+        hashrate: "224.3Mh"
+      },
+      {
+        coinTag: "KAS",
+        algorithm: "kaspa",
+        hashrate: "86.4Mh"
+      }
+    ],
+    rigs: [
+      {
+        name: "Brooks",
+        status: false,
+        lastRequest: 1664382043,
+        algorithms: [
+          "etchash",
+          "kaspa"
+        ],
+        coins: [
+          "ETC",
+          "KAS"
+        ],
+        pools: [
+          "stratum2+tcp://49.12.5.183:8888",
+          "49.12.5.183:8888"
+        ],
+        logins: [
+          "0x111",
+          "0x111"
+        ],
+        errCode: "",
+        hashrates: [
+          {
+            algorithm: "etchash",
+            hashrate: "224.3Mh"
+          },
+          {
+            algorithm: "kaspa",
+            hashrate: "86.4Mh"
+          }
+        ],
+        configName: "3% config"
+      }
+    ]
+  },
+  {
+    name: "Tonia farm",
+    totalHashrates: [
+      {
+        coinTag: "ETC",
+        algorithm: "etchash",
+        hashrate: "150.8Mh"
+      },
+      {
+        coinTag: "MOAC",
+        algorithm: "etchash",
+        hashrate: "224.3Mh"
+      },
+      {
+        coinTag: "KAS",
+        algorithm: "kaspa",
+        hashrate: "86.4Mh"
+      }
+    ],
+    rigs: [
+      {
+        name: "Burris",
+        status: false,
+        lastRequest: 1664382043,
+        algorithms: [
+          "etchash",
+          "kaspa"
+        ],
+        coins: [
+          "ETC",
+          "KAS"
+        ],
+        pools: [
+          "stratum2+tcp://49.12.5.183:8888",
+          "49.12.5.183:8888"
+        ],
+        logins: [
+          "0x111",
+          "0x111"
+        ],
+        errCode: "NO_REQUESTS",
+        hashrates: [
+          {
+            algorithm: "etchash",
+            hashrate: "224.3Mh"
+          },
+          {
+            algorithm: "kaspa",
+            hashrate: "86.4Mh"
+          }
+        ],
+        configName: "3% config"
+      }
+    ]
+  },
+  {
+    name: "Johns farm",
+    totalHashrates: [
+      {
+        coinTag: "ETC",
+        algorithm: "etchash",
+        hashrate: "150.8Mh"
+      },
+      {
+        coinTag: "MOAC",
+        algorithm: "etchash",
+        hashrate: "224.3Mh"
+      },
+      {
+        coinTag: "KAS",
+        algorithm: "kaspa",
+        hashrate: "86.4Mh"
+      }
+    ],
+    rigs: [
+      {
+        name: "Macdonald",
+        status: true,
+        lastRequest: 1664382043,
+        algorithms: [
+          "etchash",
+          "kaspa"
+        ],
+        coins: [
+          "ETC",
+          "KAS"
+        ],
+        pools: [
+          "stratum2+tcp://49.12.5.183:8888",
+          "49.12.5.183:8888"
+        ],
+        logins: [
+          "0x111",
+          "0x111"
+        ],
+        errCode: "",
+        hashrates: [
+          {
+            algorithm: "etchash",
+            hashrate: "224.3Mh"
+          },
+          {
+            algorithm: "kaspa",
+            hashrate: "86.4Mh"
+          }
+        ],
+        configName: "3% config"
+      }
+    ]
+  },
+  {
+    name: "Janie farm",
+    totalHashrates: [
+      {
+        coinTag: "ETC",
+        algorithm: "etchash",
+        hashrate: "150.8Mh"
+      },
+      {
+        coinTag: "MOAC",
+        algorithm: "etchash",
+        hashrate: "224.3Mh"
+      },
+      {
+        coinTag: "KAS",
+        algorithm: "kaspa",
+        hashrate: "86.4Mh"
+      }
+    ],
+    rigs: [
+      {
+        name: "Ray",
+        status: false,
+        lastRequest: 1664382043,
+        algorithms: [
+          "etchash",
+          "kaspa"
+        ],
+        coins: [
+          "ETC",
+          "KAS"
+        ],
+        pools: [
+          "stratum2+tcp://49.12.5.183:8888",
+          "49.12.5.183:8888"
+        ],
+        logins: [
+          "0x111",
+          "0x111"
+        ],
+        errCode: "NO_REQUESTS",
+        hashrates: [
+          {
+            algorithm: "etchash",
+            hashrate: "224.3Mh"
+          },
+          {
+            algorithm: "kaspa",
+            hashrate: "86.4Mh"
+          }
+        ],
+        configName: "3% config"
+      }
+    ]
+  }
+];
+
 
 const headerItems = [
   { headerText: 'etchash', bodyText: '13.5 Gh' },
