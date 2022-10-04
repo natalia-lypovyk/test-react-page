@@ -13,7 +13,6 @@ import { allFarmsData } from '../../constats/tableData';
 const App = () => {
   const [amount, setAmount] = useState(5);
   const [isFiltered, setIsFiltered] = useState(false);
-  let count = 0;
 
   const [searchText, setSearchText] = useState('');
 
@@ -33,22 +32,16 @@ const App = () => {
       />
 
       <div className="headerWrapper">
-        {farmsFiltered?.map((value) => {
-          if (count <= amount) {
-            count++;
-            return (
-              <Accordion
-                data={value}
-                key={uuid()}
-              />
-            )
-          }
-        })}
+        {farmsFiltered?.slice(0, amount).map((value) => (
+          <Accordion
+            data={value}
+            key={uuid()}
+          />
+        ))}
       </div>
 
       {amount !== farmsFiltered.length && (
         <LoadButton
-          length={farmsFiltered.length}
           amount={amount}
           setAmount={setAmount}
         />
