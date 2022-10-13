@@ -1,14 +1,15 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 
 import './loadButton.css'
 import Replay from '../../assets/svg/replay';
 
-const LoadButton = ({ amount, setAmount }) => {
+const LoadButton = ({ length, amount, setAmount }) => {
+  // console.log('length', length, 'amount', amount)
   const extraAmount = 5;
   const loadText = 'Load more'
 
-  const toggle = () => {
-    setAmount(amount + extraAmount)
+  const toggle = useCallback(() => {
+    setAmount(amount + extraAmount);
     // const sum = extraAmount + amount;
     // const difference = length - amount;
     //
@@ -19,7 +20,7 @@ const LoadButton = ({ amount, setAmount }) => {
     // if (difference >= 0 ) {
     //   setAmount(length - 1);
     // }
-  };
+  }, [amount, extraAmount]);
 
   return (
     <div
