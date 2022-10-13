@@ -19,24 +19,36 @@ import {
 const App = () => {
   const [amount, setAmount] = useState(5);
   const [isFiltered, setIsFiltered] = useState(false);
-  const limit = 10;
+  const limitForAllFarms = '?limit=100';
+  const limitForSearch = '?limit=10';
+  const farmsWithProblemsParam = '&only_with_problems=true';
   let count = 0;
 
   const [farms, setFarms] = useState([]);
+  const [farmsWithProblems, setFWP] = useState([]);
   const [searchedFarms, setSearchedFarms] = useState([]);
   const [searchText, setSearchText] = useState('');
 
   useEffect(() => {
     try {
-      getData(`${allFarmsUrl}?limit=${limit}`).then(({ data }) => setFarms(data));
+      getData(`${allFarmsUrl}${limitForAllFarms}`).then(({ data }) => setFarms(data));
     } catch (error) {
       console.error(error);
     }
   }, []);
 
+  useEffect(() => {
+    try {
+      getData(`${allFarmsUrl}${limitForAllFarms}${farmsWithProblemsParam}`).then(({ data }) => setFWP(data));
+    } catch (error) {
+      console.error(error);
+    }
+  }, []);
+
+  console.log('len', farms.length, 'pr len', farmsWithProblems.length);
   const handleSearch = (event) => {
     event.preventDefault();
-    getData(`${farmsBySearchUrl}?limit=${limit}&search_query=${searchText}`)
+    getData(`${farmsBySearchUrl}${limitForSearch}&search_query=${searchText}`)
       .then(({ data }) => setSearchedFarms(data))
   }
 
@@ -56,22 +68,17 @@ const App = () => {
       </form>
 
       <div className="headerWrapper">
-        {farmsFiltered?.map((value) => {
-          if (count <= amount) {
-            count++;
-            return (
-              <Accordion
-                data={value}
-                key={uuid()}
-              />
-            )
-          }
-        })}
+        {farmsFiltered?.slice(0, amount).map((value) => (
+          <Accordion
+            data={value}
+            key={uuid()}
+          />
+        ))}
       </div>
 
-      {amount !== farmsFiltered.length && (
+      {amount <= farmsFiltered.length && (
         <LoadButton
-          length={farmsFiltered.length}
+          // length={farmsFiltered.length}
           amount={amount}
           setAmount={setAmount}
         />
