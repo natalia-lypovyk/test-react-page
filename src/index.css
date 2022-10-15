@@ -18,6 +18,11 @@ html {
   height: 100%;
 }
 
+button {
+  padding: 0;
+  cursor: pointer;
+}
+
 @media all and (-ms-high-contrast: none), (-ms-high-contrast: active) {
   html {
     display: flex;

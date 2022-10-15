@@ -33,21 +33,23 @@ const SearchInput = ({ isFiltered, setIsFiltered, searchText, setSearchText }) =
         />
 
         {searchText && (
-          <div
-            className="imageButton"
+          <button
+            type="button"
+            className="resetButton"
             onClick={() => handleClose()}
           >
             <Close />
-          </div>
+          </button>
         )}
       </div>
 
-      <div
-        className="imageContainer"
+      <button
+        type="button"
+        className="sortButton"
         onClick={() => setIsFiltered(!isFiltered)}
       >
         {isFiltered ? <WarningSearch /> : <DisabledWarningSearch />}
-      </div>
+      </button>
     </div>
   );
 };

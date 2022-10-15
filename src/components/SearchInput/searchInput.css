@@ -26,14 +26,20 @@
   outline: none;
 }
 
-.imageContainer {
+.sortButton {
   width: 40px;
   height: 40px;
   margin-left: 25px;
+  border: 0;
+  background: transparent;
 }
-
-.imageButton {
+.imageButton,
+.resetButton {
   width: 24px;
   height: 24px;
   margin: 9px;
+}
+
+.resetButton {
+  border: 0;
 }
