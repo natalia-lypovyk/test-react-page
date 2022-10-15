@@ -45,14 +45,13 @@ const App = () => {
     }
   }, []);
 
-  console.log('len', farms.length, 'pr len', farmsWithProblems.length);
   const handleSearch = (event) => {
     event.preventDefault();
     getData(`${farmsBySearchUrl}${limitForSearch}&search_query=${searchText}`)
       .then(({ data }) => setSearchedFarms(data))
   }
 
-  const farmsFiltered = searchText === "" ? farms : searchedFarms;
+  const farmsFiltered = isFiltered ? farmsWithProblems : searchText === "" ? farms : searchedFarms;
 
   return (
     <div className="app">
@@ -81,7 +80,7 @@ const App = () => {
         })}
       </div>
 
-      {amount <= farmsFiltered.length && (
+      {amount < farmsFiltered.length && (
         <LoadButton
           // length={farmsFiltered.length}
           amount={amount}
