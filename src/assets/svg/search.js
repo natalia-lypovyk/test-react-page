@@ -1,8 +1,8 @@
 const Search = (props) => (
   <svg
     {...props}
-    width="24em"
-    height="24em"
+    width="24"
+    height="24"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
   >
