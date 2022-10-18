@@ -43,12 +43,12 @@ const Accordion = ({ data }) => {
             {totalFarmHashrates}
           </span>
 
-          {data?.totalHashrates?.map((value) => (
+          {data?.total_hashrates?.map((value) => (
             <span
               className="accordionMainText marginLeft10"
               key={uuid()}
             >
-              {`[${value?.coinTag}]: ${value?.hashrate}`}
+              {`[${value?.coinTag}] ${value?.hashrate}`}
             </span>
           ))}
 

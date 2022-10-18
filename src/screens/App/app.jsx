@@ -28,10 +28,14 @@ const App = () => {
   const [farmsWithProblems, setFWP] = useState([]);
   const [searchedFarms, setSearchedFarms] = useState([]);
   const [searchText, setSearchText] = useState('');
+  const [farmsAmount, setFarmsAmount] = useState();
 
   useEffect(() => {
     try {
-      getData(`${allFarmsUrl}${limitForAllFarms}`).then(({ data }) => setFarms(data));
+      getData(`${allFarmsUrl}${limitForAllFarms}`).then(({ data, max_size }) => {
+        setFarms(data);
+        setFarmsAmount(max_size);
+      });
     } catch (error) {
       console.error(error);
     }
@@ -47,11 +51,17 @@ const App = () => {
 
   const handleSearch = (event) => {
     event.preventDefault();
+
     getData(`${farmsBySearchUrl}${limitForSearch}&search_query=${searchText}`)
       .then(({ data }) => setSearchedFarms(data))
   }
 
-  const farmsFiltered = isFiltered ? farmsWithProblems : searchText === "" ? farms : searchedFarms;
+  const farmsFiltered =
+    isFiltered
+      ? farmsWithProblems
+      : searchText === ""
+        ? farms
+        : searchedFarms;
 
   return (
     <div className="app">

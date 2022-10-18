@@ -15,7 +15,7 @@ const ContentRow = ({ type = '', rowText= {} }) => {
   const [value, setValue] = useState(false);
 
   const getText =  (style = '', text) => {
-    if (typeof text === 'string') {
+    if (typeof text === 'string' || typeof text === 'number') {
       return (
         <span
           className={`${!isHeader ? 'accordionText' : 'accordionTextBold'} ${style}`}
@@ -71,12 +71,12 @@ const ContentRow = ({ type = '', rowText= {} }) => {
       <div>
         {getText(
           !rowText?.status && !isHeader && 'redText',
-          isHeader ? tableHeaderText.troubles : rowText.errCode
+          isHeader ? tableHeaderText.troubles : rowText.trouble
         )}
       </div>
 
       <div>
-        {getText('',isHeader ? tableHeaderText.hashrate : rowText.hashrate)}
+        {getText('',isHeader ? tableHeaderText.hashrate : rowText.hashrates)}
       </div>
 
       <div>
