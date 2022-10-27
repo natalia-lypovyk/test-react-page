@@ -145,7 +145,10 @@ export const ContentRow = ({ type = '', rowText }) => {
           <button
             className="confirm-button"
             type="button"
-            onClick={() => switchRigStatus(rowText.rig_id)}
+            onClick={() => {
+              switchRigStatus(rowText.rig_id);
+              setIsOpenModal(false);
+            }}
           >
             Yes, sure
           </button>

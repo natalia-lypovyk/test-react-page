@@ -11,7 +11,6 @@ import { ContentRow } from './content-row/content-row';
 import { Tooltip } from './tooltip/tooltip';
 
 export const Accordion = ({ data }) => {
-  console.log('data', data)
   const [isSelected, setIsSelected] = useState(false);
   const totalFarmHashrates = 'Total farm hashrates:';
 
