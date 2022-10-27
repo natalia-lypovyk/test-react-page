@@ -1,4 +1,4 @@
-const Replay = (props) => (
+export const Replay = (props) => (
   <svg
     {...props}
     width="24px"
@@ -12,5 +12,3 @@ const Replay = (props) => (
     />
   </svg>
 );
-
-export default Replay;

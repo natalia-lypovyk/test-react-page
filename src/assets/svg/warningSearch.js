@@ -1,4 +1,4 @@
-const WarningSearch = (props) => (
+export const WarningSearch = (props) => (
   <svg
     {...props}
     width="40px"
@@ -31,5 +31,3 @@ const WarningSearch = (props) => (
     />
   </svg>
 );
-
-export default WarningSearch;

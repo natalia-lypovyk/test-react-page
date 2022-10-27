@@ -1,4 +1,4 @@
-const Warning = (props) => (
+export const Warning = (props) => (
   <svg
     {...props}
     width="20px"
@@ -19,5 +19,3 @@ const Warning = (props) => (
     />
   </svg>
 );
-
-export default Warning;

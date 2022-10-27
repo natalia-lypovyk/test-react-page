@@ -1,4 +1,4 @@
-const DisabledWarningSearch = (props) => (
+export const DisabledWarningSearch = (props) => (
   <svg
     {...props}
     width="40px"
@@ -31,5 +31,3 @@ const DisabledWarningSearch = (props) => (
     />
   </svg>
 );
-
-export default DisabledWarningSearch;

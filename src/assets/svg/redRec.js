@@ -1,4 +1,4 @@
-const RedRec = (props) => (
+export const RedRec = (props) => (
   <svg
     {...props}
     width="8px"
@@ -14,5 +14,3 @@ const RedRec = (props) => (
     />
   </svg>
 );
-
-export default RedRec;

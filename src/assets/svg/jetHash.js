@@ -1,4 +1,4 @@
-const JetHash = (props) => (
+export const JetHash = (props) => (
   <svg
     {...props}
     width="129px"
@@ -50,5 +50,3 @@ const JetHash = (props) => (
     />
   </svg>
 );
-
-export default JetHash;

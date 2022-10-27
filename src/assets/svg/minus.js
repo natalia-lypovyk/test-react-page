@@ -1,4 +1,4 @@
-const Minus = (props) => (
+export const Minus = (props) => (
   <svg
     {...props}
     width="24px"
@@ -24,5 +24,3 @@ const Minus = (props) => (
     />
   </svg>
 );
-
-export default Minus;

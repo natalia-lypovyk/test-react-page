@@ -1,4 +1,4 @@
-const Plus = (props) => (
+export const Plus = (props) => (
   <svg
     {...props}
     width="24px"
@@ -32,5 +32,3 @@ const Plus = (props) => (
     />
   </svg>
 );
-
-export default Plus;

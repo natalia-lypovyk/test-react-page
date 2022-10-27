@@ -1,4 +1,4 @@
-const GreenRec = (props) => (
+export const GreenRec = (props) => (
   <svg
     {...props}
     width="8px"
@@ -14,5 +14,3 @@ const GreenRec = (props) => (
     />
   </svg>
 );
-
-export default GreenRec;
