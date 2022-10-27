@@ -181,7 +181,7 @@
   flex-basis: 10%;
 }
 
-.innerContainer > div:nth-of-type(8) {
+.inner-container > div:nth-of-type(8) {
   flex-basis: 11%;
 }
 
