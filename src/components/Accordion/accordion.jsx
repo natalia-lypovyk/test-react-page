@@ -2,13 +2,16 @@ import React, { useState } from 'react';
 import { v4 as uuid } from 'uuid';
 
 import './accordion.css'
-import Warning from '../../assets/svg/warning';
-import Plus from '../../assets/svg/plus';
-import Minus from '../../assets/svg/minus';
-import ContentRow from './content-row/contentRow';
+import {
+  Plus,
+  Minus,
+  Warning
+} from '../../assets/svg';
+import { ContentRow } from './content-row/content-row';
 import { Tooltip } from './tooltip/tooltip';
 
-const Accordion = ({ data }) => {
+export const Accordion = ({ data }) => {
+  console.log('data', data)
   const [isSelected, setIsSelected] = useState(false);
   const totalFarmHashrates = 'Total farm hashrates:';
 
@@ -17,15 +20,15 @@ const Accordion = ({ data }) => {
   };
 
   return (
-    <div className="accordionContainer">
+    <div className="accordion max-content">
       <div
-        className="accordionHeaderContainer"
+        className="accordion__header-container"
         onClick={() => toggle()}
       >
-        <div className="accordionHeaderWrapper">
+        <div className="accordion__header-wrapper">
           {/*{!data?.status && (*/}
           {/*  <>*/}
-          {/*    <div className="warningImage">*/}
+          {/*    <div className="warning-image">*/}
           {/*      <Warning />*/}
           {/*    </div>*/}
 
@@ -33,42 +36,42 @@ const Accordion = ({ data }) => {
           {/*  </>*/}
           {/*)}*/}
 
-          <span className="accordionMainText marginLeft18">
+          <span className="accordion__main-text margin-left-18">
             {data?.name}
           </span>
         </div>
 
-        <div className="accordionHeaderWrapper">
-          <span className="accordionText marginLeft10">
+        <div className="accordion__header-wrapper">
+          <span className="accordion__text margin-left-10">
             {totalFarmHashrates}
           </span>
 
           {data?.total_hashrates?.map((value) => (
             <span
-              className="accordionMainText marginLeft10"
+              className="accordion__main-text margin-left-10"
               key={uuid()}
             >
-              {`[${value?.coinTag}] ${value?.hashrate}`}
+              {`[${value?.coinTag || value?.algorithm}] ${value?.hashrate}`}
             </span>
           ))}
 
-          <div className="iconImage">
+          <div className="icon-image">
             {isSelected  ? <Minus /> : <Plus />}
           </div>
         </div>
       </div>
 
       {isSelected && (
-        <div className="accordionContentContainer">
-          <div className="accordionOverflow">
-            <div className="accordionContentWrapper">
+        <div className="accordion__content-container">
+          <div className="accordion__overflow">
+            <div className="accordion__content-wrapper">
               <ContentRow type="header" />
             </div>
 
             {data?.rigs?.map((value) => (
               <div
                 key={uuid()}
-                className="accordionContentWrapper"
+                className="accordion__content-wrapper"
               >
                 <ContentRow rowText={value} />
               </div>
@@ -79,5 +82,3 @@ const Accordion = ({ data }) => {
     </div>
   );
 };
-
-export default  Accordion;

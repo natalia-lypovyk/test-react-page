@@ -4,21 +4,21 @@
   visibility: hidden;
 }
 
-.switchLabel {
+.switch__label {
   position: relative;
   display: flex;
   align-items: center;
   justify-content: space-between;
   width: 25px;
   height: 15px;
-  background: grey;
+  background-color: grey;
   border-radius: 25px;
   transition: background-color 0.2s;
   transform: translateY(-50%);
   cursor: pointer;
 }
 
-.switchLabel .switchButton {
+.switch__label .switch__button {
   content: '';
   position: absolute;
   top: 2px;
@@ -27,19 +27,19 @@
   height: 11px;
   border-radius: 11px;
   transition: 0.3s;
-  background: #fff;
+  background-color: #fff;
   box-shadow: 0 0 2px 0 rgba(10, 10, 10, 0.29);
 }
 
-.switch:checked + .switchLabel .switchButton {
+.switch:checked + .switch__label .switch__button {
   left: calc(100% - 2px);
   transform: translateX(-100%);
 }
 
-.switch:checked + .switchLabel {
-  background: #908dff;
+.switch:checked + .switch__label {
+  background-color: #908dff;
 }
 
-.switchLabel:active .switchButton {
+.switch__label:active .switch__button {
   width: 11px;
 }

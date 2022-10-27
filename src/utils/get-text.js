@@ -8,7 +8,7 @@ export const getText =  (style = '', text, isHeader, isHash = false, isDate = fa
     return text && text?.map((item) => (
       <p
         key={uuid()}
-        className='accordionText'
+        className='accordion__text'
       >
         {item?.algorithm}: {item?.hashrate}
       </p>
@@ -18,7 +18,7 @@ export const getText =  (style = '', text, isHeader, isHash = false, isDate = fa
   if (typeof text === 'string' || typeof text === 'number') {
     return (
       <span
-        className={`${!isHeader ? 'accordionText' : 'accordionTextBold'} ${style}`}
+        className={`${!isHeader ? 'accordion__text' : 'accordion__text-bold'} ${style}`}
       >
         {text}
       </span>
@@ -27,13 +27,13 @@ export const getText =  (style = '', text, isHeader, isHash = false, isDate = fa
 
   if (typeof text === 'object') {
     if (text == null) {
-      return <p className='accordionText'>-</p>
+      return <p className='accordion__text'>-</p>
     }
 
     if (isDate) {
       return (
         <span
-          className={`${!isHeader ? 'accordionText' : 'accordionTextBold'} ${style}`}
+          className={`${!isHeader ? 'accordion__text' : 'accordion__text-bold'} ${style}`}
         >
         {formatDate(text)}
       </span>
@@ -43,7 +43,7 @@ export const getText =  (style = '', text, isHeader, isHash = false, isDate = fa
     return text?.map((textItem) => (
       <p
         key={textItem}
-        className={`${!isHeader ? 'accordionText' : 'accordionTextBold'} ${style}`}
+        className={`${!isHeader ? 'accordion__text' : 'accordion__text-bold'} ${style}`}
       >
         {textItem}
       </p>

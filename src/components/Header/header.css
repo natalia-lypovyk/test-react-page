@@ -1,19 +1,17 @@
-.headerContainer {
+.header__container {
   display: flex;
-  max-width: 1040px;
-  width: 90%;
   margin: 40px auto 0;
 }
 
-.headerImage {
+.header__image {
   margin-top: 2px;
 }
 
-.headerTextContainer {
+.header__text-container {
   margin-left: 15px;
 }
 
-.headerTextWrapper {
+.header__text-wrapper {
   margin:  auto;
   font-size: 25px;
   font-weight: 300;
@@ -21,13 +19,11 @@
   color: #16173A;
 }
 
-.headerItems {
+.header__items {
   display: flex;
   flex-wrap: wrap;
   gap: 5px;
   justify-content: flex-start;
-  max-width: 1040px;
-  width: 90%;
   margin: 52px auto 0;
 }
 
@@ -35,5 +31,5 @@
   width: 100%;
   height: 1px;
   margin-top: 40px;
-  background: #F4F5FC;
+  background-color: #F4F5FC;
 }

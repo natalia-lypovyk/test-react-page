@@ -1,13 +1,11 @@
-.accordionContainer {
-  max-width: 1040px;
-  width: 90%;
+.accordion {
   margin: 10px auto 0;
   border: 1px solid #F4F5FC;
   border-radius: 12px;
-  background: #FFFFFF;
+  background-color: #FFFFFF;
 }
 
-.accordionHeaderContainer {
+.accordion__header-container {
   position: relative;
   display: flex;
   justify-content: space-between;
@@ -16,130 +14,114 @@
 }
 
 @media screen and (max-width: 800px) {
-  .accordionHeaderContainer {
+  .accordion__header-container {
     flex-direction: column;
     align-items: flex-start;
     justify-content: space-around;
   }
 }
 
-.accordionHeaderWrapper {
+.accordion__header-wrapper {
   display: flex;
   align-items: center;
 }
 
 @media screen and (max-width: 800px) {
-  .accordionHeaderWrapper:nth-of-type(2) {
+  .accordion__header-wrapper:nth-of-type(2) {
     width: 100%;
     justify-content: space-between;
   }
 }
 
-.accordionMainText {
+.accordion__main-text {
   font-weight: 600;
   font-size: 14px;
   line-height: 150%
 }
 
 @media screen and (max-width: 800px) {
-  .accordionMainText {
+  .accordion__main-text {
     font-size: 12px;
   }
 }
 
-.accordionText {
+.accordion__text {
   font-weight: 400;
   font-size: 12px;
   line-height: 150%
 }
 
-.accordionTextBold {
+.accordion__text-bold {
   font-weight: 600;
   font-size: 12px;
 }
 
-.accordionContentContainer {
+.accordion__content-container {
   width: 100%;
   margin-bottom: 10px;
 }
 
-.accordionOverflow {
+.accordion__overflow {
   width: 100%;
   overflow: auto;
 }
 
-.accordionContentWrapper {
+.accordion__content-wrapper {
   display: flex;
   align-items: center;
   min-height: 60px;
   min-width: 950px;
 }
 
-.accordionContentWrapper:nth-child(odd) {
-  background: #F4F5FC;
+.accordion__content-wrapper:nth-child(odd) {
+  background-color: #F4F5FC;
 }
 
-.warningImage {
+.warning-image {
   margin-left: 18px;
   margin-top: 3px;
   cursor: pointer;
 }
 
 @media screen and (max-width: 800px) {
-  .warningImage {
+  .warning-image {
     margin-left: 10px;
   }
 }
 
-.warningImage:hover + .tooltip {
+.warning-image:hover + .tooltip {
   opacity: 1;
 }
 
-.iconImage {
+.icon-image {
   margin: 3px 18px 0;
   cursor: pointer;
 }
 
 @media screen and (max-width: 800px) {
-  .iconImage {
+  .icon-image {
     margin: -30px 10px 0;
   }
 }
 
-.fontWeight400 {
-  font-weight: 400;
-}
-
-.marginLeft10 {
+.margin-left-10 {
   margin-left: 10px;
 }
 
-.marginLeft18 {
+.margin-left-18 {
   margin-left: 18px;
 }
 @media screen and (max-width: 800px) {
-  .marginLeft18 {
+  .margin-left-18 {
     margin-left: 10px;
   }
 }
 
-.marginLeft20 {
-  margin-left: 20px;
-}
-
-.marginRight10 {
-  margin-right: 10px;
-}
-
-.fontSize12 {
-  font-size: 12px;
-}
-
-.redText {
+.text {
   color: #FF4259;
 }
 
-.iconContainer {
+.icon-container {
   display: flex;
   align-items: center;
   margin-right: 10px;
@@ -154,10 +136,10 @@
   margin: 0;
   padding: 0;
   border: 0;
-  background: transparent;
+  background-color: transparent;
 }
 
-.innerContainer {
+.inner-container {
   display: flex;
   align-items: center;
   column-gap: 10px;
@@ -165,37 +147,37 @@
   height: 100%;
 }
 
-.innerContainer > div {
+.inner-container > div {
   padding: 0;
   overflow: hidden;
 }
 
-.innerContainer > div:first-of-type {
+.inner-container > div:first-of-type {
   flex-basis: 17%;
   padding-left: 5px;
 }
 
-.innerContainer > div:nth-of-type(2) {
+.inner-container > div:nth-of-type(2) {
   flex-basis: 10%;
 }
 
-.innerContainer > div:nth-of-type(3) {
+.inner-container > div:nth-of-type(3) {
   flex-basis: 6%;
 }
 
-.innerContainer > div:nth-of-type(4) {
+.inner-container > div:nth-of-type(4) {
   flex-basis: 4%;
 }
 
-.innerContainer > div:nth-of-type(5) {
+.inner-container > div:nth-of-type(5) {
   flex-basis: 17%;
 }
 
-.innerContainer > div:nth-of-type(6) {
+.inner-container > div:nth-of-type(6) {
   flex-basis: 9%;
 }
 
-.innerContainer > div:nth-of-type(7) {
+.inner-container > div:nth-of-type(7) {
   flex-basis: 10%;
 }
 
@@ -203,17 +185,18 @@
   flex-basis: 11%;
 }
 
-.innerContainer > div:nth-of-type(9) {
+.inner-container > div:nth-of-type(9) {
   flex-basis: 8%;
 }
 
-.innerContainer > div:nth-of-type(10),
-.innerContainer > div:nth-of-type(11) {
+.inner-container > div:nth-of-type(10),
+.inner-container > div:nth-of-type(11) {
   flex-basis: 3%;
 }
 
-.switchContainer {
+.modal__buttons {
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  justify-content: space-between;
+  column-gap: 10px;
+  width: 100%;
 }

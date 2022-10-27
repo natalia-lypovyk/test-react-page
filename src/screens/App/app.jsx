@@ -1,27 +1,30 @@
-import React, {
-  useEffect,
-  useState
-} from 'react';
+import React, { useEffect, useState } from 'react';
 import { v4 as uuid } from 'uuid';
 
-import Header from '../../components/Header/header';
-import SearchInput from '../../components/SearchInput/searchInput';
-import Accordion from '../../components/Accordion/accordion';
-import LoadButton from '../../components/Load/loadButton';
+import { Header } from '../../components/Header/header';
+import { SearchInput } from '../../components/SearchInput/search-input';
+import { Accordion } from '../../components/Accordion/accordion';
+import { LoadButton } from '../../components/Load/load-button';
+import { Modal } from '../../components/modal/modal';
 
 import './app.css';
 import {
-  getData,
   allFarmsUrl,
-  farmsBySearchUrl
+  allWhiteIps,
+  farmsBySearchUrl,
+  getData,
+  getIp,
+  addIpToWhitelist,
+  removeIpFromWhitelist,
+  limitForAllFarms,
+  limitForSearch,
+  farmsWithProblemsParam
 } from '../../utils/get-data';
 
 const App = () => {
   const [amount, setAmount] = useState(5);
   const [isFiltered, setIsFiltered] = useState(false);
-  const limitForAllFarms = '?limit=100';
-  const limitForSearch = '?limit=10';
-  const farmsWithProblemsParam = '&only_with_problems=true';
+
   let count = 0;
 
   const [farms, setFarms] = useState([]);
@@ -29,6 +32,20 @@ const App = () => {
   const [searchedFarms, setSearchedFarms] = useState([]);
   const [searchText, setSearchText] = useState('');
   const [farmsAmount, setFarmsAmount] = useState();
+
+  const [myIp, setIp] = useState('');
+  const [ips, setIps] = useState([]);
+
+  const [isOpenAddModal, setIsOpenAddModal] = useState(false);
+  const [isOpenDeleteModal, setIsOpenDeleteModal] = useState(false);
+
+  useEffect(() => {
+    getData(allWhiteIps).then(({ data }) => setIps(data));
+  }, []);
+
+  useEffect(() => {
+    getIp().then(data => setIp(data.IPv4));
+  }, []);
 
   useEffect(() => {
     try {
@@ -53,7 +70,7 @@ const App = () => {
     event.preventDefault();
 
     getData(`${farmsBySearchUrl}${limitForSearch}&search_query=${searchText}`)
-      .then(({ data }) => setSearchedFarms(data))
+      .then(({ data }) => setSearchedFarms(data));
   }
 
   const farmsFiltered =
@@ -63,9 +80,84 @@ const App = () => {
         ? farms
         : searchedFarms;
 
+  const buttons = [
+    {
+      title: 'Add IP',
+      handler: setIsOpenAddModal
+    },
+    {
+      title: 'Delete IP',
+      handler: setIsOpenDeleteModal
+    }
+  ];
+
+  const [ipToAdd, setIpToAdd] = useState('');
+  const [ipToDelete, setIpToDelete] = useState('');
+
   return (
     <div className="app">
       <Header />
+
+      <div className="app_buttons max-content">
+        {buttons.map(({ title, handler}) => (
+          <button
+            key={title}
+            type="button"
+            className="app_button"
+            onClick={() => handler(true)}
+          >
+            {title}
+          </button>
+        ))}
+      </div>
+
+      <Modal
+        isOpen={isOpenAddModal}
+        handleClose={() => setIsOpenAddModal(false)}
+        wrapperId="add-id-root"
+      >
+        <p>Enter IP you want to add to whitelist</p>
+        <input
+          className="modal__input"
+          value={ipToAdd}
+          onChange={(e) => setIpToAdd(e.target.value)}
+          placeholder="79.110.130.237"
+        />
+        <button
+          className="modal__button"
+          type="button"
+          onClick={() => {
+            addIpToWhitelist(ipToAdd);
+            setIsOpenAddModal(false);
+          }}
+        >
+          Add
+        </button>
+      </Modal>
+
+      <Modal
+        isOpen={isOpenDeleteModal}
+        handleClose={() => setIsOpenDeleteModal(false)}
+        wrapperId="delete-id-root"
+      >
+        <p>Enter IP you want to delete from whitelist</p>
+        <input
+          className="modal__input"
+          value={ipToDelete}
+          onChange={(e) => setIpToDelete(e.target.value)}
+          placeholder="79.110.130.237"
+        />
+        <button
+          className="modal__button"
+          type="button"
+          onClick={() => {
+            removeIpFromWhitelist(ipToDelete);
+            setIsOpenDeleteModal(false);
+          }}
+        >
+          Delete
+        </button>
+      </Modal>
 
       <form onSubmit={handleSearch}>
         <SearchInput
@@ -76,7 +168,7 @@ const App = () => {
         />
       </form>
 
-      <div className="headerWrapper">
+      <div className="app__header-wrapper">
         {farmsFiltered?.map((value) => {
           if (count <= amount) {
             count++;
@@ -92,7 +184,6 @@ const App = () => {
 
       {amount < farmsFiltered.length && (
         <LoadButton
-          // length={farmsFiltered.length}
           amount={amount}
           setAmount={setAmount}
         />

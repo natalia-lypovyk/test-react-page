@@ -1,4 +1,6 @@
-export const formatDate = (lastRequestDate) => {
+export const formatDate = (timestamp) => {
+  const lastRequestDate = new Date(timestamp);
+
   const fullDate = lastRequestDate.toLocaleDateString();
   const fullTime = lastRequestDate.toLocaleTimeString();
 

@@ -1,41 +1,43 @@
 import React from 'react';
 
-import './searchInput.css'
-import WarningSearch from '../../assets/svg/warningSearch';
-import DisabledWarningSearch from '../../assets/svg/disabledWarningSearch';
-import Search from '../../assets/svg/search';
-import Close from '../../assets/svg/close';
+import './search-input.css';
+import {
+  WarningSearch,
+  DisabledWarningSearch,
+  Search,
+  Close
+} from '../../assets/svg';
 
-const SearchInput = ({ isFiltered, setIsFiltered, searchText, setSearchText }) => {
+export const SearchInput = ({ isFiltered, setIsFiltered, searchText, setSearchText }) => {
   const handleChange = (event) => {
     setSearchText(event.target.value);
   };
 
   const handleClose = () => {
-    setSearchText('')
+    setSearchText('');
   };
 
   const placeholder = 'User / Rig / Algo / Coin / Pool / Wallet / Conf_name';
 
   return (
-    <div className="inputContainer">
-      <div className="inputWrapper">
-        <div className="imageButton">
+    <div className="search-input max-content">
+      <div className="search-input__wrapper">
+        <div className="search-input__image-button">
           <Search />
         </div>
 
         <input
-          placeholder={placeholder}
-          className="inputTextContainer"
-          value={searchText}
+          className="search-input__text-container"
           type="text"
+          placeholder={placeholder}
+          value={searchText}
           onChange={handleChange}
         />
 
         {searchText && (
           <button
+            className="search-input__reset-button"
             type="button"
-            className="resetButton"
             onClick={() => handleClose()}
           >
             <Close />
@@ -44,8 +46,8 @@ const SearchInput = ({ isFiltered, setIsFiltered, searchText, setSearchText }) =
       </div>
 
       <button
+        className="search-input__sort-button"
         type="button"
-        className="sortButton"
         onClick={() => setIsFiltered(!isFiltered)}
       >
         {isFiltered ? <WarningSearch /> : <DisabledWarningSearch />}
@@ -53,5 +55,3 @@ const SearchInput = ({ isFiltered, setIsFiltered, searchText, setSearchText }) =
     </div>
   );
 };
-
-export default SearchInput;

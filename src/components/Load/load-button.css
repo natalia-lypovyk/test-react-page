@@ -1,16 +1,14 @@
-.loadButtonContainer {
+.load-button {
   display: flex;
   align-items: center;
   justify-content: center;
-  max-width: 1040px;
-  width: 90%;
   margin: 10px auto 100px;
   padding: 8px;
   border-radius: 12px;
-  background: #F4F5FC;
+  background-color: #F4F5FC;
 }
 
-.loadText {
+.load-button__text {
   margin-left: 8px;
   font-style: normal;
   font-weight: 500;

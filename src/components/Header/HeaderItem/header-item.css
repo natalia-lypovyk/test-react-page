@@ -1,4 +1,4 @@
-.headerItemContainer {
+.header__item-container {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -6,20 +6,21 @@
   padding: 12px 32px;
   border: 2px solid #F4F5FC;
   border-radius: 12px;
-  background: #FFFFFF;
+  background-color: #FFFFFF;
 }
 
-.itemHeaderText {
-  height: 21px;
-  font-size: 14px;
-  font-weight: 500;
+.header__text {
   line-height: 150%;
   text-align: center;
+}
+
+.header__text-bold {
+  font-size: 14px;
+  font-weight: 500;
   color: #908DFF;
 }
 
-.itemBodyText {
+.header__text_body {
   font-size: 16px;
-  line-height: 150%;
   color: #16173A;
 }

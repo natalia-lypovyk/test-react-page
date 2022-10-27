@@ -29,3 +29,8 @@ button {
     flex-direction: column;
   }
 }
+
+.max-content {
+  max-width: 1040px;
+  width: 90%;
+}

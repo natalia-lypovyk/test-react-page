@@ -13,9 +13,9 @@ export const Switch = ({ id, isOn, handleToggle }) => {
 
       <label
         htmlFor={id}
-        className="switchLabel"
+        className="switch__label"
       >
-        <span className="switchButton" />
+        <span className="switch__button" />
       </label>
     </>
   );

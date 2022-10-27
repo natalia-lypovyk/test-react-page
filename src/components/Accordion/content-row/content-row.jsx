@@ -1,20 +1,24 @@
 import React, { useState } from 'react';
 import { v4 as uuid } from 'uuid';
 
-import '../accordion.css'
-import GreenRec from '../../../assets/svg/greenRec';
-import RedRec from '../../../assets/svg/redRec';
-import { Gear } from '../../../assets/svg/gear';
+import '../accordion.css';
+import {
+  GreenRec,
+  RedRec,
+  Gear
+} from '../../../assets/svg';
 
 import { Switch } from '../switch/switch';
-
-import { tableHeaderText } from '../../../constats/tableData';
+import { Modal } from '../../modal/modal';
 
 import { changeRigScriptStatus } from '../../../utils/get-data';
 import { getText } from '../../../utils/get-text';
 
-const ContentRow = ({ type = '', rowText }) => {
+import { tableHeaderText } from '../../../constats/tableData';
+
+export const ContentRow = ({ type = '', rowText }) => {
   const isHeader = type === 'header';
+  const [isOpenModal, setIsOpenModal] = useState(false);
   const [value, setValue] = useState(rowText?.script_status);
 
   const switchRigStatus = async (rigId) => {
@@ -30,16 +34,16 @@ const ContentRow = ({ type = '', rowText }) => {
   };
 
   return (
-    <div className="innerContainer">
+    <div className="inner-container">
       <div style={{ display: 'flex' }}>
         {!isHeader && (
-          <figure className="iconContainer">
+          <figure className="icon-container">
             {rowText?.active ? <GreenRec /> : <RedRec />}
           </figure>)
         }
         {getText(
           '',
-          isHeader? tableHeaderText.name : rowText.name,
+          isHeader? 'Rig Name' : rowText.name,
           isHeader
         )}
       </div>
@@ -47,7 +51,7 @@ const ContentRow = ({ type = '', rowText }) => {
       <div>
         {getText(
           '',
-          isHeader ? tableHeaderText.last : new Date(rowText.lastRequest),
+          isHeader ? tableHeaderText.lastRequest : new Date(rowText.lastRequest),
           isHeader,
           false,
           true
@@ -57,7 +61,7 @@ const ContentRow = ({ type = '', rowText }) => {
       <div>
         {getText(
           '',
-          isHeader ? tableHeaderText.algo : rowText.algorithms,
+          isHeader ? tableHeaderText.algorithms : rowText.algorithms,
           isHeader
         )}
       </div>
@@ -65,7 +69,7 @@ const ContentRow = ({ type = '', rowText }) => {
       <div>
         {getText(
           '',
-          isHeader ? tableHeaderText.coin : rowText.coins,
+          isHeader ? tableHeaderText.coins : rowText.coins,
           isHeader
         )}
       </div>
@@ -73,7 +77,7 @@ const ContentRow = ({ type = '', rowText }) => {
       <div>
         {getText(
           '',
-          isHeader ? tableHeaderText.pool : rowText.pools,
+          isHeader ? tableHeaderText.pools : rowText.pools,
           isHeader
         )}
       </div>
@@ -81,15 +85,15 @@ const ContentRow = ({ type = '', rowText }) => {
       <div>
         {getText(
           '',
-          isHeader ? tableHeaderText.login : rowText.logins,
+          isHeader ? tableHeaderText.logins : rowText.logins,
           isHeader
         )}
       </div>
 
       <div>
         {getText(
-          !rowText?.status && !isHeader && 'redText',
-          isHeader ? tableHeaderText.troubles : rowText.trouble,
+          !rowText?.status && !isHeader && 'red-text',
+          isHeader ? tableHeaderText.trouble : rowText.trouble,
           isHeader
         )}
       </div>
@@ -97,7 +101,7 @@ const ContentRow = ({ type = '', rowText }) => {
       <div>
         {getText(
           '',
-          isHeader ? tableHeaderText.hashrate : rowText.hashrates,
+          isHeader ? tableHeaderText.hashrates : rowText.hashrates,
           isHeader,
           true
         )}
@@ -106,7 +110,7 @@ const ContentRow = ({ type = '', rowText }) => {
       <div>
         {getText(
           '',
-          isHeader ? tableHeaderText.conf_name : rowText.configName,
+          isHeader ? tableHeaderText.configName : rowText.configName,
           isHeader
         )}
       </div>
@@ -124,12 +128,37 @@ const ContentRow = ({ type = '', rowText }) => {
           <Switch
             id={uuid()}
             isOn={value}
-            handleToggle={() => switchRigStatus('rigId')}
+            onClick={() => setIsOpenModal(true)}
+            handleToggle={() => setIsOpenModal(true)}
           />
         )}
       </div>
+
+      <Modal
+        isOpen={isOpenModal}
+        handleClose={() => setIsOpenModal(false)}
+        wrapperId="settings-modal-root"
+      >
+        <p>Are you sure to change rig status?</p>
+
+        <div className="modal__buttons">
+          <button
+            className="confirm-button"
+            type="button"
+            onClick={() => switchRigStatus(rowText.rig_id)}
+          >
+            Yes, sure
+          </button>
+
+          <button
+            className="confirm-button"
+            type="button"
+            onClick={() => setIsOpenModal(false)}
+          >
+            No
+          </button>
+        </div>
+      </Modal>
     </div>
   );
 };
-
-export default ContentRow;
