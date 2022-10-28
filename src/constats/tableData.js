@@ -10,6 +10,5 @@ export const tableHeaderText = {
   pools: 'Pool',
   logins: 'Login\\Wallet',
   trouble: 'Troubles',
-  hashrates: 'Hashrate',
-  configName: 'Conf_name'
+  hashrates: 'Hashrate'
 };

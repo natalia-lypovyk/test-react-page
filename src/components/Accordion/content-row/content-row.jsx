@@ -107,14 +107,6 @@ export const ContentRow = ({ type = '', rowText }) => {
       </div>
 
       <div>
-        {getText(
-          '',
-          isHeader ? tableHeaderText.configName : rowText.configName,
-          isHeader
-        )}
-      </div>
-
-      <div>
         {!isHeader && (
           <Switch
             id={uuid()}
