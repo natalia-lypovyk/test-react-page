@@ -136,7 +136,13 @@ export const Accordion = ({ data, config }) => {
                   />
                 </label>
               ))) : null}
-              <button type="submit">Change</button>
+
+              <button
+                className="modal__button"
+                type="submit"
+              >
+                Change
+              </button>
             </form>
           </Modal>
 
