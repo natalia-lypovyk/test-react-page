@@ -5,6 +5,7 @@ export const allWhiteIps = 'http://95.216.162.93:8000/whiteIps';
 export const changeRigScriptStatus = 'http://95.216.162.93:8000/rig/changeScriptStatus';
 export const setWhiteIp = 'http://95.216.162.93:8000/whiteIp';
 export const removeWhiteIp = 'http://95.216.162.93:8000/whiteIp';
+export const setConfigUrl = 'http://95.216.162.93:8000/config';
 
 export const getData = async (query) => {
   const response = await fetch(query);
@@ -28,6 +29,20 @@ export const addIpToWhitelist = async (ip) => {
       body: JSON.stringify({ 'ip': ip })
     }
   ).then(response => response.json());
+};
+
+export const setConfig = async (data) => {
+  return await fetch(
+    setConfigUrl,
+    {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(data)
+    }
+  ).then(response => response.json())
 };
 
 export const removeIpFromWhitelist = async (ip) => {

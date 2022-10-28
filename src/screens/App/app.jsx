@@ -10,10 +10,8 @@ import { Modal } from '../../components/modal/modal';
 import './app.css';
 import {
   allFarmsUrl,
-  allWhiteIps,
   farmsBySearchUrl,
   getData,
-  getIp,
   addIpToWhitelist,
   removeIpFromWhitelist,
   limitForAllFarms,
@@ -33,19 +31,8 @@ const App = () => {
   const [searchText, setSearchText] = useState('');
   const [farmsAmount, setFarmsAmount] = useState();
 
-  const [myIp, setIp] = useState('');
-  const [ips, setIps] = useState([]);
-
   const [isOpenAddModal, setIsOpenAddModal] = useState(false);
   const [isOpenDeleteModal, setIsOpenDeleteModal] = useState(false);
-
-  useEffect(() => {
-    getData(allWhiteIps).then(({ data }) => setIps(data));
-  }, []);
-
-  useEffect(() => {
-    getIp().then(data => setIp(data.IPv4));
-  }, []);
 
   useEffect(() => {
     try {
@@ -175,6 +162,7 @@ const App = () => {
             return (
               <Accordion
                 data={value}
+                config={value.config}
                 key={uuid()}
               />
             )

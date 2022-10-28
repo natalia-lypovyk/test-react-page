@@ -4,8 +4,7 @@ import { v4 as uuid } from 'uuid';
 import '../accordion.css';
 import {
   GreenRec,
-  RedRec,
-  Gear
+  RedRec
 } from '../../../assets/svg';
 
 import { Switch } from '../switch/switch';
@@ -112,14 +111,6 @@ export const ContentRow = ({ type = '', rowText }) => {
           '',
           isHeader ? tableHeaderText.configName : rowText.configName,
           isHeader
-        )}
-      </div>
-
-      <div className="container">
-        {!isHeader && (
-          <button type="button">
-            <Gear />
-          </button>
         )}
       </div>
 
