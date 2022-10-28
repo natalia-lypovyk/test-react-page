@@ -50,7 +50,7 @@ export const ContentRow = ({ type = '', rowText }) => {
       <div>
         {getText(
           '',
-          isHeader ? tableHeaderText.lastRequest : new Date(rowText.lastRequest),
+          isHeader ? tableHeaderText.lastRequest : new Date(rowText.lastRequest * 1000),
           isHeader,
           false,
           true
