@@ -12,12 +12,9 @@ import {
   allFarmsUrl,
   farmsBySearchUrl,
   getData,
-  addIpToWhitelist,
-  removeIpFromWhitelist,
   limitForAllFarms,
   limitForSearch,
-  farmsWithProblemsParam,
-  allWhiteIps
+  farmsWithProblemsParam
 } from '../../utils/get-data';
 import { ConfigForm } from '../../components/ConfigForm/config-form';
 
@@ -32,10 +29,7 @@ const App = () => {
   const [searchedFarms, setSearchedFarms] = useState([]);
   const [searchText, setSearchText] = useState('');
   const [farmsAmount, setFarmsAmount] = useState();
-  const [ips, setIps] = useState([]);
 
-  const [isOpenAddModal, setIsOpenAddModal] = useState(false);
-  const [isOpenDeleteModal, setIsOpenDeleteModal] = useState(false);
   const [isOpenConfigModal, setIsOpenConfigModal] = useState(false);
 
   useEffect(() => {
@@ -57,10 +51,6 @@ const App = () => {
     }
   }, []);
 
-  useEffect(() => {
-    getData(allWhiteIps).then(({ data }) => setIps(data));
-  }, [])
-  console.log('farms', farms);
   const handleSearch = (event) => {
     event.preventDefault();
 
@@ -75,36 +65,11 @@ const App = () => {
         ? farms
         : searchedFarms;
 
-  const buttons = [
-    {
-      title: 'Add IP',
-      handler: setIsOpenAddModal
-    },
-    {
-      title: 'Delete IP',
-      handler: setIsOpenDeleteModal
-    }
-  ];
-
-  const [ipToAdd, setIpToAdd] = useState('');
-  const [ipToDelete, setIpToDelete] = useState('');
-
   return (
     <div className="app">
       <Header />
 
       <div className="app_buttons max-content">
-        {buttons.map(({ title, handler}) => (
-          <button
-            key={title}
-            type="button"
-            className="app_button"
-            onClick={() => handler(true)}
-          >
-            {title}
-          </button>
-        ))}
-
         <button
           className="app_button"
           type="button"
@@ -120,54 +85,6 @@ const App = () => {
         wrapperId="config-modal-root"
       >
         <ConfigForm />
-      </Modal>
-
-      <Modal
-        isOpen={isOpenAddModal}
-        handleClose={() => setIsOpenAddModal(false)}
-        wrapperId="add-id-root"
-      >
-        <p>Enter IP you want to add to whitelist</p>
-        <input
-          className="modal__input margin-bottom-20"
-          value={ipToAdd}
-          onChange={(e) => setIpToAdd(e.target.value)}
-          placeholder="79.110.130.237"
-        />
-        <button
-          className="modal__button"
-          type="button"
-          onClick={() => {
-            addIpToWhitelist(ipToAdd);
-            setIsOpenAddModal(false);
-          }}
-        >
-          Add
-        </button>
-      </Modal>
-
-      <Modal
-        isOpen={isOpenDeleteModal}
-        handleClose={() => setIsOpenDeleteModal(false)}
-        wrapperId="delete-id-root"
-      >
-        <p>Enter IP you want to delete from whitelist</p>
-        <input
-          className="modal__input margin-bottom-20"
-          value={ipToDelete}
-          onChange={(e) => setIpToDelete(e.target.value)}
-          placeholder="79.110.130.237"
-        />
-        <button
-          className="modal__button"
-          type="button"
-          onClick={() => {
-            removeIpFromWhitelist(ipToDelete);
-            setIsOpenDeleteModal(false);
-          }}
-        >
-          Delete
-        </button>
       </Modal>
 
       <form onSubmit={handleSearch}>
