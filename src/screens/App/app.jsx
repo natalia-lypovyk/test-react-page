@@ -16,8 +16,10 @@ import {
   removeIpFromWhitelist,
   limitForAllFarms,
   limitForSearch,
-  farmsWithProblemsParam
+  farmsWithProblemsParam,
+  allWhiteIps
 } from '../../utils/get-data';
+import { ConfigForm } from '../../components/ConfigForm/config-form';
 
 const App = () => {
   const [amount, setAmount] = useState(5);
@@ -30,9 +32,11 @@ const App = () => {
   const [searchedFarms, setSearchedFarms] = useState([]);
   const [searchText, setSearchText] = useState('');
   const [farmsAmount, setFarmsAmount] = useState();
+  const [ips, setIps] = useState([]);
 
   const [isOpenAddModal, setIsOpenAddModal] = useState(false);
   const [isOpenDeleteModal, setIsOpenDeleteModal] = useState(false);
+  const [isOpenConfigModal, setIsOpenConfigModal] = useState(false);
 
   useEffect(() => {
     try {
@@ -53,10 +57,14 @@ const App = () => {
     }
   }, []);
 
+  useEffect(() => {
+    getData(allWhiteIps).then(({ data }) => setIps(data));
+  }, [])
+  console.log('farms', farms);
   const handleSearch = (event) => {
     event.preventDefault();
 
-    getData(`${farmsBySearchUrl}${limitForSearch}&search_query=${searchText}`)
+    getData(`${farmsBySearchUrl}${searchText}${limitForSearch}`)
       .then(({ data }) => setSearchedFarms(data));
   }
 
@@ -96,7 +104,23 @@ const App = () => {
             {title}
           </button>
         ))}
+
+        <button
+          className="app_button"
+          type="button"
+          onClick={() => setIsOpenConfigModal(!isOpenConfigModal)}
+        >
+          Config
+        </button>
       </div>
+
+      <Modal
+        isOpen={isOpenConfigModal}
+        handleClose={() => setIsOpenConfigModal(false)}
+        wrapperId="config-modal-root"
+      >
+        <ConfigForm />
+      </Modal>
 
       <Modal
         isOpen={isOpenAddModal}
@@ -105,7 +129,7 @@ const App = () => {
       >
         <p>Enter IP you want to add to whitelist</p>
         <input
-          className="modal__input"
+          className="modal__input margin-bottom-20"
           value={ipToAdd}
           onChange={(e) => setIpToAdd(e.target.value)}
           placeholder="79.110.130.237"
@@ -129,7 +153,7 @@ const App = () => {
       >
         <p>Enter IP you want to delete from whitelist</p>
         <input
-          className="modal__input"
+          className="modal__input margin-bottom-20"
           value={ipToDelete}
           onChange={(e) => setIpToDelete(e.target.value)}
           placeholder="79.110.130.237"
@@ -162,7 +186,6 @@ const App = () => {
             return (
               <Accordion
                 data={value}
-                config={value.config}
                 key={uuid()}
               />
             )

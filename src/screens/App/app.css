@@ -16,18 +16,24 @@
   background-color: #908dff;
   text-transform: uppercase;
 }
-.app_button:first-of-type {
+
+.app_button:not(:last-of-type) {
   margin-right: 20px;
 }
 
 .modal__input {
   width: 100%;
   padding: 12px;
-  margin-bottom: 20px;
-  border: 0;
+  border: 1px solid transparent;
   border-radius: 12px;
+  outline: 0;
   background-color: #F4F5FC;
   font-size: 14px;
+}
+
+.modal__input:focus,
+.modal__input:active {
+  border-color: #908DFF;
 }
 
 .modal__button,
@@ -39,7 +45,7 @@
 .modal__button:hover,
 .app_button:hover,
 .confirm-button:hover {
-  background-color: #AAA8FF;
+  background-color: #9b98f4;
 }
 
 .modal__button:active,
@@ -49,4 +55,12 @@
 .confirm-button:active,
 .confirm-button:focus {
   background-color: #7774ff;
+}
+
+.modal__button:disabled {
+  background-color: #B1AFFF;
+}
+
+.margin-bottom-20 {
+  margin-bottom: 20px;
 }

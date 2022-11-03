@@ -190,14 +190,30 @@
 form {
   width: 100%;
 }
+
+.config-form {
+  padding-top: 10px;
+}
+
 .modal__label {
+  display: flex;
+  column-gap: 10px;
   width: 100%;
   margin-bottom: 10px;
+  font-size: 14px;
 }
 
 .modal__label span,
 .modal__label input {
   margin-bottom: 0;
+}
+
+.modal__label span {
+  flex-basis: 20%;
+}
+
+.modal__label input {
+  flex-basis: 80%;
 }
 
 .modal__title {
@@ -210,7 +226,52 @@ form {
 .modal__input_tr {
   width: 100%;
   border: 0;
-  padding: 10px;
+  padding: 5px;
   outline: 0;
   background: transparent;
+}
+
+.dropdown {
+  position: relative;
+  margin-bottom: 10px;
+}
+
+.dropdown__header {
+  width: 200px;
+  padding: 10px;
+  border: 1px solid #908DFF;
+  border-radius: 12px;
+  background-color: #F4F5FC;
+  font-size: 14px;
+}
+
+.dropdown__list {
+  position: absolute;
+  top: 42px;
+  width: 200px;
+  margin: 0;
+  padding: 0;
+  border: 1px solid #908DFF;
+  border-radius: 12px;
+  list-style: none;
+  background-color: #F4F5FC;
+}
+
+.dropdown__item {
+  width: 100%;
+  margin: 0;
+  padding: 10px;
+  font-size: 14px;
+}
+
+.dropdown__item:hover {
+  background-color: #908DFF;
+}
+
+.dropdown__item:first-child:hover {
+  border-radius: 12px 12px 0 0;
+}
+
+.dropdown__item:last-child:hover {
+  border-radius: 0 0 12px 12px;
 }

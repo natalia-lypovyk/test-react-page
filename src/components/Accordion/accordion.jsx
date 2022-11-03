@@ -11,41 +11,33 @@ import {
 import { ContentRow } from './content-row/content-row';
 import { Tooltip } from './tooltip/tooltip';
 import { Modal } from '../modal/modal';
-import { setConfig } from '../../utils/get-data';
+import { applyConfigToFarm } from '../../utils/get-data';
+import { Dropdown } from '../Dropdown/dropdown';
+import { useConfigContext } from '../../configs.context';
 
-export const Accordion = ({ data, config }) => {
-  console.log(data)
+export const Accordion = ({ data }) => {
   const [isSelected, setIsSelected] = useState(false);
   const totalFarmHashrates = 'Total farm hashrates:';
   const [isOpenModal, setIsOpenModal] = useState(false);
+  const [selectedValue, setSelectedValue] = useState('');
 
-  const [configName, setConfigName] = useState(config?.name);
-  const [configPercent, setConfigPercent] = useState(config?.percent_from_24h);
-  const [configWallets, setConfigWallets] = useState(config?.wallets);
+  const configs = useConfigContext();
 
+  const hasRigs = data.rigs.length > 0;
   const toggle = () => {
     setIsSelected(!isSelected);
   };
 
+  // const handleDeleteConfig = (e) => {
+  //   e.preventDefault();
+  //
+  // };
+
   const handleSubmit = (e) => {
     e.preventDefault();
-
-    const configData = {
-      name: configName,
-      id: config.farm_id,
-      percent_from_24h: configPercent,
-      wallets: configWallets
-    }
-
-    console.log('config to send', configData);
-    setConfig(configData);
-  }
-
-  const handleDeleteConfig = (e) => {
-    e.preventDefault();
-
-    setConfig(null);
   };
+
+  const configName = configs.find((config) => config.id === data?.config_id)?.name;
 
   return (
     <div className="accordion max-content">
@@ -67,25 +59,31 @@ export const Accordion = ({ data, config }) => {
         </div>
 
         <div className="accordion__header-wrapper">
-          <span className="accordion__text margin-left-10">
-            {totalFarmHashrates}
-          </span>
-
-          {data?.total_hashrates?.map((value) => (
-            <span
-              className="accordion__main-text margin-left-10"
-              key={uuid()}
-            >
-              {`[${value?.coinTag || value?.algorithm}] ${value?.hashrate}`}
-            </span>
-          ))}
-
-          {config && (
+          {data?.total_hashrates?.length > 0 ? (
             <>
-              <span className="accordion__main-text margin-left-10">Conf_Name: </span>
-              <span className="accordion__text">&nbsp;{config?.name}</span>
+              <span className="accordion__text margin-left-10">
+                {totalFarmHashrates}
+              </span>
+
+              {data?.total_hashrates?.map((value) => (
+                <span
+                  className="accordion__main-text margin-left-10"
+                  key={uuid()}
+                >
+                  {`[${value?.coinTag || value?.algorithm}] ${value?.hashrate}`}
+                </span>
+              ))}
             </>
-          )}
+          ) : null}
+
+          {data?.config_id ? (
+            <>
+              <span className="accordion__text margin-left-10">Conf_Name: </span>
+              <span className="accordion__main-text">
+                &nbsp;{configName}
+              </span>
+            </>
+          ) : null}
 
           <div className="container margin-left-10">
             <button type="button" onClick={() => setIsOpenModal(true)}>
@@ -98,69 +96,31 @@ export const Accordion = ({ data, config }) => {
             handleClose={() => setIsOpenModal(false)}
             wrapperId="settings-modal-root"
           >
-            <p className="modal__title">Config</p>
+            <p className="modal__title">Choose config</p>
 
             <form onSubmit={handleSubmit}>
-              <label className="modal__label">
-                <span className="accordion__main-text">Name:</span>
-                <input
-                  className="modal__input_tr"
-                  type="text"
-                  value={configName}
-                  onChange={(e) => setConfigName(e.target.value)}
-                />
-              </label>
+              <Dropdown
+                selectedValue={selectedValue}
+                setSelectedValue={setSelectedValue}
+                configs={configs}
+              />
 
-              <label className="modal__label">
-                <span className="accordion__main-text">Percent:</span>
-                <input
-                  className="modal__input_tr"
-                  value={configPercent}
-                  onChange={(e) => setConfigPercent(e.target.value)}
-                />
-              </label>
-
-              <p className="modal__title">Wallets</p>
-              {configWallets ? (Object.entries(configWallets)?.map((wallet) => (
-                <label
-                  key={wallet[0]}
-                  className="modal__label"
-                >
-                  <span className="accordion__main-text">{wallet[0]}:</span>
-                  <input
-                    className="modal__input_tr"
-                    type="text"
-                    value={wallet[1]}
-                    onChange={(e) =>
-                      setConfigWallets((prev) => ({
-                        ...prev,
-                        [wallet[0]]: e.target.value
-                      }))}
-                  />
-                </label>
-              ))) : null}
-
-              <div className="modal__buttons">
-                <button
-                  className="modal__button"
-                  type="submit"
-                >
-                  Add
-                </button>
-
-                <button
-                  className="modal__button"
-                  type="button"
-                  onClick={handleDeleteConfig}
-                >
-                  Delete
-                </button>
-              </div>
+              <button
+                className="modal__button"
+                disabled={selectedValue === ''}
+                onClick={() => applyConfigToFarm(data?.id, selectedValue.id)}
+              >
+                Apply
+              </button>
             </form>
           </Modal>
 
-          <div className="icon-image" onClick={() => toggle()}>
-            {isSelected  ? <Minus /> : <Plus />}
+          <div
+            className="icon-image"
+            style={{ width: !hasRigs ? '24px' : 'auto'}}
+            onClick={() => toggle()}
+          >
+            {hasRigs ? (isSelected  ? <Minus /> : <Plus />) : null}
           </div>
         </div>
       </div>
