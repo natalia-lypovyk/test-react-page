@@ -79,7 +79,10 @@ export const handleRefreshToken = async () => {
       'Content-Type': 'application/json',
       Authorization: token ? `Bearer ${token}` : ''
     }
-  }).then(response => sessionStorage.setItem('access_token', response?.token))
+  }).then(response => response.json())
+    .then(res => {
+      sessionStorage.setItem('access_token', res?.token)
+    })
 };
 
 export const parseJwt = (token) => {

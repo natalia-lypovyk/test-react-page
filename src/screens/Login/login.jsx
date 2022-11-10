@@ -26,7 +26,7 @@ const Login = () => {
       loginUrl,
       {
         method: 'POST',
-        // credentials: 'include',
+        credentials: 'include',
         headers: {
           'Content-Type': 'application/json',
         },
