@@ -37,19 +37,19 @@ export const AddTab = () => {
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="config-form">
       <label className="modal__label">
-        <span className="accordion__main-text">Name:</span>
+        <span className="accordion__main-text flex-basis-20">Name:</span>
         <input
           {...register('configName')}
-          className="modal__input"
+          className="modal__input flex-basis-80"
           type="text"
         />
       </label>
 
       <label className="modal__label">
-        <span className="accordion__main-text">Percent from&nbsp;24h:</span>
+        <span className="accordion__main-text flex-basis-20">Percent from&nbsp;24h:</span>
         <input
           {...register('configPercent')}
-          className="modal__input"
+          className="modal__input flex-basis-80"
           type="number"
         />
       </label>

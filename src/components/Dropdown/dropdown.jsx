@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 export const Dropdown = ({ selectedValue, setSelectedValue, configs }) => {
   const [isOpenDropdown, setOpenDropdown] = useState(false);
 
+  // console.log('configs', configs)
   const handleOpen = () => {
     setOpenDropdown(!isOpenDropdown);
   };

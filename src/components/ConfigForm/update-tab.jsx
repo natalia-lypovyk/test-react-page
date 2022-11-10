@@ -1,13 +1,20 @@
+import { useEffect, useState } from 'react';
+
 import { Dropdown } from '../Dropdown/dropdown';
-import { useState } from 'react';
 import { UpdateForm } from './update-form';
-import { useConfigContext } from '../../configs.context';
+
+import { configsUrl, getData } from '../../utils/get-data';
 
 export const UpdateTab = () => {
   const [selectedValue, setSelectedValue] = useState('');
+  const [configs, setConfigs] = useState([]);
 
-  const configs = useConfigContext();
-  console.log('selected', selectedValue)
+  useEffect(() => {
+    getData(configsUrl).then((data) => setConfigs(data));
+  }, []);
+
+  // console.log('selected', selectedValue)
+
   return (
     <>
       <p>Choose config to update</p>

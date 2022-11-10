@@ -1,24 +1,26 @@
 import React, { useEffect, useState } from 'react';
 import { v4 as uuid } from 'uuid';
+import { Navigate, useNavigate } from 'react-router-dom';
 
+import './app.css';
 import { Header } from '../../components/Header/header';
 import { SearchInput } from '../../components/SearchInput/search-input';
 import { Accordion } from '../../components/Accordion/accordion';
 import { LoadButton } from '../../components/Load/load-button';
 import { Modal } from '../../components/modal/modal';
-
-import './app.css';
+import { ConfigForm } from '../../components/ConfigForm/config-form';
+import { useAuth } from '../../context/auth.context';
 import {
+  getData,
   allFarmsUrl,
   farmsBySearchUrl,
-  getData,
   limitForAllFarms,
   limitForSearch,
-  farmsWithProblemsParam
+  farmsWithProblemsParam, configsUrl, checkToken, handleRefreshToken
 } from '../../utils/get-data';
-import { ConfigForm } from '../../components/ConfigForm/config-form';
 
 const App = () => {
+  const { isAuthenticated } = useAuth();
   const [amount, setAmount] = useState(5);
   const [isFiltered, setIsFiltered] = useState(false);
 
@@ -32,6 +34,12 @@ const App = () => {
 
   const [isOpenConfigModal, setIsOpenConfigModal] = useState(false);
 
+  const [configs, setConfigs] = useState([]);
+  useEffect(() => {
+    getData(configsUrl).then((data) => setConfigs(data));
+  }, []);
+
+// console.log('conf', configs)
   useEffect(() => {
     try {
       getData(`${allFarmsUrl}${limitForAllFarms}`).then(({ data, max_size }) => {
@@ -57,6 +65,23 @@ const App = () => {
     getData(`${farmsBySearchUrl}${searchText}${limitForSearch}`)
       .then(({ data }) => setSearchedFarms(data));
   }
+  const navigate = useNavigate();
+
+  const refreshToken = async () => {
+    const token = checkToken();
+    console.log('refr', token)
+
+    if (token === 'refresh') {
+      const data = await handleRefreshToken();
+      if (data?.token) {
+        sessionStorage.setItem('access_token', data?.token);
+      }
+    }
+
+    if (token === 'expired') {
+      navigate('/login');
+    }
+  }
 
   const farmsFiltered =
     isFiltered
@@ -65,7 +90,7 @@ const App = () => {
         ? farms
         : searchedFarms;
 
-  return (
+  return isAuthenticated ? (
     <div className="app">
       <Header />
 
@@ -76,6 +101,14 @@ const App = () => {
           onClick={() => setIsOpenConfigModal(!isOpenConfigModal)}
         >
           Config
+        </button>
+
+        <button
+          className="app_button"
+          type="button"
+          onClick={() => refreshToken()}
+        >
+          refresh
         </button>
       </div>
 
@@ -117,6 +150,8 @@ const App = () => {
         />
       )}
     </div>
+  ) : (
+    <Navigate to='/login' />
   );
 };
 

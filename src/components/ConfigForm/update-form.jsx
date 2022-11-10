@@ -1,20 +1,20 @@
 import { useForm, useFieldArray } from 'react-hook-form';
 import React from 'react';
 
-export const UpdateForm = ({ selectedValue }) => {
+export const UpdateForm = ({ selectedValue, configs }) => {
   const { register, handleSubmit, control, getValues, setValue, reset } = useForm({
     defaultValues: {
       config: {
         name: selectedValue.name,
         percent: selectedValue.percent_from_24h,
-        wallets: selectedValue.wallets
+        wallets: Object.entries(selectedValue.wallets)
       }
     }
   });
 
   const { fields, append, remove } = useFieldArray({
     control,
-    name: 'config'
+    name: 'config.wallets'
   });
 
   const onSubmit = (data) => {
@@ -60,13 +60,13 @@ export const UpdateForm = ({ selectedValue }) => {
         >
           <input
             {...register(`config.wallets.${index}[0]`)}
-            className="modal__input"
+            className="modal__input flex-basis-20"
             type="text"
           />
 
           <input
             {...register(`config.wallets.${index}[1]`)}
-            className="modal__input"
+            className="modal__input flex-basis-80"
             type="text"
           />
         </label>

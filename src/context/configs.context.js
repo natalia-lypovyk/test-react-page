@@ -1,5 +1,5 @@
 import { createContext, useContext, useEffect, useState } from 'react';
-import { configsUrl, getData } from './utils/get-data';
+import { configsUrl, getData } from '../utils/get-data';
 
 const ConfigsContext = createContext();
 
@@ -13,9 +13,9 @@ export const ConfigsProvider = ({ children}) => {
       console.error(e);
     }
   }, []);
-
+  // console.log('configs', configs)
   return (
-    <ConfigsContext.Provider value={configs}>
+    <ConfigsContext.Provider value={{ configs }}>
       {children}
     </ConfigsContext.Provider>
   );

@@ -4,7 +4,6 @@ import './tabs.css';
 import { AddTab } from './add-tab';
 import { UpdateTab } from './update-tab';
 import { DeleteTab } from './delete-tab';
-import { useConfigContext } from '../../configs.context';
 
 const tabs = [
   {
@@ -22,7 +21,6 @@ const tabs = [
 
 export const ConfigForm = () => {
   const [activeTab, setActiveTab] = useState('addTab');
-  const configs = useConfigContext();
 
   const handleTabChange = (tab) => {
     setActiveTab(tab);
@@ -49,7 +47,7 @@ export const ConfigForm = () => {
           <AddTab />
         ) :
           activeTab === 'updateTab' ? (
-            <UpdateTab configs={configs} />
+            <UpdateTab />
           ) : (
             <DeleteTab />
           )

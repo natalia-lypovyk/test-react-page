@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { v4 as uuid } from 'uuid';
 
 import './accordion.css'
@@ -11,17 +11,24 @@ import {
 import { ContentRow } from './content-row/content-row';
 import { Tooltip } from './tooltip/tooltip';
 import { Modal } from '../modal/modal';
-import { applyConfigToFarm } from '../../utils/get-data';
 import { Dropdown } from '../Dropdown/dropdown';
-import { useConfigContext } from '../../configs.context';
+
+import {
+  getData,
+  configsUrl,
+  applyConfigToFarm
+} from '../../utils/get-data';
 
 export const Accordion = ({ data }) => {
   const [isSelected, setIsSelected] = useState(false);
   const totalFarmHashrates = 'Total farm hashrates:';
   const [isOpenModal, setIsOpenModal] = useState(false);
   const [selectedValue, setSelectedValue] = useState('');
+  const [configs, setConfigs] = useState([]);
 
-  const configs = useConfigContext();
+  useEffect(() => {
+    getData(configsUrl).then((data) => setConfigs(data));
+  }, []);
 
   const hasRigs = data.rigs.length > 0;
   const toggle = () => {
@@ -37,7 +44,7 @@ export const Accordion = ({ data }) => {
     e.preventDefault();
   };
 
-  const configName = configs.find((config) => config.id === data?.config_id)?.name;
+  const configName = configs?.find((config) => config?.id === data?.config_id)?.name;
 
   return (
     <div className="accordion max-content">
@@ -113,6 +120,8 @@ export const Accordion = ({ data }) => {
                 Apply
               </button>
             </form>
+
+
           </Modal>
 
           <div

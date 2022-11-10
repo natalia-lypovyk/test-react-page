@@ -1,18 +1,17 @@
 .header__container {
   display: flex;
+  justify-content: space-between;
   margin: 40px auto 0;
 }
 
-.header__image {
-  margin-top: 2px;
-}
-
-.header__text-container {
-  margin-left: 15px;
+.header__logo {
+  display: flex;
+  align-items: center;
+  column-gap: 15px;
 }
 
 .header__text-wrapper {
-  margin:  auto;
+  margin: auto;
   font-size: 25px;
   font-weight: 300;
   line-height: 115%;

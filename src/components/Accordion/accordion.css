@@ -155,9 +155,8 @@
   padding-left: 5px;
 }
 
-.inner-container > div:nth-of-type(2),
-.inner-container > div:nth-of-type(7) {
-  flex-basis: 10%;
+.inner-container > div:nth-of-type(2) {
+  flex-basis: 13%;
 }
 
 .inner-container > div:nth-of-type(3) {
@@ -170,6 +169,10 @@
 
 .inner-container > div:nth-of-type(6) {
   flex-basis: 9%;
+}
+
+.inner-container > div:nth-of-type(7) {
+  flex-basis: 10%;
 }
 
 .inner-container > div:nth-of-type(8) {
@@ -206,14 +209,6 @@ form {
 .modal__label span,
 .modal__label input {
   margin-bottom: 0;
-}
-
-.modal__label span {
-  flex-basis: 20%;
-}
-
-.modal__label input {
-  flex-basis: 80%;
 }
 
 .modal__title {

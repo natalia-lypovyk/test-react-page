@@ -18,8 +18,8 @@ export const Modal = ({ children, isOpen, handleClose, wrapperId }) => {
 
   return (
     <ModalPortal wrapperId={wrapperId}>
-      <div className="modal">
-        <div className="modal__container">
+      <div className="modal" onClick={handleClose}>
+        <div className="modal__container" onClick={e => e.stopPropagation()}>
           <button
             className="modal__close-button"
             type="button"

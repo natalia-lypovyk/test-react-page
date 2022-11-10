@@ -100,7 +100,7 @@ export const ContentRow = ({ type = '', rowText }) => {
       <div>
         {getText(
           '',
-          isHeader ? tableHeaderText.hashrates : rowText.hashrates,
+          isHeader ? tableHeaderText.hashrates : rowText.rig_hashrates,
           isHeader,
           true
         )}
