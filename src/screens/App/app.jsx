@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { v4 as uuid } from 'uuid';
-import { Navigate, useNavigate } from 'react-router-dom';
+import { Navigate } from 'react-router-dom';
 
 import './app.css';
 import { Header } from '../../components/Header/header';
@@ -16,7 +16,7 @@ import {
   farmsBySearchUrl,
   limitForAllFarms,
   limitForSearch,
-  farmsWithProblemsParam, configsUrl, checkToken, handleRefreshToken
+  farmsWithProblemsParam
 } from '../../utils/get-data';
 
 const App = () => {
@@ -32,14 +32,9 @@ const App = () => {
   const [searchText, setSearchText] = useState('');
   const [farmsAmount, setFarmsAmount] = useState();
 
+  console.log('amount', farmsAmount);
   const [isOpenConfigModal, setIsOpenConfigModal] = useState(false);
 
-  const [configs, setConfigs] = useState([]);
-  useEffect(() => {
-    getData(configsUrl).then((data) => setConfigs(data));
-  }, []);
-
-// console.log('conf', configs)
   useEffect(() => {
     try {
       getData(`${allFarmsUrl}${limitForAllFarms}`).then(({ data, max_size }) => {
@@ -65,23 +60,6 @@ const App = () => {
     getData(`${farmsBySearchUrl}${searchText}${limitForSearch}`)
       .then(({ data }) => setSearchedFarms(data));
   }
-  const navigate = useNavigate();
-
-  const refreshToken = async () => {
-    const token = checkToken();
-    console.log('refr', token)
-
-    if (token === 'refresh') {
-      const data = await handleRefreshToken();
-      if (data?.token) {
-        sessionStorage.setItem('access_token', data?.token);
-      }
-    }
-
-    if (token === 'expired') {
-      navigate('/login');
-    }
-  }
 
   const farmsFiltered =
     isFiltered
@@ -101,14 +79,6 @@ const App = () => {
           onClick={() => setIsOpenConfigModal(!isOpenConfigModal)}
         >
           Config
-        </button>
-
-        <button
-          className="app_button"
-          type="button"
-          onClick={() => refreshToken()}
-        >
-          refresh
         </button>
       </div>
 

@@ -4,21 +4,21 @@ const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const [token, setToken] = useState('');
+  const [shouldUpdate, setShouldUpdate] = useState(false);
+
   const logOut = () => {
-    setToken('');
+    sessionStorage.removeItem('access_token');
     setIsAuthenticated(false);
   }
 
   const value = useMemo(() => ({
     isAuthenticated,
     setIsAuthenticated,
-    token,
-    setToken,
-    logOut
-  }), [token, isAuthenticated]);
+    logOut,
+    shouldUpdate,
+    setShouldUpdate
+  }), [isAuthenticated]);
 
-  // console.log(token, isAuthenticated)
   return (
     <AuthContext.Provider value={value}>
       {children}

@@ -34,7 +34,7 @@ export const SearchInput = ({ isFiltered, setIsFiltered, searchText, setSearchTe
           onChange={handleChange}
         />
 
-        {searchText && (
+        {searchText ? (
           <button
             className="search-input__reset-button"
             type="button"
@@ -42,7 +42,7 @@ export const SearchInput = ({ isFiltered, setIsFiltered, searchText, setSearchTe
           >
             <Close />
           </button>
-        )}
+        ) : null}
       </div>
 
       <button

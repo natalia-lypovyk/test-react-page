@@ -3,10 +3,9 @@ import { v4 as uuid } from 'uuid';
 
 import './header.css';
 import { JetHash } from '../../assets/svg';
-
 import { HeaderItem } from './HeaderItem/header-item';
+
 import { getData, totalHashratesUrl } from '../../utils/get-data';
-// import login from '../../screens/Login/login';
 import { useAuth } from '../../context/auth.context';
 
 export const Header = () => {
@@ -15,7 +14,6 @@ export const Header = () => {
 
   useEffect(() => {
     try {
-      const token = sessionStorage.getItem('access_token');
       getData(totalHashratesUrl).then((data) => setRates(Object.entries(data)));
     } catch (error) {
       console.error(error)

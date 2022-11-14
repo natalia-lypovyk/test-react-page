@@ -3,8 +3,10 @@ import { useForm, useFieldArray } from 'react-hook-form';
 
 import { NewWalletItem } from './new-wallet-item';
 import { postConfig } from '../../utils/get-data';
+import { useAuth } from '../../context/auth.context';
 
 export const AddTab = () => {
+  const { setShouldUpdate } = useAuth();
   const { register, handleSubmit, control, reset } = useForm({
     defaultValues: {
       wallets: [
@@ -15,6 +17,7 @@ export const AddTab = () => {
       ]
     }
   });
+
   const { fields, append, remove } = useFieldArray({
     control,
     name: 'wallets'
@@ -23,7 +26,7 @@ export const AddTab = () => {
   const onSubmit = async (data) => {
     const configData = {
       name: data.configName,
-      percent_from_24h: data.configPercent,
+      percent_from_24h: Number(data.configPercent),
       wallets: data.wallets
         .reduce((prevWallets, wallet) => ({
           ...prevWallets,
@@ -32,21 +35,29 @@ export const AddTab = () => {
     }
 
     await postConfig(configData);
+    setShouldUpdate(true);
   }
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="config-form">
       <label className="modal__label">
-        <span className="accordion__main-text flex-basis-20">Name:</span>
+        <span className="accordion__main-text flex-basis-20">
+          Name:
+        </span>
+
         <input
           {...register('configName')}
           className="modal__input flex-basis-80"
           type="text"
+          autoComplete="off"
         />
       </label>
 
       <label className="modal__label">
-        <span className="accordion__main-text flex-basis-20">Percent from&nbsp;24h:</span>
+        <span className="accordion__main-text flex-basis-20">
+          Percent from&nbsp;24h:
+        </span>
+
         <input
           {...register('configPercent')}
           className="modal__input flex-basis-80"

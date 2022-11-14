@@ -9,6 +9,7 @@ export const refreshUrl = 'http://95.216.162.93:8000/refresh';
 export const getData = async (query) => {
   const token = sessionStorage.getItem('access_token');
 
+  console.log('check', checkToken(token))
   return await fetch(
     query,
     {
@@ -36,22 +37,6 @@ export const applyConfigToFarm = async (farmId, configId) => {
   )
 };
 
-export const removeConfigFromFarm = async (farmId) => {
-  const token = sessionStorage.getItem('access_token');
-  return await fetch(
-    `${allFarmsUrl}/${farmId}/`,
-    {
-      method: 'PATCH',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-        Authorization: token ? `Bearer ${token}` : ''
-      },
-      body: JSON.stringify({ 'config_id': null })
-    }
-  )
-};
-
 export const postConfig = async (data) => {
   const token = sessionStorage.getItem('access_token');
 
@@ -69,6 +54,22 @@ export const postConfig = async (data) => {
   ).then(response => response.json());
 };
 
+export const updateConfig = async (data, configId) => {
+  const token = sessionStorage.getItem('access_token');
+  return await fetch(
+    `${configsUrl}/${configId}/`,
+    {
+      method: 'PATCH',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+        Authorization: token ? `Bearer ${token}` : ''
+      },
+      body: JSON.stringify(data)
+    }
+  )
+};
+
 export const handleRefreshToken = async () => {
   const token = sessionStorage.getItem('access_token');
 
@@ -81,6 +82,7 @@ export const handleRefreshToken = async () => {
     }
   }).then(response => response.json())
     .then(res => {
+      console.log(res)
       sessionStorage.setItem('access_token', res?.token)
     })
 };

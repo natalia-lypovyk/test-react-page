@@ -14,6 +14,7 @@ export const NewWalletItem = ({ register, index, field, remove }) => {
           className="modal__input"
           type="text"
           defaultValue={field.walletName}
+          autoComplete="off"
         />
       </label>
 
@@ -25,6 +26,7 @@ export const NewWalletItem = ({ register, index, field, remove }) => {
           className="modal__input"
           type="text"
           defaultValue={field.walletValue}
+          autoComplete="off"
         />
       </label>
 

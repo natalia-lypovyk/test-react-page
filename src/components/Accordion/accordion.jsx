@@ -25,6 +25,7 @@ export const Accordion = ({ data }) => {
   const [isOpenModal, setIsOpenModal] = useState(false);
   const [selectedValue, setSelectedValue] = useState('');
   const [configs, setConfigs] = useState([]);
+  const [troubleText, setTroubleText] = useState('');
 
   useEffect(() => {
     getData(configsUrl).then((data) => setConfigs(data));
@@ -35,30 +36,33 @@ export const Accordion = ({ data }) => {
     setIsSelected(!isSelected);
   };
 
-  // const handleDeleteConfig = (e) => {
-  //   e.preventDefault();
-  //
-  // };
-
   const handleSubmit = (e) => {
     e.preventDefault();
   };
 
   const configName = configs?.find((config) => config?.id === data?.config_id)?.name;
 
+  const hasTroubles = data?.rigs?.find((rig) => rig.trouble);
+
+  useEffect(() => {
+    if (hasTroubles) {
+      setTroubleText(hasTroubles?.trouble)
+    }
+  }, [hasTroubles]);
+
   return (
     <div className="accordion max-content">
       <div className="accordion__header-container">
         <div className="accordion__header-wrapper">
-          {/*{!data?.status && (*/}
-          {/*  <>*/}
-          {/*    <div className="warning-image">*/}
-          {/*      <Warning />*/}
-          {/*    </div>*/}
+          {hasTroubles && (
+            <>
+              <div className="warning-image">
+                <Warning />
+              </div>
 
-          {/*    <Tooltip />*/}
-          {/*  </>*/}
-          {/*)}*/}
+              <Tooltip text={troubleText} />
+            </>
+          )}
 
           <span className="accordion__main-text margin-left-18">
             {data?.name}
@@ -120,8 +124,6 @@ export const Accordion = ({ data }) => {
                 Apply
               </button>
             </form>
-
-
           </Modal>
 
           <div

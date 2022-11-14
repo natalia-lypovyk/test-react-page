@@ -1,7 +1,7 @@
 import './tooltip.css';
 
-export const Tooltip = () => (
+export const Tooltip = ({ text = '' }) => (
   <div className="tooltip">
-    Miner Off, No requests
+    {text}
   </div>
 );

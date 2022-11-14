@@ -1,8 +1,12 @@
-import { useForm, useFieldArray } from 'react-hook-form';
 import React from 'react';
+import { useForm, useFieldArray } from 'react-hook-form';
 
-export const UpdateForm = ({ selectedValue, configs }) => {
-  const { register, handleSubmit, control, getValues, setValue, reset } = useForm({
+import { Field } from './field';
+import { updateConfig } from '../../utils/get-data';
+
+
+export const UpdateForm = ({ selectedValue }) => {
+  const { register, handleSubmit, control, reset } = useForm({
     defaultValues: {
       config: {
         name: selectedValue.name,
@@ -12,23 +16,23 @@ export const UpdateForm = ({ selectedValue, configs }) => {
     }
   });
 
-  const { fields, append, remove } = useFieldArray({
+  const { fields, remove } = useFieldArray({
     control,
     name: 'config.wallets'
   });
 
   const onSubmit = (data) => {
-    // e.preventDefault();
+    const configData = {
+      name: data.config.name,
+      id: selectedValue.id,
+      percent_from_24h: data.config.percent,
+      wallets: data.config.wallets.reduce((prevWallet, [name, address]) => ({
+        ...prevWallet,
+        [name]: address
+      }), {})
+    }
 
-    // const configData = {
-    //   name: configName,
-    //   id: config.farm_id,
-    //   percent_from_24h: configPercent,
-    //   wallets: configWallets
-
-
-    console.log('config to send', data);
-    // setConfig(configData);
+    updateConfig(configData, selectedValue?.id);
   }
 
   return (
@@ -39,6 +43,7 @@ export const UpdateForm = ({ selectedValue, configs }) => {
           {...register('config.name')}
           className="modal__input_tr"
           type="text"
+          autoComplete="off"
         />
       </label>
 
@@ -48,55 +53,22 @@ export const UpdateForm = ({ selectedValue, configs }) => {
           {...register('config.percent')}
           className="modal__input_tr"
           type="text"
+          autoComplete="off"
         />
       </label>
 
       <p className="modal__title">Wallets</p>
 
       {fields.map((field, index) => (
-        <label
+        <Field
           key={field.id}
-          className="modal__label"
-        >
-          <input
-            {...register(`config.wallets.${index}[0]`)}
-            className="modal__input flex-basis-20"
-            type="text"
-          />
-
-          <input
-            {...register(`config.wallets.${index}[1]`)}
-            className="modal__input flex-basis-80"
-            type="text"
-          />
-        </label>
+          index={index}
+          register={register}
+          remove={remove}
+        />
       ))}
 
-      <div className="modal__buttons">
-        <button
-          className="modal__button"
-          type="button"
-          onClick={() => append({
-            config: {
-              name: '',
-              percent: '',
-              wallets: {}
-            }
-          })}
-        >
-          Add wallet
-        </button>
-
-        <button
-          className="modal__button"
-          type="button"
-          onClick={() => reset()}
-        >
-          Reset
-        </button>
-      </div>
-
-      <div className="modal__buttons">
+      <div className="modal__grid">
         <button
           className="modal__button"
           type="submit"
@@ -107,9 +79,9 @@ export const UpdateForm = ({ selectedValue, configs }) => {
         <button
           className="modal__button"
           type="button"
-          onClick={() => console.log('should delete?')}
+          onClick={() => reset()}
         >
-          Delete
+          Reset
         </button>
       </div>
     </form>

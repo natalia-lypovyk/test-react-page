@@ -1,6 +1,7 @@
 .login-form {
   display: flex;
   flex-direction: column;
+  align-self: center;
   max-width: 400px;
   width: 90%;
   margin: 0 auto;

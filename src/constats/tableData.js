@@ -1,7 +1,3 @@
-export const cutLogin = (login) => {
-  return `${login.slice(0, 4)}...${login.slice(-4)}`;
-}
-
 export const tableHeaderText = {
   name: 'Rig Name',
   lastRequest: 'Last request',

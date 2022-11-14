@@ -8,10 +8,11 @@ import { useAuth } from '../../context/auth.context';
 const errorMessage = (error) => {
   return <div className="invalid-feedback">{error}</div>;
 };
+
 const required = "This field is required";
 
 const Login = () => {
-  const { setToken, setIsAuthenticated } = useAuth();
+  const { setIsAuthenticated } = useAuth();
   const { handleSubmit, register, formState: { errors } } = useForm({
     defaultValues: {
       username: '',
@@ -34,17 +35,13 @@ const Login = () => {
       })
       .then(response => response.json())
       .then((response) => {
-        // Cookie.set(response?.headers?.get('Set-Cookie'))
-        setToken(response.token);
         setIsAuthenticated(true);
-        sessionStorage.setItem('access_token', response.token);
+        sessionStorage.setItem('access_token', response?.token);
         navigate('/');
       })
   }
 
-
   const onSubmit = async (data) => {
-    console.log(data);
     await handleLogin(data);
   };
 

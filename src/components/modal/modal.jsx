@@ -1,7 +1,6 @@
 import { useEffect } from 'react';
 
 import './modal.css';
-
 import { Close } from '../../assets/svg';
 import ModalPortal from './modal-portal';
 

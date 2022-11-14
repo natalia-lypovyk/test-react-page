@@ -17,7 +17,8 @@ const tabs = [
   {
     name: 'deleteTab',
     title: 'Delete'
-  }];
+  }
+  ];
 
 export const ConfigForm = () => {
   const [activeTab, setActiveTab] = useState('addTab');
@@ -25,6 +26,19 @@ export const ConfigForm = () => {
   const handleTabChange = (tab) => {
     setActiveTab(tab);
   };
+
+  const TabToRender = () => {
+    switch (activeTab) {
+      case 'addTab':
+        return <AddTab />
+      case 'updateTab':
+        return <UpdateTab />
+      case 'deleteTab':
+        return <DeleteTab />
+      default:
+        return <AddTab />
+    }
+  }
 
   return (
     <>
@@ -43,15 +57,7 @@ export const ConfigForm = () => {
       </div>
 
       <div className="content">
-        {activeTab === 'addTab' ? (
-          <AddTab />
-        ) :
-          activeTab === 'updateTab' ? (
-            <UpdateTab />
-          ) : (
-            <DeleteTab />
-          )
-        }
+        <TabToRender />
       </div>
     </>
   );

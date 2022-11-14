@@ -186,7 +186,7 @@
 .modal__buttons {
   display: flex;
   justify-content: space-between;
-  column-gap: 10px;
+  gap: 10px;
   width: 100%;
 }
 

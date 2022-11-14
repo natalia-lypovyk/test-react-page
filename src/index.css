@@ -15,12 +15,18 @@ body,
   height: 100%;
 }
 
+#root {
+  display: flex;
+  width: 100%;
+}
+
 button {
   padding: 0;
   cursor: pointer;
 }
 
 .app {
+  width: 100%;
   font-family: 'Rubik', sans-serif;
   padding-bottom: 50px;
 }
