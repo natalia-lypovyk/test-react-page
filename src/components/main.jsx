@@ -8,6 +8,8 @@ import routes from '../routes';
 const Main = () => {
   const navigate = useNavigate();
 
+  const timeInterval = 19 * 60 * 1000;
+  console.log(timeInterval)
   useEffect(() => {
     const refreshToken = async () => {
       const token = checkToken();
@@ -25,9 +27,9 @@ const Main = () => {
       }
     }
 
-    const timer = setTimeout(() => refreshToken(), 1000);
-    return () => clearTimeout(timer);
-  });
+    const interval = setInterval(() => refreshToken(), timeInterval);
+    return () => clearTimeout(interval);
+  }, []);
 
   return (
     <RenderRoutes routes={routes} />
