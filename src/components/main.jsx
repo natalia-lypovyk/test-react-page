@@ -9,7 +9,7 @@ const Main = () => {
   const navigate = useNavigate();
 
   const timeInterval = 19 * 60 * 1000;
-  console.log(timeInterval)
+
   useEffect(() => {
     const refreshToken = async () => {
       const token = checkToken();

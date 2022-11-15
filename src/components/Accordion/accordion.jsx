@@ -56,7 +56,7 @@ const Accordion = ({ data, configs }) => {
     <div className="accordion max-content">
       <div className="accordion__header-container">
         <div className="accordion__header-wrapper">
-          {hasTroubles && (
+          {hasTroubles ? (
             <>
               <div className="warning-image">
                 <Warning />
@@ -64,7 +64,7 @@ const Accordion = ({ data, configs }) => {
 
               <Tooltip text={troubleText} />
             </>
-          )}
+          ) : null}
 
           <span className="accordion__main-text margin-left-18">
             {data?.name}

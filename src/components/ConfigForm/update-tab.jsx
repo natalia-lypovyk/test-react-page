@@ -16,7 +16,7 @@ export const UpdateTab = ({ setModalOpen }) => {
       .then((data) => {
         if (data) setConfigs(data);
       })
-      .catch((error) => console.log(error));
+      .catch((error) => console.error(error));
   }, [setShouldUpdateConfigs]);
 
   return (

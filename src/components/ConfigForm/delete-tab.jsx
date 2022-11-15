@@ -2,14 +2,16 @@ import React, { useEffect, useState } from 'react';
 
 import { Dropdown } from '../Dropdown/dropdown';
 import { useAuth } from '../../context/auth.context';
+import { useNotification } from '../../context/notification.context';
 import {
   configsUrl,
   getData,
   removeConfig
 } from '../../utils/get-data';
 
-export const DeleteTab = () => {
-  const { setShouldUpdate } = useAuth();
+export const DeleteTab = ({ setModalOpen }) => {
+  const { setShouldUpdateConfigs } = useAuth();
+  const { showNotification } = useNotification();
   const [selectedValue, setSelectedValue] = useState('');
   const [configs, setConfigs] = useState([]);
 
@@ -18,8 +20,15 @@ export const DeleteTab = () => {
       .then((data) => {
         if (data) setConfigs(data);
       })
-      .catch((error) => console.log(error));
+      .catch((error) => console.error(error));
   }, []);
+
+  const handleRemove = () => {
+    removeConfig(selectedValue.id);
+    setShouldUpdateConfigs(true);
+    showNotification('Config successfully removed');
+    setModalOpen(false);
+  }
 
   return (
     <>
@@ -34,10 +43,7 @@ export const DeleteTab = () => {
       <button
         className="modal__button"
         type="button"
-        onClick={() => {
-          removeConfig(selectedValue.id);
-          setShouldUpdate(true);
-        }}
+        onClick={() => handleRemove()}
       >
         Delete
       </button>

@@ -49,6 +49,7 @@ const App = () => {
 
     return () => toggleUpdate();
   }, [shouldUpdateFarms]);
+  console.log('shouldUpdateFarms', shouldUpdateFarms);
 
   useEffect(() => {
     getData(`${allFarmsUrl}${limitForAllFarms}${farmsWithProblemsParam}`)

@@ -20,7 +20,7 @@ const tabs = [
   }
   ];
 
-export const ConfigForm = () => {
+export const ConfigForm = ({ setModalOpen }) => {
   const [activeTab, setActiveTab] = useState('addTab');
 
   const handleTabChange = (tab) => {
@@ -30,13 +30,13 @@ export const ConfigForm = () => {
   const TabToRender = () => {
     switch (activeTab) {
       case 'addTab':
-        return <AddTab />
+        return <AddTab setModalOpen={setModalOpen} />
       case 'updateTab':
-        return <UpdateTab />
+        return <UpdateTab setModalOpen={setModalOpen} />
       case 'deleteTab':
-        return <DeleteTab />
+        return <DeleteTab setModalOpen={setModalOpen} />
       default:
-        return <AddTab />
+        return <AddTab setModalOpen={setModalOpen} />
     }
   }
 
