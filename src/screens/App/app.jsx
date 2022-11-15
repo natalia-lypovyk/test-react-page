@@ -1,11 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, memo } from 'react';
 import { v4 as uuid } from 'uuid';
 import { Navigate } from 'react-router-dom';
 
 import './app.css';
 import { Header } from '../../components/Header/header';
 import { SearchInput } from '../../components/SearchInput/search-input';
-import { Accordion } from '../../components/Accordion/accordion';
+import Accordion from '../../components/Accordion/accordion';
 import { LoadButton } from '../../components/Load/load-button';
 import { Modal } from '../../components/modal/modal';
 import { ConfigForm } from '../../components/ConfigForm/config-form';
@@ -16,11 +16,16 @@ import {
   farmsBySearchUrl,
   limitForAllFarms,
   limitForSearch,
-  farmsWithProblemsParam
+  farmsWithProblemsParam,
+  configsUrl
 } from '../../utils/get-data';
 
 const App = () => {
-  const { isAuthenticated, shouldUpdateFarms } = useAuth();
+  const {
+    isAuthenticated,
+    shouldUpdateFarms,
+    toggleUpdate
+  } = useAuth();
   const [amount, setAmount] = useState(5);
   const [isFiltered, setIsFiltered] = useState(false);
 
@@ -31,27 +36,30 @@ const App = () => {
   const [searchedFarms, setSearchedFarms] = useState([]);
   const [searchText, setSearchText] = useState('');
   const [farmsAmount, setFarmsAmount] = useState();
-  console.log(farmsAmount);
 
   const [isOpenConfigModal, setIsOpenConfigModal] = useState(false);
 
   useEffect(() => {
-    try {
-      getData(`${allFarmsUrl}${limitForAllFarms}`).then(({ data, max_size }) => {
+    getData(`${allFarmsUrl}${limitForAllFarms}`)
+      .then(({ data, max_size }) => {
         setFarms(data);
         setFarmsAmount(max_size);
-      });
-    } catch (error) {
-      console.error(error);
-    }
+      })
+      .catch((error) => console.error(error));
+
+    return () => toggleUpdate();
   }, [shouldUpdateFarms]);
 
   useEffect(() => {
-    try {
-      getData(`${allFarmsUrl}${limitForAllFarms}${farmsWithProblemsParam}`).then(({ data }) => setFWP(data));
-    } catch (error) {
-      console.error(error);
-    }
+    getData(`${allFarmsUrl}${limitForAllFarms}${farmsWithProblemsParam}`)
+      .then(({ data }) => setFWP(data))
+      .catch((error) => console.error(error));
+  }, []);
+
+  const [configs, setConfigs] = useState([]);
+
+  useEffect(() => {
+    getData(configsUrl).then((data) => setConfigs(data));
   }, []);
 
   const handleSearch = (event) => {
@@ -107,6 +115,7 @@ const App = () => {
               <Accordion
                 data={value}
                 key={uuid()}
+                configs={configs}
               />
             )
           }
@@ -125,4 +134,4 @@ const App = () => {
   );
 };
 
-export default App;
+export default memo(App);

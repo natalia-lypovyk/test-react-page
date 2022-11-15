@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, memo } from 'react';
 import { v4 as uuid } from 'uuid';
 
 import './accordion.css'
@@ -13,25 +13,18 @@ import { Tooltip } from './tooltip/tooltip';
 import { Modal } from '../modal/modal';
 import { Dropdown } from '../Dropdown/dropdown';
 
-import {
-  getData,
-  configsUrl,
-  applyConfigToFarm
-} from '../../utils/get-data';
+import { applyConfigToFarm } from '../../utils/get-data';
 import { useNotification } from '../../context/notification.context';
+import { useAuth } from '../../context/auth.context';
 
-export const Accordion = ({ data }) => {
+const Accordion = ({ data, configs }) => {
   const { showNotification } = useNotification();
+  const { toggleUpdate } = useAuth();
   const [isSelected, setIsSelected] = useState(false);
   const totalFarmHashrates = 'Total farm hashrates:';
   const [isOpenModal, setIsOpenModal] = useState(false);
   const [selectedValue, setSelectedValue] = useState('');
-  const [configs, setConfigs] = useState([]);
   const [troubleText, setTroubleText] = useState('');
-
-  useEffect(() => {
-    getData(configsUrl).then((data) => setConfigs(data));
-  }, []);
 
   const hasRigs = data.rigs.length > 0;
   const toggle = () => {
@@ -54,7 +47,9 @@ export const Accordion = ({ data }) => {
 
   const handleApply = () => {
     applyConfigToFarm(data?.id, selectedValue.id);
-    showNotification(`Config ${configName} successfully applied to ${data.name} farm`)
+    toggleUpdate();
+    showNotification(`Config ${configName} successfully applied to ${data.name} farm`);
+    setIsOpenModal(false);
   }
 
   return (
@@ -143,7 +138,7 @@ export const Accordion = ({ data }) => {
         </div>
       </div>
 
-      {isSelected && (
+      {isSelected ? (
         <div className="accordion__content-container">
           <div className="accordion__overflow">
             <div className="accordion__content-wrapper">
@@ -160,7 +155,9 @@ export const Accordion = ({ data }) => {
             ))}
           </div>
         </div>
-      )}
+      ) : null}
     </div>
   );
 };
+
+export default memo(Accordion);

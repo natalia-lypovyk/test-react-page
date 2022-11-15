@@ -15,15 +15,21 @@ import { getText } from '../../../utils/get-text';
 
 import { tableHeaderText } from '../../../constats/tableData';
 import { useNotification } from '../../../context/notification.context';
+import { useAuth } from '../../../context/auth.context';
 
 export const ContentRow = ({ type = '', rowText }) => {
+  const { toggleUpdate } = useAuth();
   const { setNotification, setIsNotificationShown } = useNotification();
   const isHeader = type === 'header';
   const [isOpenModal, setIsOpenModal] = useState(false);
   const [value, setValue] = useState(rowText?.script_status);
 
-  const switchRigStatus = async (rigId) => {
+  const handle = () => {
+    toggleUpdate();
     setValue(!value);
+  };
+
+  const switchRigStatus = async (rigId) => {
     const token = sessionStorage.getItem('access_token');
 
     return await fetch(
@@ -37,8 +43,10 @@ export const ContentRow = ({ type = '', rowText }) => {
           Authorization: token ? `Bearer ${token}` : ''
         },
         body: JSON.stringify({ 'rig_id': rigId }),
-      },
-    );
+      }
+    )
+      .catch((error) => console.error(error))
+      .finally(() => handle())
   };
 
   return (
