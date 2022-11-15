@@ -18,7 +18,9 @@ export const getData = async (query) => {
         Authorization: token ? `Bearer ${token}` : ''
       }
     }
-  ).then((response) => response.json());
+  )
+    .then((response) => response.json())
+    .catch((error) => console.error(error));
 };
 
 export const applyConfigToFarm = async (farmId, configId) => {
@@ -83,7 +85,8 @@ export const handleRefreshToken = async () => {
       'Content-Type': 'application/json',
       Authorization: token ? `Bearer ${token}` : ''
     }
-  }).then(response => response.json())
+  })
+    .then(response => response.json())
     .then(res => sessionStorage.setItem('access_token', res?.token))
 };
 

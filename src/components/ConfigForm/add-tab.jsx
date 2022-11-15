@@ -4,12 +4,9 @@ import { useForm, useFieldArray } from 'react-hook-form';
 import { NewWalletItem } from './new-wallet-item';
 import { postConfig } from '../../utils/get-data';
 import { useAuth } from '../../context/auth.context';
-import { useNotification } from '../../context/notification.context';
 
-export const AddTab = ({ setModalOpen }) => {
-  const { setShouldUpdateConfigs } = useAuth();
-  const { showNotification, setHasError } = useNotification();
-
+export const AddTab = () => {
+  const { setShouldUpdate } = useAuth();
   const { register, handleSubmit, control, reset } = useForm({
     defaultValues: {
       wallets: [
@@ -26,22 +23,6 @@ export const AddTab = ({ setModalOpen }) => {
     name: 'wallets'
   });
 
-  function handleResponse(response) {
-    if (response.ok) {
-      setHasError(false);
-      showNotification('Config successfully added');
-      setModalOpen(false);
-      setShouldUpdateConfigs(true);
-      return response.json();
-    }
-
-    if (!response.ok) {
-      showNotification(response.statusText)
-      setHasError(true);
-      return Promise.reject(response);
-    }
-  }
-
   const onSubmit = async (data) => {
     const configData = {
       name: data.configName,
@@ -53,7 +34,8 @@ export const AddTab = ({ setModalOpen }) => {
         ), {})
     }
 
-    await postConfig(configData).then(handleResponse);
+    await postConfig(configData);
+    setShouldUpdate(true);
   }
 
   return (

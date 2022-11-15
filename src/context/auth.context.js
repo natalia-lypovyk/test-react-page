@@ -16,11 +16,11 @@ export const AuthProvider = ({ children }) => {
   const value = useMemo(() => ({
     isAuthenticated,
     setIsAuthenticated,
-    logOut,
     shouldUpdateConfigs,
     setShouldUpdateConfigs,
     shouldUpdateFarms,
     setShouldUpdateFarms,
+    logOut,
     toggleUpdate
   }), [isAuthenticated, shouldUpdateConfigs, shouldUpdateFarms]);
 
