@@ -19,7 +19,7 @@ export const UpdateForm = ({ selectedValue, setModalOpen }) => {
     }
   });
 
-  const { fields, remove } = useFieldArray({
+  const { fields, remove, append } = useFieldArray({
     control,
     name: 'config.wallets'
   });
@@ -88,12 +88,19 @@ export const UpdateForm = ({ selectedValue, setModalOpen }) => {
         />
       ))}
 
-      <div className="modal__grid">
+      <div className="modal__buttons">
         <button
           className="modal__button"
-          type="submit"
+          type="button"
+          onClick={() => append({
+            config: {
+              name: '',
+              percent: '',
+              wallets: {}
+            }
+          })}
         >
-          Add
+          Add wallet
         </button>
 
         <button
@@ -104,6 +111,14 @@ export const UpdateForm = ({ selectedValue, setModalOpen }) => {
           Reset
         </button>
       </div>
+
+      <button
+        className="modal__button"
+        style={{ marginTop: '10px' }}
+        type="submit"
+      >
+        Add
+      </button>
     </form>
   );
 };
