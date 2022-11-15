@@ -4,8 +4,7 @@ const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const [shouldUpdateConfigs, setShouldUpdateConfigs] = useState(false);
-  const [shouldUpdateFarms, setShouldUpdateFarms] = useState(false);
+  const [shouldUpdate, setShouldUpdate] = useState(false);
 
   const logOut = () => {
     sessionStorage.removeItem('access_token');
@@ -16,11 +15,9 @@ export const AuthProvider = ({ children }) => {
     isAuthenticated,
     setIsAuthenticated,
     logOut,
-    shouldUpdateConfigs,
-    setShouldUpdateConfigs,
-    shouldUpdateFarms,
-    setShouldUpdateFarms
-  }), [isAuthenticated, shouldUpdateConfigs, shouldUpdateFarms]);
+    shouldUpdate,
+    setShouldUpdate
+  }), [isAuthenticated]);
 
   return (
     <AuthContext.Provider value={value}>

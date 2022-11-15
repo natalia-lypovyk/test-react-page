@@ -7,11 +7,9 @@ import {
   getData,
   removeConfig
 } from '../../utils/get-data';
-import { useNotification } from '../../context/notification.context';
 
-export const DeleteTab = ({ setModalOpen }) => {
-  const { setShouldUpdateConfigs } = useAuth();
-  const { showNotification } = useNotification();
+export const DeleteTab = () => {
+  const { setShouldUpdate } = useAuth();
   const [selectedValue, setSelectedValue] = useState('');
   const [configs, setConfigs] = useState([]);
 
@@ -22,13 +20,6 @@ export const DeleteTab = ({ setModalOpen }) => {
       })
       .catch((error) => console.log(error));
   }, []);
-
-  const handleRemove = () => {
-    removeConfig(selectedValue.id);
-    setShouldUpdateConfigs(true);
-    showNotification('Config successfully removed');
-    setModalOpen(false);
-  }
 
   return (
     <>
@@ -43,7 +34,10 @@ export const DeleteTab = ({ setModalOpen }) => {
       <button
         className="modal__button"
         type="button"
-        onClick={handleRemove}
+        onClick={() => {
+          removeConfig(selectedValue.id);
+          setShouldUpdate(true);
+        }}
       >
         Delete
       </button>

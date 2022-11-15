@@ -14,31 +14,22 @@ import { changeRigScriptStatus } from '../../../utils/get-data';
 import { getText } from '../../../utils/get-text';
 
 import { tableHeaderText } from '../../../constats/tableData';
-import { useNotification } from '../../../context/notification.context';
 
 export const ContentRow = ({ type = '', rowText }) => {
-  const { setNotification, setIsNotificationShown } = useNotification();
   const isHeader = type === 'header';
   const [isOpenModal, setIsOpenModal] = useState(false);
   const [value, setValue] = useState(rowText?.script_status);
 
   const switchRigStatus = async (rigId) => {
     setValue(!value);
-    const token = sessionStorage.getItem('access_token');
 
     return await fetch(
       changeRigScriptStatus,
       {
         method: 'POST',
-        credentials: 'include',
-        headers: {
-          Accept: 'application/json',
-          'Content-Type': 'application/json',
-          Authorization: token ? `Bearer ${token}` : ''
-        },
         body: JSON.stringify({ 'rig_id': rigId }),
       },
-    );
+    ).then(res => res.json());
   };
 
   return (
@@ -139,8 +130,6 @@ export const ContentRow = ({ type = '', rowText }) => {
             type="button"
             onClick={() => {
               switchRigStatus(rowText.rig_id);
-              setNotification('Rig status successfully changed');
-              setIsNotificationShown(true);
               setIsOpenModal(false);
             }}
           >

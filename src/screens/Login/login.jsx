@@ -4,7 +4,10 @@ import { useNavigate } from 'react-router-dom';
 import './login.css';
 import { loginUrl } from '../../utils/get-data';
 import { useAuth } from '../../context/auth.context';
-import { errorMessage } from '../../components/ErrorMessage/error-message';
+
+const errorMessage = (error) => {
+  return <div className="invalid-feedback">{error}</div>;
+};
 
 const required = "This field is required";
 

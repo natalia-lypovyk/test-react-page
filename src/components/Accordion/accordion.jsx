@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { v4 as uuid } from 'uuid';
 
 import './accordion.css'
@@ -39,7 +39,7 @@ export const Accordion = ({ data }) => {
       .catch((error) => console.error(error));
   }, [shouldUpdateConfigs]);
 
-  const hasRigs = useMemo(() => data.rigs.length > 0, [data]);
+  const hasRigs = data.rigs.length > 0;
   const toggle = () => {
     setIsSelected(!isSelected);
   };
@@ -48,7 +48,7 @@ export const Accordion = ({ data }) => {
     e.preventDefault();
   };
 
-  const configName = useMemo(() => configs?.find((config) => config?.id === data?.config_id)?.name, [configs]);
+  const configName = configs?.find((config) => config?.id === data?.config_id)?.name;
 
   const hasTroubles = data?.rigs?.find((rig) => rig.trouble);
 

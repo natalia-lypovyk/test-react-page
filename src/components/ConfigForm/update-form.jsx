@@ -3,12 +3,9 @@ import { useForm, useFieldArray } from 'react-hook-form';
 
 import { Field } from './field';
 import { updateConfig } from '../../utils/get-data';
-import { useNotification } from '../../context/notification.context';
-import { useAuth } from '../../context/auth.context';
 
-export const UpdateForm = ({ selectedValue, setModalOpen }) => {
-  const { setShouldUpdateConfigs, setShouldUpdateFarms } = useAuth();
-  const { setHasError, showNotification} = useNotification();
+
+export const UpdateForm = ({ selectedValue }) => {
   const { register, handleSubmit, control, reset } = useForm({
     defaultValues: {
       config: {
@@ -24,23 +21,6 @@ export const UpdateForm = ({ selectedValue, setModalOpen }) => {
     name: 'config.wallets'
   });
 
-  const handleResponse = (response) => {
-    if (response.ok) {
-      setHasError(false);
-      showNotification('Config successfully updated');
-      setModalOpen(false);
-      setShouldUpdateConfigs(true);
-      setShouldUpdateFarms(true);
-      return response.json();
-    }
-
-    if (!response.ok) {
-      showNotification(response.statusText)
-      setHasError(true);
-      return Promise.reject(response);
-    }
-  }
-
   const onSubmit = (data) => {
     const configData = {
       name: data.config.name,
@@ -52,7 +32,7 @@ export const UpdateForm = ({ selectedValue, setModalOpen }) => {
       }), {})
     }
 
-    updateConfig(configData, selectedValue?.id).then(handleResponse);
+    updateConfig(configData, selectedValue?.id);
   }
 
   return (
