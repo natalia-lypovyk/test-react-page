@@ -18,8 +18,10 @@ import {
   configsUrl,
   applyConfigToFarm
 } from '../../utils/get-data';
+import { useNotification } from '../../context/notification.context';
 
 export const Accordion = ({ data }) => {
+  const { showNotification } = useNotification();
   const [isSelected, setIsSelected] = useState(false);
   const totalFarmHashrates = 'Total farm hashrates:';
   const [isOpenModal, setIsOpenModal] = useState(false);
@@ -49,6 +51,11 @@ export const Accordion = ({ data }) => {
       setTroubleText(hasTroubles?.trouble)
     }
   }, [hasTroubles]);
+
+  const handleApply = () => {
+    applyConfigToFarm(data?.id, selectedValue.id);
+    showNotification(`Config ${configName} successfully applied to ${data.name} farm`)
+  }
 
   return (
     <div className="accordion max-content">
@@ -119,7 +126,7 @@ export const Accordion = ({ data }) => {
               <button
                 className="modal__button"
                 disabled={selectedValue === ''}
-                onClick={() => applyConfigToFarm(data?.id, selectedValue.id)}
+                onClick={() => handleApply()}
               >
                 Apply
               </button>

@@ -9,11 +9,11 @@ export const refreshUrl = 'http://95.216.162.93:8000/refresh';
 export const getData = async (query) => {
   const token = sessionStorage.getItem('access_token');
 
-  console.log('check', checkToken(token))
   return await fetch(
     query,
     {
       method: 'GET',
+      credentials: 'include',
       headers: {
         Authorization: token ? `Bearer ${token}` : ''
       }
@@ -27,6 +27,7 @@ export const applyConfigToFarm = async (farmId, configId) => {
     `${allFarmsUrl}/${farmId}/`,
     {
       method: 'PATCH',
+      credentials: 'include',
       headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json',
@@ -44,6 +45,7 @@ export const postConfig = async (data) => {
     configsUrl,
     {
       method: 'POST',
+      credentials: 'include',
       headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json',
@@ -51,7 +53,7 @@ export const postConfig = async (data) => {
       },
       body: JSON.stringify(data)
     }
-  ).then(response => response.json());
+  );
 };
 
 export const updateConfig = async (data, configId) => {
@@ -60,6 +62,7 @@ export const updateConfig = async (data, configId) => {
     `${configsUrl}/${configId}/`,
     {
       method: 'PATCH',
+      credentials: 'include',
       headers: {
         Accept: 'application/json',
         'Content-Type': 'application/json',
@@ -81,10 +84,7 @@ export const handleRefreshToken = async () => {
       Authorization: token ? `Bearer ${token}` : ''
     }
   }).then(response => response.json())
-    .then(res => {
-      console.log(res)
-      sessionStorage.setItem('access_token', res?.token)
-    })
+    .then(res => sessionStorage.setItem('access_token', res?.token))
 };
 
 export const parseJwt = (token) => {
@@ -124,6 +124,7 @@ export const removeConfig = async (configId) => {
     `${configsUrl}/${configId}/`,
     {
       method: 'DELETE',
+      credentials: 'include',
       headers: {
         Accept: 'application/json',
         Authorization: token ? `Bearer ${token}` : ''

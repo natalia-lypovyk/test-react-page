@@ -20,7 +20,7 @@ import {
 } from '../../utils/get-data';
 
 const App = () => {
-  const { isAuthenticated } = useAuth();
+  const { isAuthenticated, shouldUpdateFarms } = useAuth();
   const [amount, setAmount] = useState(5);
   const [isFiltered, setIsFiltered] = useState(false);
 
@@ -31,8 +31,8 @@ const App = () => {
   const [searchedFarms, setSearchedFarms] = useState([]);
   const [searchText, setSearchText] = useState('');
   const [farmsAmount, setFarmsAmount] = useState();
+  console.log(farmsAmount);
 
-  console.log('amount', farmsAmount);
   const [isOpenConfigModal, setIsOpenConfigModal] = useState(false);
 
   useEffect(() => {
@@ -44,7 +44,7 @@ const App = () => {
     } catch (error) {
       console.error(error);
     }
-  }, []);
+  }, [shouldUpdateFarms]);
 
   useEffect(() => {
     try {
@@ -87,7 +87,7 @@ const App = () => {
         handleClose={() => setIsOpenConfigModal(false)}
         wrapperId="config-modal-root"
       >
-        <ConfigForm />
+        <ConfigForm setModalOpen={setIsOpenConfigModal} />
       </Modal>
 
       <form onSubmit={handleSearch}>

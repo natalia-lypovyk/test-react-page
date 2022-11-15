@@ -6,14 +6,14 @@ import { UpdateForm } from './update-form';
 import { configsUrl, getData } from '../../utils/get-data';
 import { useAuth } from '../../context/auth.context';
 
-export const UpdateTab = () => {
-  const { shouldUpdate } = useAuth();
+export const UpdateTab = ({ setModalOpen }) => {
+  const { setShouldUpdateConfigs } = useAuth();
   const [selectedValue, setSelectedValue] = useState('');
   const [configs, setConfigs] = useState([]);
 
   useEffect(() => {
     getData(configsUrl).then((data) => setConfigs(data));
-  }, [shouldUpdate]);
+  }, [setShouldUpdateConfigs]);
 
   return (
     <>
@@ -25,7 +25,11 @@ export const UpdateTab = () => {
       />
 
       {selectedValue ? (
-        <UpdateForm selectedValue={selectedValue} configs={configs} />
+        <UpdateForm
+          selectedValue={selectedValue}
+          configs={configs}
+          setModalOpen={setModalOpen}
+        />
       ) : null}
     </>
   );

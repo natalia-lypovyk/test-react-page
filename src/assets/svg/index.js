@@ -1,4 +1,5 @@
 import { Close } from './close';
+import { CloseNotification } from './close-notification';
 import { DisabledWarningSearch } from './disabledWarningSearch';
 import { Gear } from './gear';
 import { GreenRec } from './greenRec';
@@ -13,6 +14,7 @@ import { WarningSearch } from './warningSearch';
 
 export {
   Close,
+  CloseNotification,
   DisabledWarningSearch,
   Gear,
   GreenRec,
