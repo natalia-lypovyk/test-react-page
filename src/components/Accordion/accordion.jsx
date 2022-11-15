@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { v4 as uuid } from 'uuid';
 
 import './accordion.css'
@@ -19,9 +19,11 @@ import {
   applyConfigToFarm
 } from '../../utils/get-data';
 import { useNotification } from '../../context/notification.context';
+import { useAuth } from '../../context/auth.context';
 
 export const Accordion = ({ data }) => {
   const { showNotification } = useNotification();
+  const { shouldUpdateConfigs } = useAuth();
   const [isSelected, setIsSelected] = useState(false);
   const totalFarmHashrates = 'Total farm hashrates:';
   const [isOpenModal, setIsOpenModal] = useState(false);
@@ -30,10 +32,14 @@ export const Accordion = ({ data }) => {
   const [troubleText, setTroubleText] = useState('');
 
   useEffect(() => {
-    getData(configsUrl).then((data) => setConfigs(data));
-  }, []);
+    getData(configsUrl)
+      .then((data) => {
+        if (data) setConfigs(data);
+      })
+      .catch((error) => console.error(error));
+  }, [shouldUpdateConfigs]);
 
-  const hasRigs = data.rigs.length > 0;
+  const hasRigs = useMemo(() => data.rigs.length > 0, [data]);
   const toggle = () => {
     setIsSelected(!isSelected);
   };
@@ -42,7 +48,7 @@ export const Accordion = ({ data }) => {
     e.preventDefault();
   };
 
-  const configName = configs?.find((config) => config?.id === data?.config_id)?.name;
+  const configName = useMemo(() => configs?.find((config) => config?.id === data?.config_id)?.name, [configs]);
 
   const hasTroubles = data?.rigs?.find((rig) => rig.trouble);
 

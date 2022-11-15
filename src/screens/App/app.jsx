@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { v4 as uuid } from 'uuid';
 import { Navigate } from 'react-router-dom';
 
@@ -54,19 +54,18 @@ const App = () => {
     }
   }, []);
 
-  const handleSearch = (event) => {
+  const handleSearch = useCallback((event) => {
     event.preventDefault();
 
     getData(`${farmsBySearchUrl}${searchText}${limitForSearch}`)
       .then(({ data }) => setSearchedFarms(data));
-  }
+  }, [searchText]);
 
-  const farmsFiltered =
-    isFiltered
-      ? farmsWithProblems
-      : searchText === ""
-        ? farms
-        : searchedFarms;
+  const farmsFiltered = isFiltered
+    ? farmsWithProblems
+    : searchText === ''
+      ? farms
+      : searchedFarms;
 
   return isAuthenticated ? (
     <div className="app">
@@ -100,7 +99,7 @@ const App = () => {
       </form>
 
       <div className="app__header-wrapper">
-        {farmsFiltered?.map((value) => {
+        {farmsFiltered.map((value) => {
           if (count <= amount) {
             count++;
             return (

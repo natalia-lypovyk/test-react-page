@@ -16,7 +16,11 @@ export const DeleteTab = ({ setModalOpen }) => {
   const [configs, setConfigs] = useState([]);
 
   useEffect(() => {
-    getData(configsUrl).then((data) => setConfigs(data));
+    getData(configsUrl)
+      .then((data) => {
+        if (data) setConfigs(data);
+      })
+      .catch((error) => console.log(error));
   }, []);
 
   const handleRemove = () => {
