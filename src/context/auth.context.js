@@ -6,8 +6,10 @@ export const AuthProvider = ({ children }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [shouldUpdateConfigs, setShouldUpdateConfigs] = useState(false);
   const [shouldUpdateFarms, setShouldUpdateFarms] = useState(false);
+  const [configsContext, setConfigsToContext] = useState([]);
 
   const toggleUpdate = () => setShouldUpdateFarms(!shouldUpdateFarms);
+  const toggleUpdateConfigs = () => setShouldUpdateConfigs(!shouldUpdateConfigs);
   const logOut = () => {
     sessionStorage.removeItem('access_token');
     setIsAuthenticated(false);
@@ -20,8 +22,11 @@ export const AuthProvider = ({ children }) => {
     setShouldUpdateConfigs,
     shouldUpdateFarms,
     setShouldUpdateFarms,
+    configsContext,
+    setConfigsToContext,
     logOut,
-    toggleUpdate
+    toggleUpdate,
+    toggleUpdateConfigs
   }), [isAuthenticated, shouldUpdateConfigs, shouldUpdateFarms]);
 
   return (

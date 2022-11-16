@@ -1,13 +1,11 @@
 import { useEffect, useState } from 'react';
 
 import { Dropdown } from '../Dropdown/dropdown';
-import { UpdateForm } from './update-form';
+import UpdateForm from './update-form';
 
-import { configsUrl, getData } from '../../utils/get-data';
-import { useAuth } from '../../context/auth.context';
+import { getData, configsUrl } from '../../utils/get-data';
 
 export const UpdateTab = ({ setModalOpen }) => {
-  const { setShouldUpdateConfigs } = useAuth();
   const [selectedValue, setSelectedValue] = useState('');
   const [configs, setConfigs] = useState([]);
 
@@ -17,7 +15,7 @@ export const UpdateTab = ({ setModalOpen }) => {
         if (data) setConfigs(data);
       })
       .catch((error) => console.error(error));
-  }, [setShouldUpdateConfigs]);
+  }, []);
 
   return (
     <>
@@ -31,7 +29,6 @@ export const UpdateTab = ({ setModalOpen }) => {
       {selectedValue ? (
         <UpdateForm
           selectedValue={selectedValue}
-          configs={configs}
           setModalOpen={setModalOpen}
         />
       ) : null}

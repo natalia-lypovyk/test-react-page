@@ -24,7 +24,8 @@ const App = () => {
   const {
     isAuthenticated,
     shouldUpdateFarms,
-    toggleUpdate
+    toggleUpdate,
+    setConfigsToContext
   } = useAuth();
   const [amount, setAmount] = useState(5);
   const [isFiltered, setIsFiltered] = useState(false);
@@ -49,7 +50,6 @@ const App = () => {
 
     return () => toggleUpdate();
   }, [shouldUpdateFarms]);
-  console.log('shouldUpdateFarms', shouldUpdateFarms);
 
   useEffect(() => {
     getData(`${allFarmsUrl}${limitForAllFarms}${farmsWithProblemsParam}`)
@@ -60,7 +60,13 @@ const App = () => {
   const [configs, setConfigs] = useState([]);
 
   useEffect(() => {
-    getData(configsUrl).then((data) => setConfigs(data));
+    getData(configsUrl).then((data) => {
+      if (data) {
+        setConfigsToContext(data)
+        setConfigs(data)
+      }
+
+    });
   }, []);
 
   const handleSearch = (event) => {
@@ -123,12 +129,12 @@ const App = () => {
         })}
       </div>
 
-      {amount < farmsFiltered.length && (
+      {amount < farmsFiltered.length ? (
         <LoadButton
           amount={amount}
           setAmount={setAmount}
         />
-      )}
+      ) : null}
     </div>
   ) : (
     <Navigate to='/login' />

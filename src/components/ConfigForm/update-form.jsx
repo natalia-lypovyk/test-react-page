@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useMemo } from 'react';
 import { useForm, useFieldArray } from 'react-hook-form';
 
 import { Field } from './field';
@@ -6,23 +6,41 @@ import { updateConfig } from '../../utils/get-data';
 import { useAuth } from '../../context/auth.context';
 import { useNotification } from '../../context/notification.context';
 
-export const UpdateForm = ({ selectedValue, setModalOpen }) => {
+const UpdateForm = ({ selectedValue, setModalOpen }) => {
   const { setShouldUpdateConfigs, setShouldUpdateFarms } = useAuth();
   const { setHasError, showNotification} = useNotification();
   const { register, handleSubmit, control, reset } = useForm({
-    defaultValues: {
-      config: {
-        name: selectedValue.name,
-        percent: selectedValue.percent_from_24h,
-        wallets: Object.entries(selectedValue.wallets)
-      }
-    }
+    defaultValues: useMemo(() => ({
+      name: selectedValue.name,
+      percent: selectedValue.percent_from_24h,
+      wallets: Object.entries(selectedValue.wallets)
+        .reduce((prev, [name, address]) => ([
+          ...prev,
+          {
+            walletName: name,
+            walletAddress: address
+          }]), [])
+    }), [selectedValue])
   });
 
   const { fields, remove, append } = useFieldArray({
     control,
-    name: 'config.wallets'
+    name: 'wallets'
   });
+
+  useEffect(() => {
+    reset({
+      name: selectedValue.name,
+      percent: selectedValue.percent_from_24h,
+      wallets: Object.entries(selectedValue.wallets)
+        .reduce((prev, [name, address]) => ([
+          ...prev,
+          {
+            walletName: name,
+            walletAddress: address
+          }]), [])
+    })
+  }, [reset, selectedValue])
 
   const handleResponse = (response) => {
     if (response.ok) {
@@ -60,7 +78,7 @@ export const UpdateForm = ({ selectedValue, setModalOpen }) => {
       <label className="modal__label">
         <span className="accordion__main-text">Name:</span>
         <input
-          {...register('config.name')}
+          {...register('name')}
           className="modal__input_tr"
           type="text"
           autoComplete="off"
@@ -70,7 +88,7 @@ export const UpdateForm = ({ selectedValue, setModalOpen }) => {
       <label className="modal__label">
         <span className="accordion__main-text">Percent:</span>
         <input
-          {...register('config.percent')}
+          {...register('percent')}
           className="modal__input_tr"
           type="text"
           autoComplete="off"
@@ -80,12 +98,7 @@ export const UpdateForm = ({ selectedValue, setModalOpen }) => {
       <p className="modal__title">Wallets</p>
 
       {fields.map((field, index) => (
-        <Field
-          key={field.id}
-          index={index}
-          register={register}
-          remove={remove}
-        />
+        <Field key={field.id} index={index} register={register} remove={remove} />
       ))}
 
       <div className="modal__buttons">
@@ -93,11 +106,9 @@ export const UpdateForm = ({ selectedValue, setModalOpen }) => {
           className="modal__button"
           type="button"
           onClick={() => append({
-            config: {
-              name: '',
-              percent: '',
-              wallets: {}
-            }
+            name: '',
+            percent: '',
+            wallets: {}
           })}
         >
           Add wallet
@@ -105,7 +116,7 @@ export const UpdateForm = ({ selectedValue, setModalOpen }) => {
 
         <button
           className="modal__button"
-          type="button"
+          type="reset"
           onClick={() => reset()}
         >
           Reset
@@ -122,3 +133,5 @@ export const UpdateForm = ({ selectedValue, setModalOpen }) => {
     </form>
   );
 };
+
+export default UpdateForm;

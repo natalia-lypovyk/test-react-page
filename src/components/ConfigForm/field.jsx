@@ -4,19 +4,17 @@ import { Minus } from '../../assets/svg';
 
 export const Field = ({ index, register, remove }) => {
   return (
-    <label className="modal__label">
+    <label className="modal__label" >
       <input
-        {...register(`config.wallets.${index}[0]`)}
+        {...register(`wallets.${index}.walletName`)}
         className="modal__input flex-basis-20"
         type="text"
-        autoComplete="off"
       />
 
       <input
-        {...register(`config.wallets.${index}[1]`)}
+        {...register(`wallets.${index}.walletAddress`)}
         className="modal__input flex-basis-80"
         type="text"
-        autoComplete="off"
       />
 
       <button
