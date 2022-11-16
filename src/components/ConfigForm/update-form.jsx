@@ -60,16 +60,16 @@ const UpdateForm = ({ selectedValue, setModalOpen }) => {
   }
 
   const onSubmit = (data) => {
+
     const configData = {
-      name: data.config.name,
+      name: data.name,
       id: selectedValue.id,
-      percent_from_24h: data.config.percent,
-      wallets: data.config.wallets.reduce((prevWallet, [name, address]) => ({
-        ...prevWallet,
-        [name]: address
+      percent_from_24h: data.percent,
+      wallets: data.wallets.reduce((prev, cur) => ({
+        ...prev,
+        [cur.walletName]: cur.walletAddress
       }), {})
     }
-
     updateConfig(configData, selectedValue?.id).then(handleResponse);
   }
 
@@ -106,9 +106,12 @@ const UpdateForm = ({ selectedValue, setModalOpen }) => {
           className="modal__button"
           type="button"
           onClick={() => append({
-            name: '',
-            percent: '',
-            wallets: {}
+            // name: '',
+            // percent: '',
+            // wallets:{
+                walletName: '',
+                walletAddress: ''
+              // }
           })}
         >
           Add wallet
