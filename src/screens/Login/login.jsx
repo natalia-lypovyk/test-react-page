@@ -5,11 +5,13 @@ import './login.css';
 import { loginUrl } from '../../utils/get-data';
 import { useAuth } from '../../context/auth.context';
 import { errorMessage } from '../../components/ErrorMessage/error-message';
+import { useNotification } from '../../context/notification.context';
 
 const required = "This field is required";
 
 const Login = () => {
   const { setIsAuthenticated } = useAuth();
+  const { showNotification, setHasError } = useNotification();
   const { handleSubmit, register, formState: { errors } } = useForm({
     defaultValues: {
       username: '',
@@ -18,6 +20,23 @@ const Login = () => {
   });
 
   const navigate = useNavigate();
+
+  const handleResponse = (response) => {
+    if (response.ok) {
+      setIsAuthenticated(true);
+      sessionStorage.setItem('access_token', response?.token);
+      navigate('/');
+
+      return response.json();
+    }
+
+    if (!response.ok) {
+      showNotification('Please enter correct login and password');
+      setHasError(true);
+
+      return Promise.reject(response);
+    }
+  }
 
   const handleLogin = async (data) => {
     await fetch(
@@ -30,12 +49,7 @@ const Login = () => {
         },
         body: JSON.stringify(data)
       })
-      .then(response => response.json())
-      .then((response) => {
-        setIsAuthenticated(true);
-        sessionStorage.setItem('access_token', response?.token);
-        navigate('/');
-      })
+      .then(handleResponse)
   }
 
   const onSubmit = async (data) => {
