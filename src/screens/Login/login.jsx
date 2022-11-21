@@ -23,10 +23,6 @@ const Login = () => {
 
   const handleResponse = (response) => {
     if (response.ok) {
-      setIsAuthenticated(true);
-      sessionStorage.setItem('access_token', response?.token);
-      navigate('/');
-
       return response.json();
     }
 
@@ -50,6 +46,11 @@ const Login = () => {
         body: JSON.stringify(data)
       })
       .then(handleResponse)
+      .then(res => {
+        sessionStorage.setItem('access_token', res?.token);
+        setIsAuthenticated(true);
+        navigate('/');
+      })
   }
 
   const onSubmit = async (data) => {
