@@ -1,10 +1,10 @@
-export const totalHashratesUrl = 'http://95.216.162.93:8000/hashrates';
-export const allFarmsUrl = 'http://95.216.162.93:8000/farms';
-export const farmsBySearchUrl = 'http://95.216.162.93:8000/farms?search_query=';
-export const changeRigScriptStatus = 'http://95.216.162.93:8000/rig/changeScriptStatus';
-export const configsUrl = 'http://95.216.162.93:8000/configs';
-export const loginUrl = 'http://95.216.162.93:8000/login';
-export const refreshUrl = 'http://95.216.162.93:8000/refresh';
+export const totalHashratesUrl = 'https://api.jethash.com/hashrates';
+export const allFarmsUrl = 'https://api.jethash.com/farms';
+export const farmsBySearchUrl = 'https://api.jethash.com/farms?search_query=';
+export const changeRigScriptStatus = 'https://api.jethash.com/rig/changeScriptStatus';
+export const configsUrl = 'https://api.jethash.com/configs';
+export const loginUrl = 'https://api.jethash.com/login';
+export const refreshUrl = 'https://api.jethash.com/refresh';
 
 export const getData = async (query) => {
   const token = sessionStorage.getItem('access_token');
