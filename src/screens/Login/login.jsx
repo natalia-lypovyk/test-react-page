@@ -6,6 +6,7 @@ import { loginUrl } from '../../utils/get-data';
 import { useAuth } from '../../context/auth.context';
 import { errorMessage } from '../../components/ErrorMessage/error-message';
 import { useNotification } from '../../context/notification.context';
+import { refreshToken } from '../../utils/get-data';
 
 const required = "This field is required";
 
@@ -55,6 +56,7 @@ const Login = () => {
 
   const onSubmit = async (data) => {
     await handleLogin(data);
+    await refreshToken();
   };
 
   return (
