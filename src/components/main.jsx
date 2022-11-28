@@ -30,8 +30,7 @@ const Main = () => {
     }
 
     if (isAuthenticated) {
-      const interval = setInterval(() => refreshToken(), 1000);
-      return () => clearTimeout(interval);
+      refreshToken();
     }
 
     const interval = setInterval(() => refreshToken(), timeInterval);
