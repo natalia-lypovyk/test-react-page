@@ -87,7 +87,7 @@ export const handleRefreshToken = async () => {
     }
   })
     .then(response => response.json())
-    .then(res => sessionStorage.setItem('access_token', res?.token))
+    .then(res => res)
 };
 
 export const parseJwt = (token) => {

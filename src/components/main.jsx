@@ -15,6 +15,7 @@ const Main = () => {
   useEffect(() => {
     const refreshToken = async () => {
       const token = checkToken();
+      console.log('check token', token);
 
       if (token === 'refresh') {
         const data = await handleRefreshToken();
