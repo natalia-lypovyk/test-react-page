@@ -1,5 +1,3 @@
-import { useNavigate } from 'react-router-dom';
-
 export const totalHashratesUrl = 'https://api.jethash.com/hashrates';
 export const allFarmsUrl = 'https://api.jethash.com/farms';
 export const farmsBySearchUrl = 'https://api.jethash.com/farms?search_query=';
@@ -7,8 +5,6 @@ export const changeRigScriptStatus = 'https://api.jethash.com/rig/changeScriptSt
 export const configsUrl = 'https://api.jethash.com/configs';
 export const loginUrl = 'https://api.jethash.com/login';
 export const refreshUrl = 'https://api.jethash.com/refresh';
-
-const navigate = useNavigate();
 
 export const getData = async (query) => {
   const token = sessionStorage.getItem('access_token');
@@ -93,23 +89,6 @@ export const handleRefreshToken = async () => {
     .then(response => response.json())
     .then(res => res)
 };
-
-export const refreshToken = async () => {
-  const token = checkToken();
-  console.log('check token', token);
-
-  if (token === 'refresh') {
-    const data = await handleRefreshToken();
-    if (data?.token) {
-      sessionStorage.setItem('access_token', data?.token);
-    }
-  }
-
-  if (token === 'expired') {
-    sessionStorage.removeItem('access_token');
-    navigate('/login');
-  }
-}
 
 export const parseJwt = (token) => {
   try {
