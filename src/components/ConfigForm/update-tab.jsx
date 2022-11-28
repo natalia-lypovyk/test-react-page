@@ -20,11 +20,15 @@ export const UpdateTab = ({ setModalOpen }) => {
   return (
     <>
       <p>Choose config to update</p>
-      <Dropdown
-        selectedValue={selectedValue}
-        setSelectedValue={setSelectedValue}
-        configs={configs}
-      />
+      {configs.length > 0 ? (
+        <Dropdown
+          selectedValue={selectedValue}
+          setSelectedValue={setSelectedValue}
+          configs={configs}
+        />
+      ) : (
+        <p>Found no configs to update</p>
+      )}
 
       {selectedValue ? (
         <UpdateForm
