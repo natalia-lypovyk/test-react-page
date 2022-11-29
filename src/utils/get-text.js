@@ -45,7 +45,7 @@ export const getText =  (style = '', text, isHeader, isHash = false, isDate = fa
         key={textItem}
         className={`${!isHeader ? 'accordion__text' : 'accordion__text-bold'} ${style}`}
       >
-        {textItem}
+        {textItem === '' ? '-' : textItem}
       </p>
     ))
   }

@@ -21,8 +21,8 @@ import {
 } from '../../utils/get-data';
 
 const App = () => {
+  const token = sessionStorage.getItem('access_token');
   const {
-    isAuthenticated,
     shouldUpdateFarms,
     toggleUpdate,
     setConfigsToContext
@@ -83,7 +83,7 @@ const App = () => {
         ? farms
         : searchedFarms;
 
-  return isAuthenticated ? (
+  return token ? (
     <div className="app">
       <Header />
 

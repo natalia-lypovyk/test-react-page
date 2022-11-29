@@ -49,14 +49,31 @@ export const ContentRow = ({ type = '', rowText }) => {
       .finally(() => handle())
   };
 
+  const hasStatus = rowText?.script_status !== null;
+
   return (
     <div className="inner-container">
-      <div style={{ display: 'flex' }}>
+      <div
+        style={{
+          display: 'flex',
+          alignItems: 'center'
+      }}>
         {!isHeader && (
           <figure className="icon-container">
             {rowText?.active ? <GreenRec /> : <RedRec />}
           </figure>)
         }
+
+        {!hasStatus ? (
+          <span
+            style={{
+              fontSize: '12px',
+              marginRight: '5px'
+          }}>
+            NO_SCRIPT
+          </span>
+        ) : null}
+
         {getText(
           '',
           isHeader? 'Rig Name' : rowText.name,
@@ -124,7 +141,7 @@ export const ContentRow = ({ type = '', rowText }) => {
       </div>
 
       <div>
-        {!isHeader && (
+        {!isHeader && hasStatus && (
           <Switch
             id={uuid()}
             isOn={value}
