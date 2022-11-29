@@ -5,24 +5,24 @@ const NotificationContext = createContext();
 
 export const NotificationContextProvider = ({ children }) => {
   const [notification, setNotification] = useState('');
-  const [isNotificationShown, setIsNotificationShown] = useState(false);
-  const [hasError, setHasError] = useState(false);
+  const [isNotificationShown, setNotificationShown] = useState(false);
+  const [hasError, setError] = useState(false);
 
   const hideNotification = () => {
-    setIsNotificationShown(false);
+    setNotificationShown(false);
   }
 
   const showNotification = (text) => {
     setNotification(text);
-    setIsNotificationShown(true);
+    setNotificationShown(true);
   };
 
   const value = useMemo(() => ({
     notification,
     setNotification,
     isNotificationShown,
-    setIsNotificationShown,
-    setHasError,
+    setNotificationShown,
+    setError,
     showNotification,
     hideNotification
   }), [notification, isNotificationShown]);

@@ -8,7 +8,17 @@ import {
   Close
 } from '../../assets/svg';
 
-export const SearchInput = ({ isFiltered, setIsFiltered, searchText, setSearchText }) => {
+export const SearchInput = (props) => {
+  const {
+    isFiltered,
+    setFiltered,
+    isFilteredOffline,
+    setFilteredOffline,
+    filterOffline,
+    searchText,
+    setSearchText
+  } = props;
+
   const handleChange = (event) => {
     setSearchText(event.target.value);
   };
@@ -48,7 +58,19 @@ export const SearchInput = ({ isFiltered, setIsFiltered, searchText, setSearchTe
       <button
         className="search-input__sort-button"
         type="button"
-        onClick={() => setIsFiltered(!isFiltered)}
+        onClick={() => {
+          console.log('filtered');
+          setFilteredOffline(!isFilteredOffline);
+          filterOffline();
+        }}
+      >
+        {isFilteredOffline ? <WarningSearch /> : <DisabledWarningSearch />}
+      </button>
+
+      <button
+        className="search-input__sort-button"
+        type="button"
+        onClick={() => setFiltered(!isFiltered)}
       >
         {isFiltered ? <WarningSearch /> : <DisabledWarningSearch />}
       </button>

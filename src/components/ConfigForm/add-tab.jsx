@@ -8,7 +8,7 @@ import { useNotification } from '../../context/notification.context';
 
 export const AddTab = ({ setModalOpen }) => {
   const { setShouldUpdateConfigs } = useAuth();
-  const { showNotification, setHasError } = useNotification();
+  const { showNotification, setError } = useNotification();
   const { register, handleSubmit, control, reset } = useForm({
     defaultValues: {
       wallets: [
@@ -27,7 +27,7 @@ export const AddTab = ({ setModalOpen }) => {
 
   function handleResponse(response) {
     if (response.ok) {
-      setHasError(false);
+      setError(false);
       showNotification('Config successfully added');
       setModalOpen(false);
       setShouldUpdateConfigs(true);
@@ -36,7 +36,7 @@ export const AddTab = ({ setModalOpen }) => {
 
     if (!response.ok) {
       showNotification(response.statusText)
-      setHasError(true);
+      setError(true);
       return Promise.reject(response);
     }
   }

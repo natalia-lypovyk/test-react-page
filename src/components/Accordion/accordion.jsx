@@ -20,15 +20,15 @@ import { useAuth } from '../../context/auth.context';
 const Accordion = ({ data, configs }) => {
   const { showNotification } = useNotification();
   const { toggleUpdate } = useAuth();
-  const [isSelected, setIsSelected] = useState(false);
+  const [isSelected, setSelected] = useState(false);
   const totalFarmHashrates = 'Total farm hashrates:';
-  const [isOpenModal, setIsOpenModal] = useState(false);
+  const [isOpenModal, setOpenModal] = useState(false);
   const [selectedValue, setSelectedValue] = useState('');
   const [troubleText, setTroubleText] = useState('');
 
   const hasRigs = data.rigs.length > 0;
   const toggle = () => {
-    setIsSelected(!isSelected);
+    setSelected(!isSelected);
   };
 
   const handleSubmit = (e) => {
@@ -49,7 +49,7 @@ const Accordion = ({ data, configs }) => {
     applyConfigToFarm(data?.id, selectedValue.id);
     toggleUpdate();
     showNotification(`Config ${configName} successfully applied to ${data.name} farm`);
-    setIsOpenModal(false);
+    setOpenModal(false);
   }
 
   return (
@@ -99,14 +99,14 @@ const Accordion = ({ data, configs }) => {
           ) : null}
 
           <div className="container margin-left-10">
-            <button type="button" onClick={() => setIsOpenModal(true)}>
+            <button type="button" onClick={() => setOpenModal(true)}>
               <Gear />
             </button>
           </div>
 
           <Modal
             isOpen={isOpenModal}
-            handleClose={() => setIsOpenModal(false)}
+            handleClose={() => setOpenModal(false)}
             wrapperId="settings-modal-root"
           >
             <p className="modal__title">Choose config</p>

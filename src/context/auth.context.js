@@ -3,7 +3,7 @@ import { createContext, useContext, useMemo, useState } from 'react';
 const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [isAuthenticated, setAuthenticated] = useState(false);
   const [shouldUpdateConfigs, setShouldUpdateConfigs] = useState(false);
   const [shouldUpdateFarms, setShouldUpdateFarms] = useState(false);
   const [configsContext, setConfigsToContext] = useState([]);
@@ -12,12 +12,12 @@ export const AuthProvider = ({ children }) => {
   const toggleUpdateConfigs = () => setShouldUpdateConfigs(!shouldUpdateConfigs);
   const logOut = () => {
     sessionStorage.removeItem('access_token');
-    setIsAuthenticated(false);
+    setAuthenticated(false);
   }
 
   const value = useMemo(() => ({
     isAuthenticated,
-    setIsAuthenticated,
+    setAuthenticated,
     shouldUpdateConfigs,
     setShouldUpdateConfigs,
     shouldUpdateFarms,

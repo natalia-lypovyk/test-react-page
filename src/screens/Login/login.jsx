@@ -10,8 +10,8 @@ import { useNotification } from '../../context/notification.context';
 const required = "This field is required";
 
 const Login = () => {
-  const { setIsAuthenticated } = useAuth();
-  const { showNotification, setHasError } = useNotification();
+  const { setAuthenticated } = useAuth();
+  const { showNotification, setError } = useNotification();
   const { handleSubmit, register, formState: { errors } } = useForm({
     defaultValues: {
       username: '',
@@ -28,7 +28,7 @@ const Login = () => {
 
     if (!response.ok) {
       showNotification('Please enter correct login and password');
-      setHasError(true);
+      setError(true);
 
       return Promise.reject(response);
     }
@@ -48,7 +48,7 @@ const Login = () => {
       .then(handleResponse)
       .then(res => {
         sessionStorage.setItem('access_token', res?.token);
-        setIsAuthenticated(true);
+        setAuthenticated(true);
         navigate('/');
       })
   }

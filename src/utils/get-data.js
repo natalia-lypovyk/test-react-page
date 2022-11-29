@@ -138,4 +138,5 @@ export const removeConfig = async (configId) => {
 
 export const limitForAllFarms = '?limit=100';
 export const limitForSearch = '&limit=10';
+export const queryFilter = '&offline=';
 export const farmsWithProblemsParam = '&only_with_problems=true';

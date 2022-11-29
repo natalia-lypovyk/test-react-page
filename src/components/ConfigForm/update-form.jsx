@@ -8,7 +8,7 @@ import { useNotification } from '../../context/notification.context';
 
 const UpdateForm = ({ selectedValue, setModalOpen }) => {
   const { setShouldUpdateConfigs, setShouldUpdateFarms } = useAuth();
-  const { setHasError, showNotification} = useNotification();
+  const { setError, showNotification} = useNotification();
   const { register, handleSubmit, control, reset } = useForm({
     defaultValues: useMemo(() => ({
       name: selectedValue.name,
@@ -44,7 +44,7 @@ const UpdateForm = ({ selectedValue, setModalOpen }) => {
 
   const handleResponse = (response) => {
     if (response.ok) {
-      setHasError(false);
+      setError(false);
       showNotification('Config successfully updated');
       setModalOpen(false);
       setShouldUpdateConfigs(true);
@@ -54,13 +54,12 @@ const UpdateForm = ({ selectedValue, setModalOpen }) => {
 
     if (!response.ok) {
       showNotification(response.statusText)
-      setHasError(true);
+      setError(true);
       return Promise.reject(response);
     }
   }
 
   const onSubmit = (data) => {
-
     const configData = {
       name: data.name,
       id: selectedValue.id,

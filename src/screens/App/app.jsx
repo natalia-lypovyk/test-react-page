@@ -17,7 +17,7 @@ import {
   limitForAllFarms,
   limitForSearch,
   farmsWithProblemsParam,
-  configsUrl
+  configsUrl, queryFilter
 } from '../../utils/get-data';
 
 const App = () => {
@@ -28,7 +28,8 @@ const App = () => {
     setConfigsToContext
   } = useAuth();
   const [amount, setAmount] = useState(5);
-  const [isFiltered, setIsFiltered] = useState(false);
+  const [isFiltered, setFiltered] = useState(false);
+  const [isFilteredOffline, setFilteredOffline] = useState(false);
 
   let count = 0;
 
@@ -38,7 +39,7 @@ const App = () => {
   const [searchText, setSearchText] = useState('');
   const [farmsAmount, setFarmsAmount] = useState();
 
-  const [isOpenConfigModal, setIsOpenConfigModal] = useState(false);
+  const [isOpenConfigModal, setOpenConfigModal] = useState(false);
 
   useEffect(() => {
     getData(`${allFarmsUrl}${limitForAllFarms}`)
@@ -76,6 +77,13 @@ const App = () => {
       .then(({ data }) => setSearchedFarms(data));
   }
 
+  const handleFilter = (event) => {
+    event.preventDefault();
+
+    getData(`${farmsBySearchUrl}${searchText}${limitForSearch}${queryFilter}${isFilteredOffline}`)
+      .then(({ data }) => setSearchedFarms(data));
+  }
+
   const farmsFiltered =
     isFiltered
       ? farmsWithProblems
@@ -91,7 +99,7 @@ const App = () => {
         <button
           className="app_button"
           type="button"
-          onClick={() => setIsOpenConfigModal(!isOpenConfigModal)}
+          onClick={() => setOpenConfigModal(!isOpenConfigModal)}
         >
           Config
         </button>
@@ -99,16 +107,19 @@ const App = () => {
 
       <Modal
         isOpen={isOpenConfigModal}
-        handleClose={() => setIsOpenConfigModal(false)}
+        handleClose={() => setOpenConfigModal(false)}
         wrapperId="config-modal-root"
       >
-        <ConfigForm setModalOpen={setIsOpenConfigModal} />
+        <ConfigForm setModalOpen={setOpenConfigModal} />
       </Modal>
 
       <form onSubmit={handleSearch}>
         <SearchInput
           isFiltered={isFiltered}
-          setIsFiltered={setIsFiltered}
+          setFiltered={setFiltered}
+          isFilteredOffline={isFilteredOffline}
+          setFilteredOffline={setFilteredOffline}
+          filterOffline={handleFilter}
           searchText={searchText}
           setSearchText={setSearchText}
         />

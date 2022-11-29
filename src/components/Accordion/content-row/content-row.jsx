@@ -19,9 +19,9 @@ import { useAuth } from '../../../context/auth.context';
 
 export const ContentRow = ({ type = '', rowText }) => {
   const { toggleUpdate } = useAuth();
-  const { setNotification, setIsNotificationShown } = useNotification();
+  const { setNotification, setNotificationShown } = useNotification();
   const isHeader = type === 'header';
-  const [isOpenModal, setIsOpenModal] = useState(false);
+  const [isOpenModal, setOpenModal] = useState(false);
   const [value, setValue] = useState(rowText?.script_status);
 
   const handle = () => {
@@ -145,15 +145,15 @@ export const ContentRow = ({ type = '', rowText }) => {
           <Switch
             id={uuid()}
             isOn={value}
-            onClick={() => setIsOpenModal(true)}
-            handleToggle={() => setIsOpenModal(true)}
+            onClick={() => setOpenModal(true)}
+            handleToggle={() => setOpenModal(true)}
           />
         )}
       </div>
 
       <Modal
         isOpen={isOpenModal}
-        handleClose={() => setIsOpenModal(false)}
+        handleClose={() => setOpenModal(false)}
         wrapperId="settings-modal-root"
       >
         <p>Are you sure to change rig status?</p>
@@ -165,8 +165,8 @@ export const ContentRow = ({ type = '', rowText }) => {
             onClick={() => {
               switchRigStatus(rowText.rig_id);
               setNotification('Rig status successfully changed');
-              setIsNotificationShown(true);
-              setIsOpenModal(false);
+              setNotificationShown(true);
+              setOpenModal(false);
             }}
           >
             Yes, sure
@@ -175,7 +175,7 @@ export const ContentRow = ({ type = '', rowText }) => {
           <button
             className="confirm-button"
             type="button"
-            onClick={() => setIsOpenModal(false)}
+            onClick={() => setOpenModal(false)}
           >
             No
           </button>
